@@ -14,6 +14,7 @@
 		90E99D5C1C3FBCB30007137A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E99D5B1C3FBCB30007137A /* Images.xcassets */; };
 		90E99D5F1C3FBCB30007137A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90E99D5D1C3FBCB30007137A /* LaunchScreen.xib */; };
 		90E99D6B1C3FBCB30007137A /* TestSpeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D6A1C3FBCB30007137A /* TestSpeedTests.m */; };
+		90E99D751C3FBDCE0007137A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E99D741C3FBDCE0007137A /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		90E99D641C3FBCB30007137A /* TestSpeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestSpeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E99D691C3FBCB30007137A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90E99D6A1C3FBCB30007137A /* TestSpeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestSpeedTests.m; sourceTree = "<group>"; };
+		90E99D741C3FBDCE0007137A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E99D751C3FBDCE0007137A /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +66,7 @@
 		90E99D421C3FBCB30007137A = {
 			isa = PBXGroup;
 			children = (
+				90E99D741C3FBDCE0007137A /* CoreMotion.framework */,
 				90E99D4D1C3FBCB30007137A /* TestSpeed */,
 				90E99D671C3FBCB30007137A /* TestSpeedTests */,
 				90E99D4C1C3FBCB30007137A /* Products */,
@@ -416,6 +420,7 @@
 				90E99D701C3FBCB30007137A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90E99D711C3FBCB30007137A /* Build configuration list for PBXNativeTarget "TestSpeedTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +429,7 @@
 				90E99D731C3FBCB30007137A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

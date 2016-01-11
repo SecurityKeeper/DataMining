@@ -17,19 +17,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiZ-rm-j43">
-                                <rect key="frame" x="0.0" y="285" width="600" height="30"/>
+                                <rect key="frame" x="0.0" y="570" width="600" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NCg-gZ-zbQ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <state key="normal" title="stop">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="kiZ-rm-j43" secondAttribute="bottom" id="2f6-Nh-MQG"/>
                             <constraint firstAttribute="trailing" secondItem="kiZ-rm-j43" secondAttribute="trailing" id="Q73-9Y-YCL"/>
-                            <constraint firstAttribute="centerY" secondItem="kiZ-rm-j43" secondAttribute="centerY" id="VP3-Cv-V3g"/>
                             <constraint firstItem="kiZ-rm-j43" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="e6D-vn-CW5"/>
                         </constraints>
                     </view>

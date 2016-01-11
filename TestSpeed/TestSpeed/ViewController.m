@@ -10,7 +10,7 @@
 #import <CoreMotion/CoreMotion.h> 
 
 void messageBox(NSString* str) {
-    UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"debug" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [view show];
 }
 
@@ -24,12 +24,18 @@ void messageBox(NSString* str) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+  
     __block NSString* str = nil;
     self.motionManager=[[CMMotionManager alloc]init];
-    self.motionManager.gyroUpdateInterval=0.1;
+    if (!self.motionManager.accelerometerAvailable) {
+        // 检查传感器到底在设备上是否可用
+        messageBox(@"传感器设备不可用");
+        return;
+    }
+    
+    self.motionManager.gyroUpdateInterval=0.1;  //更新频率是10Hz
     [self.motionManager startGyroUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMGyroData *gyroData, NSError *error) {
-        str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,X:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
+        str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,Z:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
         messageBox(str);
     }];
     

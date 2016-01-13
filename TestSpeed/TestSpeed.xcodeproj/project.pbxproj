@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90E8DDE11C45DA7300E790D9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E8DDE01C45DA7300E790D9 /* HealthKit.framework */; };
+		90E8DDEB1C45E74400E790D9 /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDE81C45E74400E790D9 /* HealthManager.m */; };
+		90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */; };
+		90E8DDF11C45EC2800E790D9 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDF01C45EC2800E790D9 /* MotionManager.m */; };
 		90E99D511C3FBCB30007137A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D501C3FBCB30007137A /* main.m */; };
 		90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D531C3FBCB30007137A /* AppDelegate.m */; };
 		90E99D571C3FBCB30007137A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D561C3FBCB30007137A /* ViewController.m */; };
@@ -28,6 +32,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90E8DDE01C45DA7300E790D9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		90E8DDE21C45DAD300E790D9 /* TestSpeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestSpeed.entitlements; sourceTree = "<group>"; };
+		90E8DDE71C45E74400E790D9 /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
+		90E8DDE81C45E74400E790D9 /* HealthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthManager.m; sourceTree = "<group>"; };
+		90E8DDE91C45E74400E790D9 /* HKHealthStore+AAPLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+AAPLExtensions.h"; sourceTree = "<group>"; };
+		90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+AAPLExtensions.m"; sourceTree = "<group>"; };
+		90E8DDEF1C45EC2800E790D9 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionManager.h; sourceTree = "<group>"; };
+		90E8DDF01C45EC2800E790D9 /* MotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionManager.m; sourceTree = "<group>"; };
 		90E99D4B1C3FBCB30007137A /* TestSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E99D4F1C3FBCB30007137A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90E99D501C3FBCB30007137A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -49,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E8DDE11C45DA7300E790D9 /* HealthKit.framework in Frameworks */,
 				90E99D751C3FBDCE0007137A /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,9 +76,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90E8DDE61C45E74400E790D9 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				90E8DDE71C45E74400E790D9 /* HealthManager.h */,
+				90E8DDE81C45E74400E790D9 /* HealthManager.m */,
+				90E8DDE91C45E74400E790D9 /* HKHealthStore+AAPLExtensions.h */,
+				90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		90E8DDEE1C45EC1200E790D9 /* MotionManager */ = {
+			isa = PBXGroup;
+			children = (
+				90E8DDEF1C45EC2800E790D9 /* MotionManager.h */,
+				90E8DDF01C45EC2800E790D9 /* MotionManager.m */,
+			);
+			path = MotionManager;
+			sourceTree = "<group>";
+		};
 		90E99D421C3FBCB30007137A = {
 			isa = PBXGroup;
 			children = (
+				90E8DDE01C45DA7300E790D9 /* HealthKit.framework */,
 				90E99D741C3FBDCE0007137A /* CoreMotion.framework */,
 				90E99D4D1C3FBCB30007137A /* TestSpeed */,
 				90E99D671C3FBCB30007137A /* TestSpeedTests */,
@@ -85,6 +119,8 @@
 		90E99D4D1C3FBCB30007137A /* TestSpeed */ = {
 			isa = PBXGroup;
 			children = (
+				90E8DDEE1C45EC1200E790D9 /* MotionManager */,
+				90E8DDE61C45E74400E790D9 /* Health */,
 				90E99D521C3FBCB30007137A /* AppDelegate.h */,
 				90E99D531C3FBCB30007137A /* AppDelegate.m */,
 				90E99D551C3FBCB30007137A /* ViewController.h */,
@@ -100,6 +136,7 @@
 		90E99D4E1C3FBCB30007137A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90E8DDE21C45DAD300E790D9 /* TestSpeed.entitlements */,
 				90E99D4F1C3FBCB30007137A /* Info.plist */,
 				90E99D501C3FBCB30007137A /* main.m */,
 			);
@@ -172,6 +209,12 @@
 				TargetAttributes = {
 					90E99D4A1C3FBCB30007137A = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = V7755W7M2E;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					90E99D631C3FBCB30007137A = {
 						CreatedOnToolsVersion = 6.4;
@@ -223,9 +266,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */,
+				90E8DDF11C45EC2800E790D9 /* MotionManager.m in Sources */,
 				90E99D571C3FBCB30007137A /* ViewController.m in Sources */,
 				90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */,
 				90E99D511C3FBCB30007137A /* main.m in Sources */,
+				90E8DDEB1C45E74400E790D9 /* HealthManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,9 +397,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TestSpeed/TestSpeed.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TestSpeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -361,9 +411,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TestSpeed/TestSpeed.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TestSpeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

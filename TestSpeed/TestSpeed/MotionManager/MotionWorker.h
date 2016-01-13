@@ -17,4 +17,7 @@
                  accelerometer:(void(^)(CMAccelerometerData *accelerometerData, NSError *error))accelerometerBlock;
 - (void)stop;
 
+
+- (void)startDeviceMotionUpdate:(void(^)(CMDeviceMotion *motion, NSError *error))block;
+
 @end

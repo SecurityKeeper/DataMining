@@ -49,19 +49,46 @@
     }
     
     self.motionManager.gyroUpdateInterval = 0.1;  //更新频率是10Hz
-    [self.motionManager startGyroUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMGyroData *gyroData, NSError *error) {
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [self.motionManager startGyroUpdatesToQueue:queue withHandler:^(CMGyroData *gyroData, NSError *error) {
         gyroDataBlock(gyroData, error);
     }];
     
     self.motionManager.accelerometerUpdateInterval=0.1;
-    [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+    [self.motionManager startAccelerometerUpdatesToQueue:queue withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
         accelerometerBlock(accelerometerData, error);
     }];
 }
 
+
+
+- (void)startDeviceMotionUpdate:(void(^)(CMDeviceMotion *motion, NSError *error))block {
+    if (!_motionManager.deviceMotionAvailable) {
+        return;
+    }
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+
+    _motionManager.deviceMotionUpdateInterval = 10.0/60.0;
+    [_motionManager startDeviceMotionUpdatesToQueue:queue withHandler:^(CMDeviceMotion *motion, NSError *error) {
+        
+        if (block) {
+            block(motion,error);
+        }
+    }];
+}
+
+
+- (void)stopDeviceMotion{
+    if (_motionManager.deviceMotionActive) {
+        [_motionManager stopDeviceMotionUpdates];
+    }
+}
+
+
 - (void)stop {
     [self.motionManager stopAccelerometerUpdates];
     [self.motionManager stopGyroUpdates];
+    [self stopDeviceMotion];
 }
 
 @end

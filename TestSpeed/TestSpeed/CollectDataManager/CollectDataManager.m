@@ -15,6 +15,7 @@
 #define kSpeedFileName  @"加速计.txt"
 #define kAngleFileName  @"旋转角度.txt"
 #define kStepFileName   @"实时步数.txt"
+#define mAngleFileName  @"角度.txt"
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -44,7 +45,9 @@ void messageBox(NSString* str) {
 - (void)startWork {
     //开启线程
     _isFirst = YES;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    
+    dispatch_queue_t queue = dispatch_queue_create("checkQueue", DISPATCH_QUEUE_PRIORITY_DEFAULT);
+    dispatch_async(queue, ^{
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerWorking) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]run];
     });
@@ -81,10 +84,28 @@ void messageBox(NSString* str) {
         str = [NSString stringWithFormat:@"加速计:X:%.3f,Y:%.3f,Z:%.3f",accelerometerData.acceleration.x,accelerometerData.acceleration.y,accelerometerData.acceleration.z];
         [[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
     }];
+    
+    
+    [[MotionWorker shareInstance] startDeviceMotionUpdate:^(CMDeviceMotion *motion, NSError *error) {
+        
+        double roll = motion.attitude.roll; //roll是Y轴的转向，值减少的时候表示正往左边转，增加的时候往右；
+        double pitch = motion.attitude.pitch; //pitch是X周方向的转动，增加的时候表示设备正朝你倾斜，减少的时候表示疏远；
+        double yaw = motion.attitude.yaw;//yaw是Z轴转向，减少是时候是顺时针，增加的时候是逆时针。
+
+//        NSLog(@"roll=%lf",roll);
+//        NSLog(@"pitch=%lf",pitch);
+//        NSLog(@"yaw=%lf",yaw);
+        
+        str = [NSString stringWithFormat:@"roll=:%.3f,pitch=%.3f,yaw=%.3f",roll,pitch,yaw];
+
+        [[FileManager shareInstance]writeFile:str WithFileName:mAngleFileName];
+
+    }];
 }
 
+
 - (void)getHealthInfo {
-    if (![[HealthWorker shareInstance]checkDevice]) {
+    if (![[HealthWorker shareInstance] checkDevice]) {
         messageBox(@"当前系统版本不支持获取健康数据信息");
         return;
     }

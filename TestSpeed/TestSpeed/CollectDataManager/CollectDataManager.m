@@ -40,9 +40,11 @@ void messageBox(NSString* str) {
 }
 
 - (void)startWork {
-    if (!_timer) {
+    //开启线程
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerWorking) userInfo:nil repeats:YES];
-    }
+        [[NSRunLoop currentRunLoop]run];
+    });
 }
 
 - (void)stopWork {

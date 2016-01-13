@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "Health/HealthManager.h"
-#import "MotionManager/MotionManager.h"
+#import "HealthManager.h"
+#import "MotionManager.h"
+#import "FileManager.h"
 
 #define kSpeedFileName  @"加速计.txt"
 #define kAngleFileName  @"旋转角度.txt"
@@ -62,13 +63,12 @@ void messageBox(NSString* str) {
     }
     
     __block NSString* str = nil;
-    __weak typeof(self) weakSelf = self;
     [[MotionManager shareInstance]startMotionManagerWork:^(CMGyroData *gyroData, NSError *error) {
         str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,Z:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
-        [weakSelf writeFile:str WithFileName:kAngleFileName];
+        [[FileManager shareInstance]writeFile:str WithFileName:kAngleFileName];
     } accelerometer:^(CMAccelerometerData *accelerometerData, NSError *error) {
         str = [NSString stringWithFormat:@"加速计:X:%.3f,Y:%.3f,Z:%.3f",accelerometerData.acceleration.x,accelerometerData.acceleration.y,accelerometerData.acceleration.z];
-        [weakSelf writeFile:str WithFileName:kSpeedFileName];
+        [[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
     }];
 }
 
@@ -80,35 +80,8 @@ void messageBox(NSString* str) {
     
     [[HealthManager shareInstance] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d", (int)value];
-        [self writeFile:str WithFileName:kStepFileName];
+        [[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
     }];
-}
-
-- (void)writeFile:(NSString*)str WithFileName:(NSString*)fileName{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSString *docDir = [paths objectAtIndex:0];
-    
-    NSString* strFile = [docDir stringByAppendingFormat:@"/%@", fileName];
-    NSFileManager* fileMgr = [[NSFileManager alloc]init];
-    if (![fileMgr fileExistsAtPath:strFile]) {
-        BOOL isCreate = [fileMgr createFileAtPath:strFile contents:nil attributes:nil];
-        if (!isCreate) return;
-    }
-    NSFileHandle* outFile = [NSFileHandle fileHandleForWritingAtPath:strFile];
-    if (!outFile) return;
-    [outFile seekToEndOfFile];
-    
-    NSString* writeData = nil;
-    if (!outFile.offsetInFile) {
-        writeData = [[NSMutableString alloc]initWithFormat:@"%@",str];
-    }
-    else {
-        writeData = [[NSMutableString alloc]initWithFormat:@"\r\n%@",str];
-    }
-    NSData *buffer = [writeData dataUsingEncoding:NSUTF8StringEncoding];
-    [outFile writeData:buffer];
-    
-    [outFile closeFile];
 }
 
 @end

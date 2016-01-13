@@ -11,6 +11,7 @@
 		90E8DDEB1C45E74400E790D9 /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDE81C45E74400E790D9 /* HealthManager.m */; };
 		90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */; };
 		90E8DDF11C45EC2800E790D9 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDF01C45EC2800E790D9 /* MotionManager.m */; };
+		90E8DDF51C45F6C600E790D9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDF41C45F6C600E790D9 /* FileManager.m */; };
 		90E99D511C3FBCB30007137A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D501C3FBCB30007137A /* main.m */; };
 		90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D531C3FBCB30007137A /* AppDelegate.m */; };
 		90E99D571C3FBCB30007137A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D561C3FBCB30007137A /* ViewController.m */; };
@@ -40,6 +41,8 @@
 		90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+AAPLExtensions.m"; sourceTree = "<group>"; };
 		90E8DDEF1C45EC2800E790D9 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionManager.h; sourceTree = "<group>"; };
 		90E8DDF01C45EC2800E790D9 /* MotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionManager.m; sourceTree = "<group>"; };
+		90E8DDF31C45F6C600E790D9 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		90E8DDF41C45F6C600E790D9 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		90E99D4B1C3FBCB30007137A /* TestSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E99D4F1C3FBCB30007137A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90E99D501C3FBCB30007137A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,6 +99,15 @@
 			path = MotionManager;
 			sourceTree = "<group>";
 		};
+		90E8DDF21C45F69E00E790D9 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				90E8DDF31C45F6C600E790D9 /* FileManager.h */,
+				90E8DDF41C45F6C600E790D9 /* FileManager.m */,
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
 		90E99D421C3FBCB30007137A = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 		90E99D4D1C3FBCB30007137A /* TestSpeed */ = {
 			isa = PBXGroup;
 			children = (
+				90E8DDF21C45F69E00E790D9 /* FileManager */,
 				90E8DDEE1C45EC1200E790D9 /* MotionManager */,
 				90E8DDE61C45E74400E790D9 /* Health */,
 				90E99D521C3FBCB30007137A /* AppDelegate.h */,
@@ -271,6 +284,7 @@
 				90E99D571C3FBCB30007137A /* ViewController.m in Sources */,
 				90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */,
 				90E99D511C3FBCB30007137A /* main.m in Sources */,
+				90E8DDF51C45F6C600E790D9 /* FileManager.m in Sources */,
 				90E8DDEB1C45E74400E790D9 /* HealthManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^touchPoint)(CGPoint point);
+typedef void(^touchPointBegin)(CGPoint point);
+typedef void(^touchPointEnd)(CGPoint point);
 
 @interface TouchWorker : NSObject
 
 + (TouchWorker*)shareInstance;
-- (void)startWork:(touchPoint)touch;
+- (void)startWork:(touchPointBegin)touchBegin
+         touchEnd:(touchPointEnd)touchEnd;
 - (void)stopWork;
 
 @end

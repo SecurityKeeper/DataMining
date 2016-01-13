@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const notiScreenTouch;
-
 @interface DPApplication : UIApplication 
 
 @end

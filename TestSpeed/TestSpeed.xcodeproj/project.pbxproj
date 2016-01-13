@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9021E2411C45FA1000F3986E /* CollectDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9021E2401C45FA1000F3986E /* CollectDataManager.m */; };
 		90E8DDE11C45DA7300E790D9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E8DDE01C45DA7300E790D9 /* HealthKit.framework */; };
 		90E8DDEB1C45E74400E790D9 /* HealthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDE81C45E74400E790D9 /* HealthManager.m */; };
 		90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9021E23F1C45FA1000F3986E /* CollectDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectDataManager.h; sourceTree = "<group>"; };
+		9021E2401C45FA1000F3986E /* CollectDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectDataManager.m; sourceTree = "<group>"; };
 		90E8DDE01C45DA7300E790D9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		90E8DDE21C45DAD300E790D9 /* TestSpeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestSpeed.entitlements; sourceTree = "<group>"; };
 		90E8DDE71C45E74400E790D9 /* HealthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthManager.h; sourceTree = "<group>"; };
@@ -79,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9021E23E1C45F9FE00F3986E /* CollectDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				9021E23F1C45FA1000F3986E /* CollectDataManager.h */,
+				9021E2401C45FA1000F3986E /* CollectDataManager.m */,
+			);
+			path = CollectDataManager;
+			sourceTree = "<group>";
+		};
 		90E8DDE61C45E74400E790D9 /* Health */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +143,7 @@
 		90E99D4D1C3FBCB30007137A /* TestSpeed */ = {
 			isa = PBXGroup;
 			children = (
+				9021E23E1C45F9FE00F3986E /* CollectDataManager */,
 				90E8DDF21C45F69E00E790D9 /* FileManager */,
 				90E8DDEE1C45EC1200E790D9 /* MotionManager */,
 				90E8DDE61C45E74400E790D9 /* Health */,
@@ -281,6 +294,7 @@
 			files = (
 				90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				90E8DDF11C45EC2800E790D9 /* MotionManager.m in Sources */,
+				9021E2411C45FA1000F3986E /* CollectDataManager.m in Sources */,
 				90E99D571C3FBCB30007137A /* ViewController.m in Sources */,
 				90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */,
 				90E99D511C3FBCB30007137A /* main.m in Sources */,

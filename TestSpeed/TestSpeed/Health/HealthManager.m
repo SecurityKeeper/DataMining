@@ -2,8 +2,8 @@
 //  HealthManager.m
 //  zoubao
 //
-//  Created by 李聪 on 15/4/20.
-//  Copyright (c) 2015年 李聪. All rights reserved.
+//  Created by liuxu on 16/1/13.
+//  Copyright (c) 2016年 liuxu. All rights reserved.
 //
 
 #import "HealthManager.h"

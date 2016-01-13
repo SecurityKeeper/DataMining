@@ -32,12 +32,13 @@
          touchEnd:(touchPointEnd)touchEnd {
     self.touchBegin = touchBegin;
     self.touchEnd = touchEnd;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"notiScreenTouch" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"notiScreenTouchBegin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchEnd:) name:@"notiScreenTouchEnd" object:nil];
 }
 
 - (void)stopWork {
-    [[NSNotificationCenter description]removeObserver:self forKeyPath:@"notiScreenTouch"];
+    [[NSNotificationCenter description]removeObserver:self forKeyPath:@"notiScreenTouchBegin"];
+    [[NSNotificationCenter description]removeObserver:self forKeyPath:@"notiScreenTouchEnd"];
 }
 
 - (void)onScreenTouch:(NSNotification *)notification {

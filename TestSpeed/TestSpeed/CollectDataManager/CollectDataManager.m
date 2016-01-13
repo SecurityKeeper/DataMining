@@ -21,7 +21,9 @@ void messageBox(NSString* str) {
     [view show];
 }
 
-@interface CollectDataManager ()
+@interface CollectDataManager () {
+    BOOL _isFirst;
+}
 
 @property (nonatomic,strong)NSTimer* timer;
 
@@ -41,6 +43,7 @@ void messageBox(NSString* str) {
 
 - (void)startWork {
     //开启线程
+    _isFirst = YES;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerWorking) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]run];
@@ -55,11 +58,10 @@ void messageBox(NSString* str) {
 }
 
 - (void)timerWorking {
-    static BOOL isFirst = YES;
     //开启速度、加速度、角度检测器
-    if (isFirst) {
+    if (_isFirst) {
         [self getMontionInfo];
-        isFirst = NO;
+        _isFirst = NO;
     }
     //获取实时步数量
     [self getHealthInfo];

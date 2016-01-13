@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreMotion/CoreMotion.h> 
 
-@interface MotionManager : NSObject
+@interface MotionWorker : NSObject
 
-+ (MotionManager*)shareInstance;
++ (MotionWorker*)shareInstance;
 - (BOOL)checkDevice;
 - (void)startMotionManagerWork:(void(^)(CMGyroData *gyroData, NSError *error))gyroDataBlock
                  accelerometer:(void(^)(CMAccelerometerData *accelerometerData, NSError *error))accelerometerBlock;

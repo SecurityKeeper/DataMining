@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CollectDataManager.h"
-#import "HealthManager.h"
-#import "MotionManager.h"
+#import "HealthWorker.h"
+#import "MotionWorker.h"
 #import "FileManager.h"
 
 #define kSpeedFileName  @"加速计.txt"
@@ -49,7 +49,7 @@ void messageBox(NSString* str) {
     [self.timer invalidate];
     self.timer = nil;
     //停止速度、加速度、角度检测器
-    [[MotionManager shareInstance] stop];
+    [[MotionWorker shareInstance] stop];
 }
 
 - (void)timerWorking {
@@ -64,13 +64,13 @@ void messageBox(NSString* str) {
 }
 
 - (void)getMontionInfo {
-    if (![[MotionManager shareInstance]checkDevice]) {
+    if (![[MotionWorker shareInstance]checkDevice]) {
         messageBox(@"当前系统版本不支持获取加速度、角度信息");
         return;
     }
     
     __block NSString* str = nil;
-    [[MotionManager shareInstance]startMotionManagerWork:^(CMGyroData *gyroData, NSError *error) {
+    [[MotionWorker shareInstance]startMotionManagerWork:^(CMGyroData *gyroData, NSError *error) {
         str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,Z:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
         [[FileManager shareInstance]writeFile:str WithFileName:kAngleFileName];
     } accelerometer:^(CMAccelerometerData *accelerometerData, NSError *error) {
@@ -80,12 +80,12 @@ void messageBox(NSString* str) {
 }
 
 - (void)getHealthInfo {
-    if (![[HealthManager shareInstance]checkDevice]) {
+    if (![[HealthWorker shareInstance]checkDevice]) {
         messageBox(@"当前系统版本不支持获取健康数据信息");
         return;
     }
     
-    [[HealthManager shareInstance] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
+    [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d", (int)value];
         [[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
     }];

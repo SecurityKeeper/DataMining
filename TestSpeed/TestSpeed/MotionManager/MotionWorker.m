@@ -6,22 +6,22 @@
 //  Copyright (c) 2016年 liuxu. All rights reserved.
 //
 
-#import "MotionManager.h"
+#import "MotionWorker.h"
 
-@interface MotionManager()
+@interface MotionWorker()
 
 @property (nonatomic,strong) CMMotionManager* motionManager;
 
 @end
 
-@implementation MotionManager
+@implementation MotionWorker
 
-+ (MotionManager*)shareInstance {
-    static MotionManager* mgr = nil;
++ (MotionWorker*)shareInstance {
+    static MotionWorker* mgr = nil;
     static dispatch_once_t once_token;
     dispatch_once(&once_token, ^{
         if (!mgr) {
-            mgr = [[MotionManager alloc]init];
+            mgr = [[MotionWorker alloc]init];
         }
     });
     

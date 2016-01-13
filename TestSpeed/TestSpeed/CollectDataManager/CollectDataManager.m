@@ -11,20 +11,20 @@
 #import "HealthWorker.h"
 #import "MotionWorker.h"
 #import "FileManager.h"
+#import "TouchWorker.h"
 
 #define kSpeedFileName  @"加速计.txt"
 #define kAngleFileName  @"旋转角度.txt"
 #define kStepFileName   @"实时步数.txt"
 #define mAngleFileName  @"角度.txt"
+#define kTouchFileName  @"触摸.txt"
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [view show];
 }
 
-@interface CollectDataManager () {
-    BOOL _isFirst;
-}
+@interface CollectDataManager ()
 
 @property (nonatomic,strong)NSTimer* timer;
 
@@ -44,10 +44,10 @@ void messageBox(NSString* str) {
 
 - (void)startWork {
     //开启线程
-    _isFirst = YES;
-    
     dispatch_queue_t queue = dispatch_queue_create("checkQueue", DISPATCH_QUEUE_PRIORITY_DEFAULT);
     dispatch_async(queue, ^{
+        [self getMontionInfo];
+        [self getTouchInfo];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerWorking) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]run];
     });
@@ -58,16 +58,19 @@ void messageBox(NSString* str) {
     self.timer = nil;
     //停止速度、加速度、角度检测器
     [[MotionWorker shareInstance] stop];
+    [[TouchWorker shareInstance] stopWork];
 }
 
 - (void)timerWorking {
-    //开启速度、加速度、角度检测器
-    if (_isFirst) {
-        [self getMontionInfo];
-        _isFirst = NO;
-    }
     //获取实时步数量
     [self getHealthInfo];
+}
+
+- (void)getTouchInfo {
+    [[TouchWorker shareInstance] startWork:^(CGPoint point) {
+        NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标：x=%0.2f,y=%0.2f", point.x, point.y];
+        [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+    }];
 }
 
 - (void)getMontionInfo {

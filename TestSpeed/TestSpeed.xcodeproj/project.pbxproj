@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9021E2411C45FA1000F3986E /* CollectDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9021E2401C45FA1000F3986E /* CollectDataManager.m */; };
+		9021E2451C46363D00F3986E /* DPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9021E2441C46363D00F3986E /* DPApplication.m */; };
+		9021E2481C46379600F3986E /* TouchWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9021E2471C46379600F3986E /* TouchWorker.m */; };
 		90E8DDE11C45DA7300E790D9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E8DDE01C45DA7300E790D9 /* HealthKit.framework */; };
 		90E8DDEB1C45E74400E790D9 /* HealthWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDE81C45E74400E790D9 /* HealthWorker.m */; };
 		90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */; };
@@ -36,6 +38,10 @@
 /* Begin PBXFileReference section */
 		9021E23F1C45FA1000F3986E /* CollectDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectDataManager.h; sourceTree = "<group>"; };
 		9021E2401C45FA1000F3986E /* CollectDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectDataManager.m; sourceTree = "<group>"; };
+		9021E2431C46363D00F3986E /* DPApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPApplication.h; sourceTree = "<group>"; };
+		9021E2441C46363D00F3986E /* DPApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPApplication.m; sourceTree = "<group>"; };
+		9021E2461C46379600F3986E /* TouchWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchWorker.h; sourceTree = "<group>"; };
+		9021E2471C46379600F3986E /* TouchWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchWorker.m; sourceTree = "<group>"; };
 		90E8DDE01C45DA7300E790D9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		90E8DDE21C45DAD300E790D9 /* TestSpeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TestSpeed.entitlements; sourceTree = "<group>"; };
 		90E8DDE71C45E74400E790D9 /* HealthWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthWorker.h; sourceTree = "<group>"; };
@@ -91,6 +97,17 @@
 			path = CollectDataManager;
 			sourceTree = "<group>";
 		};
+		9021E2421C46363000F3986E /* TouchManager */ = {
+			isa = PBXGroup;
+			children = (
+				9021E2431C46363D00F3986E /* DPApplication.h */,
+				9021E2441C46363D00F3986E /* DPApplication.m */,
+				9021E2461C46379600F3986E /* TouchWorker.h */,
+				9021E2471C46379600F3986E /* TouchWorker.m */,
+			);
+			path = TouchManager;
+			sourceTree = "<group>";
+		};
 		90E8DDE61C45E74400E790D9 /* Health */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +160,7 @@
 		90E99D4D1C3FBCB30007137A /* TestSpeed */ = {
 			isa = PBXGroup;
 			children = (
+				9021E2421C46363000F3986E /* TouchManager */,
 				9021E23E1C45F9FE00F3986E /* CollectDataManager */,
 				90E8DDF21C45F69E00E790D9 /* FileManager */,
 				90E8DDEE1C45EC1200E790D9 /* MotionManager */,
@@ -235,6 +253,7 @@
 				TargetAttributes = {
 					90E99D4A1C3FBCB30007137A = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = V7755W7M2E;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -294,10 +313,12 @@
 				90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				90E8DDF11C45EC2800E790D9 /* MotionWorker.m in Sources */,
 				9021E2411C45FA1000F3986E /* CollectDataManager.m in Sources */,
+				9021E2481C46379600F3986E /* TouchWorker.m in Sources */,
 				90E99D571C3FBCB30007137A /* ViewController.m in Sources */,
 				90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */,
 				90E99D511C3FBCB30007137A /* main.m in Sources */,
 				90E8DDF51C45F6C600E790D9 /* FileManager.m in Sources */,
+				9021E2451C46363D00F3986E /* DPApplication.m in Sources */,
 				90E8DDEB1C45E74400E790D9 /* HealthWorker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,12 +446,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TestSpeed/TestSpeed.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: ping ping (WS8RG9X8XC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: ping ping (WS8RG9X8XC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TestSpeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a4395720-9778-4de9-a7fe-539e718ed624";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -444,7 +465,7 @@
 				INFOPLIST_FILE = TestSpeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a4395720-9778-4de9-a7fe-539e718ed624";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

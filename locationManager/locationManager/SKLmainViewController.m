@@ -6,16 +6,22 @@
 //  Copyright © 2016 zhenghong. All rights reserved.
 //
 
-#import "mainViewController.h"
+#import "SKLmainViewController.h"
+#import "SKLgetLocation.h"
 
-@interface mainViewController ()
+@interface SKLmainViewController ()
+{
+    SKLgetLocation * location;
+}
 
 @end
 
-@implementation mainViewController
+@implementation SKLmainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    location = [[SKLgetLocation alloc] initWithDistanceFilter:1.0 desireAccuracy:kCLLocationAccuracyNearestTenMeters];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

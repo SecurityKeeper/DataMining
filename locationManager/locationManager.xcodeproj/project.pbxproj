@@ -7,21 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC4BAAA71C47887B003E7754 /* SKLgetLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */; settings = {ASSET_TAGS = (); }; };
+		EC4BAAAA1C4792A2003E7754 /* SKLtransformLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */; settings = {ASSET_TAGS = (); }; };
 		EC83B54C1C474DEF00FFB09B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B54B1C474DEF00FFB09B /* main.m */; };
 		EC83B54F1C474DEF00FFB09B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B54E1C474DEF00FFB09B /* AppDelegate.m */; };
-		EC83B5521C474DEF00FFB09B /* mainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B5511C474DEF00FFB09B /* mainViewController.m */; };
+		EC83B5521C474DEF00FFB09B /* SKLmainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B5511C474DEF00FFB09B /* SKLmainViewController.m */; };
 		EC83B5551C474DEF00FFB09B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC83B5531C474DEF00FFB09B /* Main.storyboard */; };
 		EC83B5571C474DEF00FFB09B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC83B5561C474DEF00FFB09B /* Assets.xcassets */; };
 		EC83B55A1C474DEF00FFB09B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC83B5581C474DEF00FFB09B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC4BAAA51C47887B003E7754 /* SKLgetLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLgetLocation.h; sourceTree = "<group>"; };
+		EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLgetLocation.m; sourceTree = "<group>"; };
+		EC4BAAA81C4792A2003E7754 /* SKLtransformLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLtransformLocation.h; sourceTree = "<group>"; };
+		EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLtransformLocation.m; sourceTree = "<group>"; };
 		EC83B5471C474DEF00FFB09B /* locationManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = locationManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC83B54B1C474DEF00FFB09B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EC83B54D1C474DEF00FFB09B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EC83B54E1C474DEF00FFB09B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EC83B5501C474DEF00FFB09B /* mainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainViewController.h; sourceTree = "<group>"; };
-		EC83B5511C474DEF00FFB09B /* mainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mainViewController.m; sourceTree = "<group>"; };
+		EC83B5501C474DEF00FFB09B /* SKLmainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKLmainViewController.h; sourceTree = "<group>"; };
+		EC83B5511C474DEF00FFB09B /* SKLmainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKLmainViewController.m; sourceTree = "<group>"; };
 		EC83B5541C474DEF00FFB09B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC83B5561C474DEF00FFB09B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC83B5591C474DEF00FFB09B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +66,12 @@
 			children = (
 				EC83B54D1C474DEF00FFB09B /* AppDelegate.h */,
 				EC83B54E1C474DEF00FFB09B /* AppDelegate.m */,
-				EC83B5501C474DEF00FFB09B /* mainViewController.h */,
-				EC83B5511C474DEF00FFB09B /* mainViewController.m */,
+				EC83B5501C474DEF00FFB09B /* SKLmainViewController.h */,
+				EC83B5511C474DEF00FFB09B /* SKLmainViewController.m */,
+				EC4BAAA51C47887B003E7754 /* SKLgetLocation.h */,
+				EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */,
+				EC4BAAA81C4792A2003E7754 /* SKLtransformLocation.h */,
+				EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */,
 				EC83B5531C474DEF00FFB09B /* Main.storyboard */,
 				EC83B5561C474DEF00FFB09B /* Assets.xcassets */,
 				EC83B5581C474DEF00FFB09B /* LaunchScreen.storyboard */,
@@ -149,8 +159,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC83B5521C474DEF00FFB09B /* mainViewController.m in Sources */,
+				EC83B5521C474DEF00FFB09B /* SKLmainViewController.m in Sources */,
+				EC4BAAAA1C4792A2003E7754 /* SKLtransformLocation.m in Sources */,
 				EC83B54F1C474DEF00FFB09B /* AppDelegate.m in Sources */,
+				EC4BAAA71C47887B003E7754 /* SKLgetLocation.m in Sources */,
 				EC83B54C1C474DEF00FFB09B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

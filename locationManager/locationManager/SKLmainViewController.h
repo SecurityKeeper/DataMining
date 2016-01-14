@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface mainViewController : UIViewController
+@interface SKLmainViewController : UIViewController
 
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "mainViewController.h"
+#import "SKLmainViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    mainViewController * mainVc = [[mainViewController alloc] init];
+    SKLmainViewController * mainVc = [[SKLmainViewController alloc] init];
     UINavigationController * vc = [[UINavigationController alloc] initWithRootViewController:mainVc];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];

@@ -19,6 +19,9 @@
         else if ([[event.allTouches anyObject] phase] == UITouchPhaseEnded) {
             [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"notiScreenTouchEnd" object:nil userInfo:[NSDictionary dictionaryWithObject:event forKey:@"data"]]];
         }
+        else if ([[event.allTouches anyObject] phase] == UITouchPhaseMoved) {
+            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"notiScreenTouchMove" object:nil userInfo:[NSDictionary dictionaryWithObject:event forKey:@"data"]]];
+        }
     }
     [super sendEvent:event];
 }

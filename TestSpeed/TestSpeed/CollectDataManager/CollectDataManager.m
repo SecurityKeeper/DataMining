@@ -73,6 +73,9 @@ void messageBox(NSString* str) {
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
         [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+    } touchMove:^(CGPoint point) {
+        NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
+        [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
     }];
 }
 

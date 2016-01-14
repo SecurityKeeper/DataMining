@@ -13,6 +13,7 @@
 
 @property (nonatomic, copy)touchPointBegin touchBegin;
 @property (nonatomic, copy)touchPointEnd touchEnd;
+@property (nonatomic, copy)touchPointMove touchMove;
 
 @end
 
@@ -29,16 +30,20 @@
 }
 
 - (void)startWork:(touchPointBegin)touchBegin
-         touchEnd:(touchPointEnd)touchEnd {
+         touchEnd:(touchPointEnd)touchEnd
+        touchMove:(touchPointMove)touchMove {
     self.touchBegin = touchBegin;
     self.touchEnd = touchEnd;
+    self.touchMove = touchMove;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"notiScreenTouchBegin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchEnd:) name:@"notiScreenTouchEnd" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchMove:) name:@"notiScreenTouchMove" object:nil];
 }
 
 - (void)stopWork {
     [[NSNotificationCenter description]removeObserver:self forKeyPath:@"notiScreenTouchBegin"];
     [[NSNotificationCenter description]removeObserver:self forKeyPath:@"notiScreenTouchEnd"];
+    [[NSNotificationCenter description]removeObserver:self forKeyPath:@"notiScreenTouchMove"];
 }
 
 - (void)onScreenTouch:(NSNotification *)notification {
@@ -54,6 +59,14 @@
     CGPoint pt = [[[[event allTouches] allObjects] objectAtIndex:0] locationInView:[UIApplication sharedApplication].keyWindow.rootViewController.view];
     if (_touchEnd) {
         self.touchEnd(pt);
+    }
+}
+
+- (void)onScreenTouchMove:(NSNotification *)notification {
+    UIEvent *event = [notification.userInfo objectForKey:@"data"];
+    CGPoint pt = [[[[event allTouches] allObjects] objectAtIndex:0] locationInView:[UIApplication sharedApplication].keyWindow.rootViewController.view];
+    if (_touchMove) {
+        self.touchMove(pt);
     }
 }
 

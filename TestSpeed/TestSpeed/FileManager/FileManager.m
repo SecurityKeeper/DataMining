@@ -41,7 +41,7 @@
     }
     NSData *buffer = [writeData dataUsingEncoding:NSUTF8StringEncoding];
     [outFile writeData:buffer];
-    
+    [outFile synchronizeFile];
     [outFile closeFile];
     
     return YES;

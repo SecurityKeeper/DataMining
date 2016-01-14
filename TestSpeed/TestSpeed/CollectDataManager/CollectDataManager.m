@@ -86,11 +86,20 @@ void messageBox(NSString* str) {
     }
     
     __block NSString* str = nil;
+    
     [[MotionWorker shareInstance]startMotionManagerWork:^(CMGyroData *gyroData, NSError *error) {
         str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,Z:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
+        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateGyroDataNotification" object:str];
+
         [[FileManager shareInstance]writeFile:str WithFileName:kAngleFileName];
     } accelerometer:^(CMAccelerometerData *accelerometerData, NSError *error) {
         str = [NSString stringWithFormat:@"加速计:X:%.3f,Y:%.3f,Z:%.3f",accelerometerData.acceleration.x,accelerometerData.acceleration.y,accelerometerData.acceleration.z];
+        
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAccelerometerNotification" object:str];
+
+
         [[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
     }];
     
@@ -105,8 +114,10 @@ void messageBox(NSString* str) {
 //        NSLog(@"pitch=%lf",pitch);
 //        NSLog(@"yaw=%lf",yaw);
         
-        str = [NSString stringWithFormat:@"roll=:%.3f,pitch=%.3f,yaw=%.3f",roll,pitch,yaw];
+        str = [NSString stringWithFormat:@"roll=%.3f,pitch=%.3f,yaw=%.3f",roll,pitch,yaw];
 
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
+        
         [[FileManager shareInstance]writeFile:str WithFileName:mAngleFileName];
 
     }];
@@ -122,6 +133,9 @@ void messageBox(NSString* str) {
     [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d", (int)value];
         [[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
+
     }];
 }
 

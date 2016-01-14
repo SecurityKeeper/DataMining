@@ -41,9 +41,7 @@
 }
 
 - (void)stopWork {
-    [[NSNotificationCenter defaultCenter]removeObserver:self forKeyPath:@"notiScreenTouchBegin"];
-    [[NSNotificationCenter defaultCenter]removeObserver:self forKeyPath:@"notiScreenTouchEnd"];
-    [[NSNotificationCenter defaultCenter]removeObserver:self forKeyPath:@"notiScreenTouchMove"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)onScreenTouch:(NSNotification *)notification {

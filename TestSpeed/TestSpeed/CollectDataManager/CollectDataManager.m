@@ -70,12 +70,16 @@ void messageBox(NSString* str) {
     [[TouchWorker shareInstance] startWork:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Begin：x=%0.2f,y=%0.2f", point.x, point.y];
         [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
         [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
         [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
+
     }];
 }
 
@@ -88,17 +92,15 @@ void messageBox(NSString* str) {
     __block NSString* str = nil;
     
     [[MotionWorker shareInstance]startMotionManagerWork:^(CMGyroData *gyroData, NSError *error) {
-        str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,Z:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
+//        str = [NSString stringWithFormat:@"旋转角度:X:%.3f,Y:%.3f,Z:%.3f",gyroData.rotationRate.x,gyroData.rotationRate.y,gyroData.rotationRate.z];
         
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateGyroDataNotification" object:str];
 
-        [[FileManager shareInstance]writeFile:str WithFileName:kAngleFileName];
+//        [[FileManager shareInstance]writeFile:str WithFileName:kAngleFileName];
     } accelerometer:^(CMAccelerometerData *accelerometerData, NSError *error) {
         str = [NSString stringWithFormat:@"加速计:X:%.3f,Y:%.3f,Z:%.3f",accelerometerData.acceleration.x,accelerometerData.acceleration.y,accelerometerData.acceleration.z];
         
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAccelerometerNotification" object:str];
-
 
         [[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
     }];
@@ -108,13 +110,9 @@ void messageBox(NSString* str) {
         
         double roll = motion.attitude.roll; //roll是Y轴的转向，值减少的时候表示正往左边转，增加的时候往右；
         double pitch = motion.attitude.pitch; //pitch是X周方向的转动，增加的时候表示设备正朝你倾斜，减少的时候表示疏远；
-        double yaw = motion.attitude.yaw;//yaw是Z轴转向，减少是时候是顺时针，增加的时候是逆时针。
-
-//        NSLog(@"roll=%lf",roll);
-//        NSLog(@"pitch=%lf",pitch);
-//        NSLog(@"yaw=%lf",yaw);
+        double yaw = motion.attitude.yaw;   //yaw是Z轴转向，减少是时候是顺时针，增加的时候是逆时针。
         
-        str = [NSString stringWithFormat:@"roll=%.3f,pitch=%.3f,yaw=%.3f",roll,pitch,yaw];
+        str = [NSString stringWithFormat:@"pitch=%.3f,roll=%.3f,yaw=%.3f",roll,pitch,yaw];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
         

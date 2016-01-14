@@ -32,10 +32,12 @@
     table.dataSource = self;
     [self.view addSubview:table];
     
-    NSArray* arr = @[@"角度",@"加速计",@"步数"];
-    for (int i = 0; i < 3; i++ ) {
+    
+    NSArray* arr = @[@"角度",@"加速计",@"步数",@"触摸"];
+    int width = (self.view.bounds.size.width - (arr.count+1)*10)/arr.count;
+    for (int i = 0; i < arr.count; i++ ) {
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(80*i + 20, CGRectGetMaxY(table.frame) + 10, 60, 40);
+        btn.frame = CGRectMake((width+10)*i + 10, self.view.bounds.size.height - 40, width, 40);
         [btn setBackgroundColor:[UIColor redColor]];
         [btn addTarget:self action:@selector(actionBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn setTitle:arr[i] forState:0];
@@ -83,14 +85,14 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateAccelerometerNotification" object:nil];
     }else if (currentBtn.tag == 2){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateStepNotification" object:nil];
+    }else if (currentBtn.tag == 3){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateTouchNotification" object:nil];
     }
 }
 
 
 - (void)removeAllNotification{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdateMotionNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdateAccelerometerNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdateStepNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

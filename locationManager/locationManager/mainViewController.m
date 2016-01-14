@@ -6,13 +6,13 @@
 //  Copyright © 2016 zhenghong. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "mainViewController.h"
 
-@interface ViewController ()
+@interface mainViewController ()
 
 @end
 
-@implementation ViewController
+@implementation mainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

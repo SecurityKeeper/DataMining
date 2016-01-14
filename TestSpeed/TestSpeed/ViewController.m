@@ -38,23 +38,18 @@
         btn.frame = CGRectMake(80*i + 20, CGRectGetMaxY(table.frame) + 10, 60, 40);
         [btn setBackgroundColor:[UIColor redColor]];
         [btn addTarget:self action:@selector(actionBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitle:[NSString stringWithFormat:@"%@开始",arr[i]] forState:0];
-        [btn setTitle:[NSString stringWithFormat:@"%@停止",arr[i]] forState:UIControlStateSelected];
-        [btn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        [btn setTitle:arr[i] forState:0];
+        [btn setTitle:@"停止" forState:UIControlStateSelected];
+        [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         btn.tag = i;
         [self.view addSubview:btn];
     }
-    
 }
-
-
-
 
 
 #pragma mark - btn action
 
 - (void)actionBtnClicked:(UIButton*)sender {
-
     
     if (currentBtn == sender) {
         sender.selected = !sender.selected;
@@ -66,8 +61,6 @@
             [[CollectDataManager shareInstance] stopWork];
         }
     }else{
-        [dataArray removeAllObjects];
-
         if (currentBtn) {
             currentBtn.selected = NO;
             [currentBtn setBackgroundColor:[UIColor redColor]];

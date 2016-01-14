@@ -138,7 +138,7 @@
                             double usersHeight = [quantity doubleValueForUnit:heightUnit];
                             totleSteps += usersHeight;
                         }
-                        NSLog(@"当天行走步数 = %ld",(long)totleSteps);
+                        //NSLog(@"当天行走步数 = %ld",(long)totleSteps);
                         handler(totleSteps,error);
                     }
                 }];

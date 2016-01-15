@@ -15,6 +15,8 @@
 		90E8DDEC1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDEA1C45E74400E790D9 /* HKHealthStore+AAPLExtensions.m */; };
 		90E8DDF11C45EC2800E790D9 /* MotionWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDF01C45EC2800E790D9 /* MotionWorker.m */; };
 		90E8DDF51C45F6C600E790D9 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E8DDF41C45F6C600E790D9 /* FileManager.m */; };
+		90E9118A1C4745780074BDAD /* DataBaseWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E911891C4745780074BDAD /* DataBaseWorker.m */; };
+		90E9118C1C4747010074BDAD /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E9118B1C4747010074BDAD /* libsqlite3.0.dylib */; };
 		90E99D511C3FBCB30007137A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D501C3FBCB30007137A /* main.m */; };
 		90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D531C3FBCB30007137A /* AppDelegate.m */; };
 		90E99D571C3FBCB30007137A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E99D561C3FBCB30007137A /* ViewController.m */; };
@@ -52,6 +54,9 @@
 		90E8DDF01C45EC2800E790D9 /* MotionWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionWorker.m; sourceTree = "<group>"; };
 		90E8DDF31C45F6C600E790D9 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		90E8DDF41C45F6C600E790D9 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		90E911881C4745780074BDAD /* DataBaseWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseWorker.h; sourceTree = "<group>"; };
+		90E911891C4745780074BDAD /* DataBaseWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseWorker.m; sourceTree = "<group>"; };
+		90E9118B1C4747010074BDAD /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		90E99D4B1C3FBCB30007137A /* TestSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E99D4F1C3FBCB30007137A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90E99D501C3FBCB30007137A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90E9118C1C4747010074BDAD /* libsqlite3.0.dylib in Frameworks */,
 				90E8DDE11C45DA7300E790D9 /* HealthKit.framework in Frameworks */,
 				90E99D751C3FBDCE0007137A /* CoreMotion.framework in Frameworks */,
 			);
@@ -137,11 +143,18 @@
 			path = FileManager;
 			sourceTree = "<group>";
 		};
+		90E911871C4745610074BDAD /* DataBaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				90E911881C4745780074BDAD /* DataBaseWorker.h */,
+				90E911891C4745780074BDAD /* DataBaseWorker.m */,
+			);
+			path = DataBaseManager;
+			sourceTree = "<group>";
+		};
 		90E99D421C3FBCB30007137A = {
 			isa = PBXGroup;
 			children = (
-				90E8DDE01C45DA7300E790D9 /* HealthKit.framework */,
-				90E99D741C3FBDCE0007137A /* CoreMotion.framework */,
 				90E99D4D1C3FBCB30007137A /* TestSpeed */,
 				90E99D671C3FBCB30007137A /* TestSpeedTests */,
 				90E99D4C1C3FBCB30007137A /* Products */,
@@ -160,6 +173,7 @@
 		90E99D4D1C3FBCB30007137A /* TestSpeed */ = {
 			isa = PBXGroup;
 			children = (
+				90E911871C4745610074BDAD /* DataBaseManager */,
 				9021E2421C46363000F3986E /* TouchManager */,
 				9021E23E1C45F9FE00F3986E /* CollectDataManager */,
 				90E8DDF21C45F69E00E790D9 /* FileManager */,
@@ -180,6 +194,9 @@
 		90E99D4E1C3FBCB30007137A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				90E9118B1C4747010074BDAD /* libsqlite3.0.dylib */,
+				90E8DDE01C45DA7300E790D9 /* HealthKit.framework */,
+				90E99D741C3FBDCE0007137A /* CoreMotion.framework */,
 				90E8DDE21C45DAD300E790D9 /* TestSpeed.entitlements */,
 				90E99D4F1C3FBCB30007137A /* Info.plist */,
 				90E99D501C3FBCB30007137A /* main.m */,
@@ -316,6 +333,7 @@
 				9021E2481C46379600F3986E /* TouchWorker.m in Sources */,
 				90E99D571C3FBCB30007137A /* ViewController.m in Sources */,
 				90E99D541C3FBCB30007137A /* AppDelegate.m in Sources */,
+				90E9118A1C4745780074BDAD /* DataBaseWorker.m in Sources */,
 				90E99D511C3FBCB30007137A /* main.m in Sources */,
 				90E8DDF51C45F6C600E790D9 /* FileManager.m in Sources */,
 				9021E2451C46363D00F3986E /* DPApplication.m in Sources */,

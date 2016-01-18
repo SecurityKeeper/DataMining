@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		EC4BAAA71C47887B003E7754 /* SKLgetLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */; settings = {ASSET_TAGS = (); }; };
 		EC4BAAAA1C4792A2003E7754 /* SKLtransformLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */; settings = {ASSET_TAGS = (); }; };
+		EC7801511C47EB4900375AEE /* location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC78014F1C47EB4900375AEE /* location.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		EC7801561C47ECB800375AEE /* Location+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7801531C47ECB700375AEE /* Location+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		EC7801571C47ECB800375AEE /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7801551C47ECB800375AEE /* Location.m */; settings = {ASSET_TAGS = (); }; };
 		EC83B54C1C474DEF00FFB09B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B54B1C474DEF00FFB09B /* main.m */; };
 		EC83B54F1C474DEF00FFB09B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B54E1C474DEF00FFB09B /* AppDelegate.m */; };
 		EC83B5521C474DEF00FFB09B /* SKLmainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B5511C474DEF00FFB09B /* SKLmainViewController.m */; };
@@ -18,10 +21,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EC4BAAA51C47887B003E7754 /* SKLgetLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLgetLocation.h; sourceTree = "<group>"; };
-		EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLgetLocation.m; sourceTree = "<group>"; };
-		EC4BAAA81C4792A2003E7754 /* SKLtransformLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLtransformLocation.h; sourceTree = "<group>"; };
-		EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLtransformLocation.m; sourceTree = "<group>"; };
+		EC4BAAA51C47887B003E7754 /* SKLgetLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKLgetLocation.h; path = ../SKLgetLocation.h; sourceTree = "<group>"; };
+		EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKLgetLocation.m; path = ../SKLgetLocation.m; sourceTree = "<group>"; };
+		EC4BAAA81C4792A2003E7754 /* SKLtransformLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKLtransformLocation.h; path = ../SKLtransformLocation.h; sourceTree = "<group>"; };
+		EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKLtransformLocation.m; path = ../SKLtransformLocation.m; sourceTree = "<group>"; };
+		EC7801501C47EB4900375AEE /* location.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = location.xcdatamodel; sourceTree = "<group>"; };
+		EC7801521C47ECB700375AEE /* Location+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Location+CoreDataProperties.h"; path = "../Location+CoreDataProperties.h"; sourceTree = "<group>"; };
+		EC7801531C47ECB700375AEE /* Location+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Location+CoreDataProperties.m"; path = "../Location+CoreDataProperties.m"; sourceTree = "<group>"; };
+		EC7801541C47ECB700375AEE /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Location.h; path = ../Location.h; sourceTree = "<group>"; };
+		EC7801551C47ECB800375AEE /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Location.m; path = ../Location.m; sourceTree = "<group>"; };
 		EC83B5471C474DEF00FFB09B /* locationManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = locationManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC83B54B1C474DEF00FFB09B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EC83B54D1C474DEF00FFB09B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,6 +53,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC58E41B1C48D46F00AC0263 /* locationDB */ = {
+			isa = PBXGroup;
+			children = (
+				EC7801531C47ECB700375AEE /* Location+CoreDataProperties.m */,
+				EC7801521C47ECB700375AEE /* Location+CoreDataProperties.h */,
+				EC7801551C47ECB800375AEE /* Location.m */,
+				EC7801541C47ECB700375AEE /* Location.h */,
+			);
+			path = locationDB;
+			sourceTree = "<group>";
+		};
+		EC58E41C1C48D49600AC0263 /* locationGet */ = {
+			isa = PBXGroup;
+			children = (
+				EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */,
+				EC4BAAA51C47887B003E7754 /* SKLgetLocation.h */,
+				EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */,
+				EC4BAAA81C4792A2003E7754 /* SKLtransformLocation.h */,
+			);
+			path = locationGet;
+			sourceTree = "<group>";
+		};
 		EC83B53E1C474DEF00FFB09B = {
 			isa = PBXGroup;
 			children = (
@@ -68,10 +98,9 @@
 				EC83B54E1C474DEF00FFB09B /* AppDelegate.m */,
 				EC83B5501C474DEF00FFB09B /* SKLmainViewController.h */,
 				EC83B5511C474DEF00FFB09B /* SKLmainViewController.m */,
-				EC4BAAA51C47887B003E7754 /* SKLgetLocation.h */,
-				EC4BAAA61C47887B003E7754 /* SKLgetLocation.m */,
-				EC4BAAA81C4792A2003E7754 /* SKLtransformLocation.h */,
-				EC4BAAA91C4792A2003E7754 /* SKLtransformLocation.m */,
+				EC58E41C1C48D49600AC0263 /* locationGet */,
+				EC58E41B1C48D46F00AC0263 /* locationDB */,
+				EC78014F1C47EB4900375AEE /* location.xcdatamodeld */,
 				EC83B5531C474DEF00FFB09B /* Main.storyboard */,
 				EC83B5561C474DEF00FFB09B /* Assets.xcassets */,
 				EC83B5581C474DEF00FFB09B /* LaunchScreen.storyboard */,
@@ -162,7 +191,10 @@
 				EC83B5521C474DEF00FFB09B /* SKLmainViewController.m in Sources */,
 				EC4BAAAA1C4792A2003E7754 /* SKLtransformLocation.m in Sources */,
 				EC83B54F1C474DEF00FFB09B /* AppDelegate.m in Sources */,
+				EC7801561C47ECB800375AEE /* Location+CoreDataProperties.m in Sources */,
 				EC4BAAA71C47887B003E7754 /* SKLgetLocation.m in Sources */,
+				EC7801511C47EB4900375AEE /* location.xcdatamodeld in Sources */,
+				EC7801571C47ECB800375AEE /* Location.m in Sources */,
 				EC83B54C1C474DEF00FFB09B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,6 +345,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EC78014F1C47EB4900375AEE /* location.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EC7801501C47EB4900375AEE /* location.xcdatamodel */,
+			);
+			currentVersion = EC7801501C47EB4900375AEE /* location.xcdatamodel */;
+			path = location.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EC83B53F1C474DEF00FFB09B /* Project object */;
 }

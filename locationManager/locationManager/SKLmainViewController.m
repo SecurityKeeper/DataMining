@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     location = [[SKLgetLocation alloc] initWithDistanceFilter:1.0 desireAccuracy:kCLLocationAccuracyNearestTenMeters];
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     // Do any additional setup after loading the view, typically from a nib.
 }

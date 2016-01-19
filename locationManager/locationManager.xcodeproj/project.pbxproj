@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC7801511C47EB4900375AEE /* location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC78014F1C47EB4900375AEE /* location.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
+		EC7801511C47EB4900375AEE /* location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC78014F1C47EB4900375AEE /* location.xcdatamodeld */; };
 		EC83B54C1C474DEF00FFB09B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B54B1C474DEF00FFB09B /* main.m */; };
 		EC83B54F1C474DEF00FFB09B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B54E1C474DEF00FFB09B /* AppDelegate.m */; };
 		EC83B5521C474DEF00FFB09B /* SKLmainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC83B5511C474DEF00FFB09B /* SKLmainViewController.m */; };
 		EC83B5551C474DEF00FFB09B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC83B5531C474DEF00FFB09B /* Main.storyboard */; };
 		EC83B5571C474DEF00FFB09B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC83B5561C474DEF00FFB09B /* Assets.xcassets */; };
 		EC83B55A1C474DEF00FFB09B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC83B5581C474DEF00FFB09B /* LaunchScreen.storyboard */; };
-		ECD73C911C4DFFD0008AC3F9 /* Location+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C8E1C4DFFD0008AC3F9 /* Location+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
-		ECD73C921C4DFFD0008AC3F9 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C901C4DFFD0008AC3F9 /* Location.m */; settings = {ASSET_TAGS = (); }; };
-		ECD73C961C4E011F008AC3F9 /* SKLgetLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C951C4E011F008AC3F9 /* SKLgetLocation.m */; settings = {ASSET_TAGS = (); }; };
-		ECD73C991C4E01C6008AC3F9 /* SKLtransformLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C981C4E01C6008AC3F9 /* SKLtransformLocation.m */; settings = {ASSET_TAGS = (); }; };
+		ECD73C911C4DFFD0008AC3F9 /* Location+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C8E1C4DFFD0008AC3F9 /* Location+CoreDataProperties.m */; };
+		ECD73C921C4DFFD0008AC3F9 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C901C4DFFD0008AC3F9 /* Location.m */; };
+		ECD73C961C4E011F008AC3F9 /* SKLgetLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C951C4E011F008AC3F9 /* SKLgetLocation.m */; };
+		ECD73C991C4E01C6008AC3F9 /* SKLtransformLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD73C981C4E01C6008AC3F9 /* SKLtransformLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -306,6 +306,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = locationManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zh.locationManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -317,6 +318,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = locationManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zh.locationManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";

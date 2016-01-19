@@ -267,12 +267,12 @@
 		90EE2D6B1C4E05E500C5A64D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = DM;
 				LastUpgradeCheck = 0640;
-				ORGANIZATIONNAME = liuxu;
+				ORGANIZATIONNAME = SecurityKeeper;
 				TargetAttributes = {
 					90EE2D721C4E05E500C5A64D = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = V7755W7M2E;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -469,6 +469,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DataMining/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -483,6 +484,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = DataMining/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

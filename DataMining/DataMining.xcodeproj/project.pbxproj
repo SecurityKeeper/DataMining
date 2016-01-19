@@ -23,6 +23,7 @@
 		90EE2DB71C4E065400C5A64D /* DPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DAF1C4E065300C5A64D /* DPApplication.m */; };
 		90EE2DB81C4E065400C5A64D /* TouchWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DB11C4E065300C5A64D /* TouchWorker.m */; };
 		90EE2DBA1C4E066900C5A64D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DB91C4E066900C5A64D /* HealthKit.framework */; };
+		90EE2DBD1C4E083100C5A64D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		90EE2DB11C4E065300C5A64D /* TouchWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchWorker.m; sourceTree = "<group>"; };
 		90EE2DB91C4E066900C5A64D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		90EE2DBB1C4E066900C5A64D /* DataMining.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataMining.entitlements; sourceTree = "<group>"; };
+		90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90EE2DBD1C4E083100C5A64D /* CoreMotion.framework in Frameworks */,
 				90EE2DBA1C4E066900C5A64D /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,12 +111,7 @@
 		90EE2D751C4E05E500C5A64D /* DataMining */ = {
 			isa = PBXGroup;
 			children = (
-				90EE2DBB1C4E066900C5A64D /* DataMining.entitlements */,
-				90EE2D9F1C4E065300C5A64D /* CollectDataManager */,
-				90EE2DA21C4E065300C5A64D /* FileManager */,
-				90EE2DA51C4E065300C5A64D /* Health */,
-				90EE2DAA1C4E065300C5A64D /* MotionManager */,
-				90EE2DAD1C4E065300C5A64D /* TouchManager */,
+				90EE2DBF1C4E088800C5A64D /* Collector */,
 				90EE2D7A1C4E05E500C5A64D /* AppDelegate.h */,
 				90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */,
 				90EE2D801C4E05E500C5A64D /* ViewController.h */,
@@ -130,9 +128,10 @@
 		90EE2D761C4E05E500C5A64D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				90EE2DB91C4E066900C5A64D /* HealthKit.framework */,
+				90EE2DBE1C4E085700C5A64D /* framework */,
 				90EE2D771C4E05E500C5A64D /* Info.plist */,
 				90EE2D781C4E05E500C5A64D /* main.m */,
+				90EE2DBB1C4E066900C5A64D /* DataMining.entitlements */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -201,6 +200,27 @@
 				90EE2DB11C4E065300C5A64D /* TouchWorker.m */,
 			);
 			path = TouchManager;
+			sourceTree = "<group>";
+		};
+		90EE2DBE1C4E085700C5A64D /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */,
+				90EE2DB91C4E066900C5A64D /* HealthKit.framework */,
+			);
+			name = framework;
+			sourceTree = "<group>";
+		};
+		90EE2DBF1C4E088800C5A64D /* Collector */ = {
+			isa = PBXGroup;
+			children = (
+				90EE2D9F1C4E065300C5A64D /* CollectDataManager */,
+				90EE2DA21C4E065300C5A64D /* FileManager */,
+				90EE2DA51C4E065300C5A64D /* Health */,
+				90EE2DAA1C4E065300C5A64D /* MotionManager */,
+				90EE2DAD1C4E065300C5A64D /* TouchManager */,
+			);
+			name = Collector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -522,6 +542,7 @@
 				90EE2D9B1C4E05E600C5A64D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90EE2D9C1C4E05E600C5A64D /* Build configuration list for PBXNativeTarget "DataMiningTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +551,7 @@
 				90EE2D9E1C4E05E600C5A64D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

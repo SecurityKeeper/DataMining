@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     location = [[SKLgetLocation alloc] initWithDistanceFilter:1.0 desireAccuracy:kCLLocationAccuracyNearestTenMeters];
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     

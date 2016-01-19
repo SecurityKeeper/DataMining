@@ -2,7 +2,7 @@
 //  Location.m
 //  locationManager
 //
-//  Created by 郑红 on 1/14/16.
+//  Created by 郑红 on 1/19/16.
 //  Copyright © 2016 zhenghong. All rights reserved.
 //
 
@@ -11,8 +11,8 @@
 @implementation Location
 
 + (NSString *)insertLocationWithId:(NSString *)locationId
-                        locationInfo:(NSDictionary *)info
-                    inManagedCobtext:(NSManagedObjectContext *)context {
+                      locationInfo:(NSDictionary *)info
+                  inManagedCobtext:(NSManagedObjectContext *)context {
     Location * location = [NSEntityDescription insertNewObjectForEntityForName:@"Location"inManagedObjectContext:context];
     location.locationTime = info[@"locationTime"];
     location.longitude    = info[@"longitude"];
@@ -32,7 +32,7 @@
 
 + (NSFetchedResultsController *)fetchLocationInfo:(NSManagedObjectContext *)context {
     NSFetchRequest * request = [NSFetchRequest fetchRequestWithEntityName:@"Location"];
-    request.predicate = [NSPredicate predicateWithFormat:@"province like %@",@"sichuan"];    
+    request.predicate = [NSPredicate predicateWithFormat:@"province like %@",@"sichuan"];
     return  [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
     
 }

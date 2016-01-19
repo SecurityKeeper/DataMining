@@ -2,11 +2,12 @@
 //  SKLtransformLocation.m
 //  locationManager
 //
-//  Created by 郑红 on 1/14/16.
+//  Created by 郑红 on 1/19/16.
 //  Copyright © 2016 zhenghong. All rights reserved.
 //
 
 #import "SKLtransformLocation.h"
+
 const double a = 6378245.0;
 const double ee = 0.00669342162296594323;
 const double pi = 3.14159265358979324;

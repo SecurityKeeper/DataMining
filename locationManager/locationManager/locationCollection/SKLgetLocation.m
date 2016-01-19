@@ -2,7 +2,7 @@
 //  SKLgetLocation.m
 //  locationManager
 //
-//  Created by 郑红 on 1/14/16.
+//  Created by 郑红 on 1/19/16.
 //  Copyright © 2016 zhenghong. All rights reserved.
 //
 
@@ -10,11 +10,10 @@
 #import "Location.h"
 #import <CoreData/CoreData.h>
 
-@interface SKLgetLocation ()<CLLocationManagerDelegate>
+@interface SKLgetLocation ()
 {
     
 }
-
 @property (nonatomic,strong) CLLocationManager * locationManager;
 @property (nonatomic,strong) CLGeocoder * geocoder;
 @property (nonatomic,assign) double distanceFilter;
@@ -125,23 +124,23 @@
 
 
 - (void)initLocationContext {
-        NSManagedObjectModel * locationModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-//        NSString * filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-//        NSString * path = [filePath stringByAppendingPathComponent:@"location.db"];
-//        NSURL * url = [NSURL URLWithString:path];
-        NSURL* storeURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"test.sqlite"]];
-
-        self.locationContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        
-        self.locationContext.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:locationModel];
-        
-        NSError* error;
-        [self.locationContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
-        
-        if (error) {
-            NSLog(@"error: %@", error);
-        }
-        self.locationContext.undoManager = [[NSUndoManager alloc] init];
+    NSManagedObjectModel * locationModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    //        NSString * filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+    //        NSString * path = [filePath stringByAppendingPathComponent:@"location.db"];
+    //        NSURL * url = [NSURL URLWithString:path];
+    NSURL* storeURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"test.sqlite"]];
+    
+    self.locationContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    
+    self.locationContext.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:locationModel];
+    
+    NSError* error;
+    [self.locationContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
+    
+    if (error) {
+        NSLog(@"error: %@", error);
+    }
+    self.locationContext.undoManager = [[NSUndoManager alloc] init];
 }
 
 @end

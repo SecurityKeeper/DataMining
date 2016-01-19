@@ -13,11 +13,12 @@
 #import "FileManager.h"
 #import "TouchWorker.h"
 
-#define kSpeedFileName  @"加速计.txt"
-#define kAngleFileName  @"旋转角度.txt"
-#define kStepFileName   @"实时步数.txt"
-#define mAngleFileName  @"角度.txt"
-#define kTouchFileName  @"触摸.txt"
+#define kSpeedFileName      @"加速计.txt"
+#define kAngleFileName      @"旋转角度.txt"
+#define kStepFileName       @"实时步数.txt"
+#define kDistanceFileName   @"实时距离.txt"
+#define mAngleFileName      @"角度.txt"
+#define kTouchFileName      @"触摸.txt"
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -121,19 +122,20 @@ void messageBox(NSString* str) {
     }];
 }
 
-
 - (void)getHealthInfo {
     if (![[HealthWorker shareInstance] checkDevice]) {
         messageBox(@"当前系统版本不支持获取健康数据信息");
         return;
     }
     
-    [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double value, NSError *error) {
-        NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d", (int)value];
+    [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double stepValue, NSError *error) {
+        NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d", (int)stepValue];
         [[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
-
+    } distance:^(double distanceValue, NSError *error) {
+        NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d", (int)distanceValue];
+        [[FileManager shareInstance]writeFile:str WithFileName:kDistanceFileName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateDistanceNotification" object:str];
     }];
 }
 

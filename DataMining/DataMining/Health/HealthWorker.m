@@ -78,18 +78,21 @@
 }
 
 - (NSSet *)dataTypesRead {
-    HKQuantityType *activeEnergyType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
-    HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
-    HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
-    HKQuantityType *temperatureType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyTemperature];
-    HKCharacteristicType *birthdayType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
-    HKCharacteristicType *sexType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex];
-    HKQuantityType *stepCountType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-    
-    return [NSSet setWithObjects:stepCountType,nil];
+//    HKQuantityType *activeEnergyType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
+//    HKQuantityType *heightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
+//    HKQuantityType *weightType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyMass];
+//    HKQuantityType *temperatureType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBodyTemperature];
+//    HKCharacteristicType *birthdayType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth];
+//    HKCharacteristicType *sexType = [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex];
+    HKQuantityType *DistanceType = [HKObjectType quantityTypeForIdentifier:     HKQuantityTypeIdentifierDistanceWalkingRunning];
+    HKQuantityType *stepCountType = [HKObjectType quantityTypeForIdentifier:
+        HKQuantityTypeIdentifierStepCount];
+
+    return [NSSet setWithObjects:stepCountType, DistanceType, nil];
 }
 
-- (void)getRealTimeStepCountCompletionHandler:(void(^)(double value, NSError *error))handler {
+- (void)getRealTimeStepCountCompletionHandler:(void(^)(double stepValue, NSError *error))stepHandler
+                                     distance:(void(^)(double distanceValue, NSError *error))distanceHandler {
     if (HKVersion < 8.0) {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
     }
@@ -105,13 +108,46 @@
                      if (error) {
                          NSLog(@"*** An error occured while setting up the stepCount observer. %@ ***",
                                   error.localizedDescription);
-                         handler(0,error);
+                         //stepHandler(0,error);
                      }
                      [self getStepCount:[HealthWorker predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
-                         handler(value,error);
+                         stepHandler(value,error);
+                     }];
+                     [self getDistanceCount:[HealthWorker predicateForSamplesToday] completionHandler:^(double value, NSError *error) {
+                         distanceHandler(value,error);
                      }];
                  }];
                 [self.healthStore executeQuery:query];
+            }
+        }];
+    }
+}
+
+- (void)getDistanceCount:(NSPredicate *)predicate
+       completionHandler:(void(^)(double value, NSError *error))handler {
+    if (HKVersion < 8.0) {
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        return;
+    }
+    else {
+        [self getPermissions:^(BOOL success) {
+            if (success) {
+                HKQuantityType *distanceType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+                [self.healthStore aapl_mostRecentQuantitySampleOfType:distanceType predicate:predicate completion:^(NSArray *results, NSError *error) {
+                    if (error) {
+                        //handler(0,error);
+                    }
+                    else {
+                        NSInteger totleDistance = 0;
+                        for (HKQuantitySample *quantitySample in results) {
+                            HKQuantity *quantity = quantitySample.quantity;
+                            HKUnit *heightUnit = [HKUnit countUnit];
+                            double usersHeight = [quantity doubleValueForUnit:heightUnit];
+                            totleDistance += usersHeight;
+                        }
+                        handler(totleDistance,error);
+                    }
+                }];
             }
         }];
     }
@@ -128,7 +164,7 @@
                 HKQuantityType *stepType = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
                 [self.healthStore aapl_mostRecentQuantitySampleOfType:stepType predicate:predicate completion:^(NSArray *results, NSError *error) {
                     if (error) {
-                        handler(0,error);
+                        //handler(0,error);
                     }
                     else {
                         NSInteger totleSteps = 0;
@@ -145,6 +181,7 @@
         }];
     }
 }
+
 
 - (void)getKilocalorieUnit:(NSPredicate *)predicate quantityType:(HKQuantityType*)quantityType completionHandler:(void(^)(double value, NSError *error))handler {
     if (HKVersion < 8.0) {

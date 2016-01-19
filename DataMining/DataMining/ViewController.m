@@ -88,6 +88,8 @@
     }else if (currentBtn.tag == 3){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateTouchNotification" object:nil];
     }
+    
+    //距离(UpdateDistanceNotification)、位置(...)
 }
 
 

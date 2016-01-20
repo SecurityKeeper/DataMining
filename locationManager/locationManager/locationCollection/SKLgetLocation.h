@@ -13,4 +13,6 @@
 
 - (instancetype)initWithDistanceFilter:(double )distance
                         desireAccuracy:(CLLocationAccuracy)accuracy;
+- (void)startUpdateLocation;
+- (void)stopUpdateLocation;
 @end

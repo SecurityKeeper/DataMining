@@ -1,0 +1,3 @@
+platform :ios, '7.0' #手机的系统
+pod 'AMapLocation' #定位SDK
+pod 'AMapSearch' #搜索服务SDK

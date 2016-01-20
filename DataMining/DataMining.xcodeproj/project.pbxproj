@@ -24,6 +24,14 @@
 		90EE2DB81C4E065400C5A64D /* TouchWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DB11C4E065300C5A64D /* TouchWorker.m */; };
 		90EE2DBA1C4E066900C5A64D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DB91C4E066900C5A64D /* HealthKit.framework */; };
 		90EE2DBD1C4E083100C5A64D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */; };
+		EC39F0D71C4F1FA800AEDFF4 /* LocationWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39F0D61C4F1FA800AEDFF4 /* LocationWorker.m */; settings = {ASSET_TAGS = (); }; };
+		EC39F0D91C4F1FD500AEDFF4 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */; settings = {ASSET_TAGS = (); }; };
+		EC39F0DB1C4F1FE100AEDFF4 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */; settings = {ASSET_TAGS = (); }; };
+		EC56F4D11C4E39050023B008 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC56F4D01C4E39050023B008 /* AMapLocationKit.framework */; };
+		ECB2CDD21C4E35670035B1FD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */; };
+		ECB2CDD41C4E35840035B1FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */; };
+		ECB2CDD61C4E359F0035B1FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD51C4E359F0035B1FD /* libz.tbd */; };
+		ECB2CDD81C4E35B00035B1FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +76,15 @@
 		90EE2DB91C4E066900C5A64D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		90EE2DBB1C4E066900C5A64D /* DataMining.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataMining.entitlements; sourceTree = "<group>"; };
 		90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		EC39F0D51C4F1FA800AEDFF4 /* LocationWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationWorker.h; sourceTree = "<group>"; };
+		EC39F0D61C4F1FA800AEDFF4 /* LocationWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationWorker.m; sourceTree = "<group>"; };
+		EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapLocationKit.framework; sourceTree = "<group>"; };
+		EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
+		EC56F4D01C4E39050023B008 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AMapLocationKit.framework; path = ../../../../Downloads/AMapLocationKit.framework; sourceTree = "<group>"; };
+		ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		ECB2CDD51C4E359F0035B1FD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +92,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC56F4D11C4E39050023B008 /* AMapLocationKit.framework in Frameworks */,
+				ECB2CDD81C4E35B00035B1FD /* SystemConfiguration.framework in Frameworks */,
+				ECB2CDD61C4E359F0035B1FD /* libz.tbd in Frameworks */,
+				ECB2CDD41C4E35840035B1FD /* CoreLocation.framework in Frameworks */,
+				ECB2CDD21C4E35670035B1FD /* CoreTelephony.framework in Frameworks */,
+				EC39F0DB1C4F1FE100AEDFF4 /* AMapSearchKit.framework in Frameworks */,
+				EC39F0D91C4F1FD500AEDFF4 /* AMapLocationKit.framework in Frameworks */,
 				90EE2DBD1C4E083100C5A64D /* CoreMotion.framework in Frameworks */,
 				90EE2DBA1C4E066900C5A64D /* HealthKit.framework in Frameworks */,
 			);
@@ -93,6 +117,7 @@
 		90EE2D6A1C4E05E500C5A64D = {
 			isa = PBXGroup;
 			children = (
+				EC56F4D01C4E39050023B008 /* AMapLocationKit.framework */,
 				90EE2D751C4E05E500C5A64D /* DataMining */,
 				90EE2D921C4E05E600C5A64D /* DataMiningTests */,
 				90EE2D741C4E05E500C5A64D /* Products */,
@@ -205,6 +230,12 @@
 		90EE2DBE1C4E085700C5A64D /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */,
+				EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */,
+				ECB2CDD51C4E359F0035B1FD /* libz.tbd */,
+				ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */,
+				ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */,
+				ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */,
 				90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */,
 				90EE2DB91C4E066900C5A64D /* HealthKit.framework */,
 			);
@@ -214,6 +245,7 @@
 		90EE2DBF1C4E088800C5A64D /* Collector */ = {
 			isa = PBXGroup;
 			children = (
+				EC39F0D41C4F1F4E00AEDFF4 /* LocationManager */,
 				90EE2D9F1C4E065300C5A64D /* CollectDataManager */,
 				90EE2DA21C4E065300C5A64D /* FileManager */,
 				90EE2DA51C4E065300C5A64D /* Health */,
@@ -221,6 +253,15 @@
 				90EE2DAD1C4E065300C5A64D /* TouchManager */,
 			);
 			name = Collector;
+			sourceTree = "<group>";
+		};
+		EC39F0D41C4F1F4E00AEDFF4 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				EC39F0D51C4F1FA800AEDFF4 /* LocationWorker.h */,
+				EC39F0D61C4F1FA800AEDFF4 /* LocationWorker.m */,
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +315,9 @@
 					90EE2D721C4E05E500C5A64D = {
 						CreatedOnToolsVersion = 6.4;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -335,6 +379,7 @@
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
 				90EE2DB21C4E065400C5A64D /* CollectDataManager.m in Sources */,
 				90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */,
+				EC39F0D71C4F1FA800AEDFF4 /* LocationWorker.m in Sources */,
 				90EE2DB61C4E065400C5A64D /* MotionWorker.m in Sources */,
 				90EE2DB31C4E065400C5A64D /* FileManager.m in Sources */,
 				90EE2DB71C4E065400C5A64D /* DPApplication.m in Sources */,
@@ -468,6 +513,10 @@
 				CODE_SIGN_ENTITLEMENTS = DataMining/DataMining.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DataMining",
+				);
 				INFOPLIST_FILE = DataMining/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -483,6 +532,10 @@
 				CODE_SIGN_ENTITLEMENTS = DataMining/DataMining.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/DataMining",
+				);
 				INFOPLIST_FILE = DataMining/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

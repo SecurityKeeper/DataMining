@@ -9,16 +9,38 @@
 #import "AppDelegate.h"
 #import "SKLmainViewController.h"
 
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+
+const static NSString *APIKey = @"9bdab082316cc51f48e0a091d97ddaa9";
+
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
 
+- (void)configureAPIKey
+{
+    if ([APIKey length] == 0)
+    {
+        NSString *reason = [NSString stringWithFormat:@"apiKey为空，请检查key是否正确设置。"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:reason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }
+    [AMapSearchServices sharedServices].apiKey = (NSString*)APIKey;
+    [AMapLocationServices sharedServices].apiKey = (NSString *)APIKey;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self configureAPIKey];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
     SKLmainViewController * mainVc = [[SKLmainViewController alloc] init];
     UINavigationController * vc = [[UINavigationController alloc] initWithRootViewController:mainVc];
     self.window.rootViewController = vc;

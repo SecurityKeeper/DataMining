@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "CollectDataManager.h"
 
+
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* dataArray;
@@ -33,7 +34,7 @@
     [self.view addSubview:table];
     
     
-    NSArray* arr = @[@"角度",@"加速计",@"步数",@"触摸"];
+    NSArray* arr = @[@"角度",@"加速计",@"步数",@"触摸",@"位置"];
     int width = (self.view.bounds.size.width - (arr.count+1)*10)/arr.count;
     for (int i = 0; i < arr.count; i++ ) {
         UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -87,6 +88,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateStepNotification" object:nil];
     }else if (currentBtn.tag == 3){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateTouchNotification" object:nil];
+    }else if (currentBtn.tag == 4){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateLocationNotification" object:nil];
     }
     
     //距离(UpdateDistanceNotification)、位置(...)

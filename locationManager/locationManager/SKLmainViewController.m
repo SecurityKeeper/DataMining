@@ -8,10 +8,11 @@
 
 #import "SKLmainViewController.h"
 #import "SKLgetLocation.h"
-
+#import "GDLocation.h"
 @interface SKLmainViewController ()
 {
     SKLgetLocation * location;
+    GDLocation * gdLocation;
 }
 
 @end
@@ -22,8 +23,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    location = [[SKLgetLocation alloc] initWithDistanceFilter:1.0 desireAccuracy:kCLLocationAccuracyNearestTenMeters];
+//    location = [[SKLgetLocation alloc] initWithDistanceFilter:1.0 desireAccuracy:kCLLocationAccuracyNearestTenMeters];
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    gdLocation = [GDLocation defaultLocation];
+    [gdLocation startUpdateLocation];
     
     // Do any additional setup after loading the view, typically from a nib.
 }

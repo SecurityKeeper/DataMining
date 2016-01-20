@@ -10,7 +10,7 @@
 #import "Location.h"
 #import <CoreData/CoreData.h>
 
-@interface SKLgetLocation ()
+@interface SKLgetLocation ()<CLLocationManagerDelegate>
 {
     
 }
@@ -62,19 +62,27 @@
 
 - (void)initLocationManager {
     if ([CLLocationManager locationServicesEnabled]) {
-        self.locationManager.distanceFilter = self.distanceFilter;
-        self.locationManager.desiredAccuracy = self.accurcy;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         [self.locationManager requestAlwaysAuthorization];
-        [self.locationManager startUpdatingLocation];
+         [self.locationManager startUpdatingLocation];
+
     } else {
         
     }
 }
 
+- (void)startUpdateLocation {
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)stopUpdateLocation {
+    [self.locationManager stopUpdatingLocation];
+}
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation * location = [locations firstObject];
     CLLocationCoordinate2D  coordinate = location.coordinate;
-    
+    //104.061688--30.544552
     NSString * des = location.description;
     NSLog(@"ooop::%@",des);
     
@@ -86,7 +94,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString * strdate = [formatter stringFromDate:date];
     NSLog(@"%@",strdate);
-    [self.locationManager stopUpdatingLocation];
+  
     NSLog(@"%f--%f",coordinate.longitude,coordinate.latitude);
     
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -95,6 +103,9 @@
         }
         CLPlacemark * mark = [placemarks firstObject];
         NSLog(@"%@",mark.name);
+        
+        NSDictionary * dic = mark.addressDictionary;
+        NSLog(@"%@",dic);
         
     }];
     
@@ -110,11 +121,11 @@
                            @"locationID"  :@"bbbbaaaaccc",
                            };
     
-    NSString * msg = [Location insertLocationWithId:@"bbbbaaaaccc" locationInfo:dic inManagedCobtext:self.locationContext];
-    NSLog(@"%@",msg);
-    
-    NSArray * arr = [Location fetchAllInfo:self.locationContext];
-    NSLog(@"sql:\n%@",arr);
+//    NSString * msg = [Location insertLocationWithId:@"bbbbaaaaccc" locationInfo:dic inManagedCobtext:self.locationContext];
+//    NSLog(@"%@",msg);
+//    
+//    NSArray * arr = [Location fetchAllInfo:self.locationContext];
+//    NSLog(@"sql:\n%@",arr);
     
 }
 

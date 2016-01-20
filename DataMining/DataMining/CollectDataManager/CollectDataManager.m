@@ -12,13 +12,23 @@
 #import "MotionWorker.h"
 #import "FileManager.h"
 #import "TouchWorker.h"
+#import "LocationWorker.h"
 
+<<<<<<< Updated upstream
 #define kSpeedFileName      @"加速计.txt"
 #define kAngleFileName      @"旋转角度.txt"
 #define kStepFileName       @"实时步数.txt"
 #define kDistanceFileName   @"实时距离.txt"
 #define mAngleFileName      @"角度.txt"
 #define kTouchFileName      @"触摸.txt"
+=======
+#define kSpeedFileName  @"加速计.txt"
+#define kAngleFileName  @"旋转角度.txt"
+#define kStepFileName   @"实时步数.txt"
+#define mAngleFileName  @"角度.txt"
+#define kTouchFileName  @"触摸.txt"
+#define kLocationFileName @"location.txt"
+>>>>>>> Stashed changes
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -49,6 +59,7 @@ void messageBox(NSString* str) {
     dispatch_async(queue, ^{
         [self getMontionInfo];
         [self getTouchInfo];
+        [self getLocationInfo];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerWorking) userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop]run];
     });
@@ -60,11 +71,27 @@ void messageBox(NSString* str) {
     //停止速度、加速度、角度检测器
     [[MotionWorker shareInstance] stop];
     [[TouchWorker shareInstance] stopWork];
+    [[LocationWorker defaultLocation] stopUpdateLocation];
 }
 
 - (void)timerWorking {
     //获取实时步数量
     [self getHealthInfo];
+}
+
+- (void)getLocationInfo {
+    [[LocationWorker defaultLocation] startUpdateLocation:^(NSDictionary * locationInfo) {
+        NSMutableString * locationStr = [NSMutableString stringWithString:@""];
+        [locationStr appendString:locationInfo[@"adcode"]];
+        double longitude = [locationInfo[@"longitude"] doubleValue];
+        double latitude = [locationInfo[@"latitude"] doubleValue];
+        
+        [locationStr appendFormat:@"%f , %f",longitude,latitude];
+        
+        [[FileManager shareInstance] writeFile:locationStr WithFileName:kLocationFileName];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];
+    }];
+    
 }
 
 - (void)getTouchInfo {

@@ -141,7 +141,7 @@
                         NSInteger totleDistance = 0;
                         for (HKQuantitySample *quantitySample in results) {
                             HKQuantity *quantity = quantitySample.quantity;
-                            HKUnit *heightUnit = [HKUnit countUnit];
+                            HKUnit *heightUnit = [HKUnit meterUnit];
                             double usersHeight = [quantity doubleValueForUnit:heightUnit];
                             totleDistance += usersHeight;
                         }

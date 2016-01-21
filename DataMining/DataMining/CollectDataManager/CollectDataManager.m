@@ -151,11 +151,11 @@ void messageBox(NSString* str) {
     }
     
     [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double stepValue, NSError *error) {
-        NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d", (int)stepValue];
+        NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d步", (int)stepValue];
         [[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
     } distance:^(double distanceValue, NSError *error) {
-        NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d", (int)distanceValue];
+        NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d米", (int)distanceValue];
         [[FileManager shareInstance]writeFile:str WithFileName:kDistanceFileName];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateDistanceNotification" object:str];
     }];

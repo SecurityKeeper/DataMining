@@ -35,60 +35,64 @@
 }
 
 - (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict {
-    switch (type) {
-        case entitiesType_DeviceMontion: {
-            DeviceMotion* deviceMotion = [NSEntityDescription insertNewObjectForEntityForName:@"DeviceMotion" inManagedObjectContext:_managedObjectContext];
-            [deviceMotion setDataWithDict:dict];
+    @synchronized(self) {
+        switch (type) {
+            case entitiesType_DeviceMontion: {
+                DeviceMotion* deviceMotion = [NSEntityDescription insertNewObjectForEntityForName:@"DeviceMotion" inManagedObjectContext:_managedObjectContext];
+                [deviceMotion setDataWithDict:dict];
+            }
+                break;
+            case entitiesType_Location: {
+                Location* location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+                [location setDataWithDict:dict];
+            }
+                break;
+            case entitiesType_Touch: {
+                Touch* touch = [NSEntityDescription insertNewObjectForEntityForName:@"Touch" inManagedObjectContext:_managedObjectContext];
+                [touch setDataWithDict:dict];
+            }
+                break;
+            case entitiesType_Accelerometer: {
+                Accelerometer* accelerometer = [NSEntityDescription insertNewObjectForEntityForName:@"Accelerometer" inManagedObjectContext:_managedObjectContext];
+                [accelerometer setDataWithDict:dict];
+            }
+                break;
+            case entitiesType_Health: {
+                Health* health = [NSEntityDescription insertNewObjectForEntityForName:@"Health" inManagedObjectContext:_managedObjectContext];
+                [health setDataWithDict:dict];
+            }
+                break;
         }
-            break;
-        case entitiesType_Location: {
-            Location* location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:_managedObjectContext];
-            [location setDataWithDict:dict];
-        }
-            break;
-        case entitiesType_Touch: {
-            Touch* touch = [NSEntityDescription insertNewObjectForEntityForName:@"Touch" inManagedObjectContext:_managedObjectContext];
-            [touch setDataWithDict:dict];
-        }
-            break;
-        case entitiesType_Accelerometer: {
-            Accelerometer* accelerometer = [NSEntityDescription insertNewObjectForEntityForName:@"Accelerometer" inManagedObjectContext:_managedObjectContext];
-            [accelerometer setDataWithDict:dict];
-        }
-            break;
-        case entitiesType_Health: {
-            Health* health = [NSEntityDescription insertNewObjectForEntityForName:@"Health" inManagedObjectContext:_managedObjectContext];
-            [health setDataWithDict:dict];
-        }
-            break;
+        NSError* error = nil;
+        return [_managedObjectContext save:&error];
     }
-    NSError* error = nil;
-    return [_managedObjectContext save:&error];
 }
 
 - (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count {
-    NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:1];
-    NSString* entityName = [self entityNameStringFromType:type];
-    NSError* error = nil;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
-                                              inManagedObjectContext:_managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject* obj in fetchedObjects) {
-        @autoreleasepool {
-            if (count == 0) {
-                break;
-            }
-            if ([obj respondsToSelector:@selector(getDictionary)]) {
-                NSMutableDictionary* dict = [obj performSelector:@selector(getDictionary) withObject:nil];
-                [array addObject:dict];
-                count--;
+    @synchronized(self) {
+        NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:1];
+        NSString* entityName = [self entityNameStringFromType:type];
+        NSError* error = nil;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                                  inManagedObjectContext:_managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        for (NSManagedObject* obj in fetchedObjects) {
+            @autoreleasepool {
+                if (count == 0) {
+                    break;
+                }
+                if ([obj respondsToSelector:@selector(getDictionary)]) {
+                    NSMutableDictionary* dict = [obj performSelector:@selector(getDictionary) withObject:nil];
+                    [array addObject:dict];
+                    count--;
+                }
             }
         }
+        
+        return array;
     }
-
-    return array;
 }
 
 - (NSString*)entityNameStringFromType:(entitiesType)type {
@@ -115,21 +119,23 @@
 }
 
 - (void)deleteEntities:(entitiesType)type WithCount:(int)count {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSString* entityName = [self entityNameStringFromType:type];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    NSError *error = nil;
-    NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        if (count == 0) {
-            break;
+    @synchronized(self) {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSString* entityName = [self entityNameStringFromType:type];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
+        [fetchRequest setEntity:entity];
+        
+        NSError *error = nil;
+        NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        for (NSManagedObject *info in fetchedObjects) {
+            if (count == 0) {
+                break;
+            }
+            [_managedObjectContext deleteObject:info];
+            count--;
         }
-        [_managedObjectContext deleteObject:info];
-        count--;
+        [_managedObjectContext save:&error];
     }
-    [_managedObjectContext save:&error];
 }
 
 @end

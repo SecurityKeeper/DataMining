@@ -18,6 +18,7 @@
         <attribute name="stepCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="adCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -32,7 +33,7 @@
         <element name="Accelerometer" positionX="-18" positionY="72" width="128" height="105"/>
         <element name="DeviceMotion" positionX="0" positionY="90" width="128" height="105"/>
         <element name="Health" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Location" positionX="-54" positionY="18" width="128" height="90"/>
+        <element name="Location" positionX="-54" positionY="18" width="128" height="103"/>
         <element name="Touch" positionX="-36" positionY="45" width="128" height="105"/>
     </elements>
 </model>

@@ -66,7 +66,7 @@
     return [_managedObjectContext save:&error];
 }
 
-- (NSArray*)getEntitiesData:(entitiesType)type {
+- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count {
     NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:1];
     NSString* entityName = [self entityNameStringFromType:type];
     NSError* error = nil;
@@ -77,9 +77,13 @@
     NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
     for (NSManagedObject* obj in fetchedObjects) {
         @autoreleasepool {
+            if (count == 0) {
+                break;
+            }
             if ([obj respondsToSelector:@selector(getDictionary)]) {
                 NSMutableDictionary* dict = [obj performSelector:@selector(getDictionary) withObject:nil];
                 [array addObject:dict];
+                count--;
             }
         }
     }
@@ -110,8 +114,22 @@
     return entityName;
 }
 
-- (void)deleteEntities:(entitiesType)type {
+- (void)deleteEntities:(entitiesType)type WithCount:(int)count {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSString* entityName = [self entityNameStringFromType:type];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
+    [fetchRequest setEntity:entity];
     
+    NSError *error = nil;
+    NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *info in fetchedObjects) {
+        if (count == 0) {
+            break;
+        }
+        [_managedObjectContext deleteObject:info];
+        count--;
+    }
+    [_managedObjectContext save:&error];
 }
 
 @end

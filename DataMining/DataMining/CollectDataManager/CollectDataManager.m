@@ -79,6 +79,7 @@ void messageBox(NSString* str) {
         [[CoreDataManager shareInstance]addEntities:entitiesType_Location
                                            WithData:@{@"latitude":[NSNumber numberWithFloat:latitude],
                                                       @"longitude":[NSNumber numberWithFloat:longitude],
+                                                      @"adCode":locationInfo[@"adCode"],
                                                       @"date":[NSDate date]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];
     }];

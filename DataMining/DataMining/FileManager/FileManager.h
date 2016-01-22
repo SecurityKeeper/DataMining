@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define kSpeedFileName      @"加速计.txt"
+#define kAngleFileName      @"旋转角度.txt"
+#define kStepFileName       @"实时步数.txt"
+#define kDistanceFileName   @"实时距离.txt"
+#define mAngleFileName      @"角度.txt"
+#define kTouchFileName      @"触摸.txt"
+#define kLocationFileName   @"location.txt"
+
 @interface FileManager : NSObject
 
 + (FileManager*)shareInstance;

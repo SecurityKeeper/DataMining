@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		90EA2F491C50D2D3006B8D87 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EA2F481C50D2D3006B8D87 /* libz.dylib */; };
+		90EABEB71C51F90600740B63 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEB61C51F90600740B63 /* CoreDataManager.m */; };
+		90EABEBA1C51FBC900740B63 /* Health.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEB91C51FBC900740B63 /* Health.m */; };
+		90EABEBD1C51FBCA00740B63 /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEBC1C51FBCA00740B63 /* Accelerometer.m */; };
+		90EABEC01C51FBCA00740B63 /* Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEBF1C51FBCA00740B63 /* Touch.m */; };
+		90EABEC31C51FBCA00740B63 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEC21C51FBCA00740B63 /* Location.m */; };
+		90EABEC61C51FBCA00740B63 /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEC51C51FBCA00740B63 /* DeviceMotion.m */; };
 		90EE2D791C4E05E500C5A64D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D781C4E05E500C5A64D /* main.m */; };
 		90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */; };
 		90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7D1C4E05E500C5A64D /* DataMining.xcdatamodeld */; };
@@ -46,6 +52,18 @@
 
 /* Begin PBXFileReference section */
 		90EA2F481C50D2D3006B8D87 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		90EABEB51C51F90600740B63 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		90EABEB61C51F90600740B63 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		90EABEB81C51FBC900740B63 /* Health.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Health.h; sourceTree = "<group>"; };
+		90EABEB91C51FBC900740B63 /* Health.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Health.m; sourceTree = "<group>"; };
+		90EABEBB1C51FBCA00740B63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
+		90EABEBC1C51FBCA00740B63 /* Accelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Accelerometer.m; sourceTree = "<group>"; };
+		90EABEBE1C51FBCA00740B63 /* Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Touch.h; sourceTree = "<group>"; };
+		90EABEBF1C51FBCA00740B63 /* Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Touch.m; sourceTree = "<group>"; };
+		90EABEC11C51FBCA00740B63 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		90EABEC21C51FBCA00740B63 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		90EABEC41C51FBCA00740B63 /* DeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMotion.h; sourceTree = "<group>"; };
+		90EABEC51C51FBCA00740B63 /* DeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMotion.m; sourceTree = "<group>"; };
 		90EE2D731C4E05E500C5A64D /* DataMining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataMining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EE2D771C4E05E500C5A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90EE2D781C4E05E500C5A64D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -114,6 +132,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90EABEB41C51F8F700740B63 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				90EABEB51C51F90600740B63 /* CoreDataManager.h */,
+				90EABEB61C51F90600740B63 /* CoreDataManager.m */,
+				90EABEC41C51FBCA00740B63 /* DeviceMotion.h */,
+				90EABEC51C51FBCA00740B63 /* DeviceMotion.m */,
+				90EABEC11C51FBCA00740B63 /* Location.h */,
+				90EABEC21C51FBCA00740B63 /* Location.m */,
+				90EABEBE1C51FBCA00740B63 /* Touch.h */,
+				90EABEBF1C51FBCA00740B63 /* Touch.m */,
+				90EABEBB1C51FBCA00740B63 /* Accelerometer.h */,
+				90EABEBC1C51FBCA00740B63 /* Accelerometer.m */,
+				90EABEB81C51FBC900740B63 /* Health.h */,
+				90EABEB91C51FBC900740B63 /* Health.m */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
 		90EE2D6A1C4E05E500C5A64D = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +282,7 @@
 		90EE2DBF1C4E088800C5A64D /* Collector */ = {
 			isa = PBXGroup;
 			children = (
+				90EABEB41C51F8F700740B63 /* CoreDataManager */,
 				EC39F0D41C4F1F4E00AEDFF4 /* LocationManager */,
 				90EE2D9F1C4E065300C5A64D /* CollectDataManager */,
 				90EE2DA21C4E065300C5A64D /* FileManager */,
@@ -374,8 +412,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EE2DB51C4E065400C5A64D /* HKHealthStore+AAPLExtensions.m in Sources */,
+				90EABEB71C51F90600740B63 /* CoreDataManager.m in Sources */,
 				90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */,
+				90EABEBD1C51FBCA00740B63 /* Accelerometer.m in Sources */,
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
+				90EABEC01C51FBCA00740B63 /* Touch.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
 				90EE2DB21C4E065400C5A64D /* CollectDataManager.m in Sources */,
 				90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */,
@@ -383,7 +424,10 @@
 				90EE2DB61C4E065400C5A64D /* MotionWorker.m in Sources */,
 				90EE2DB31C4E065400C5A64D /* FileManager.m in Sources */,
 				90EE2DB71C4E065400C5A64D /* DPApplication.m in Sources */,
+				90EABEC61C51FBCA00740B63 /* DeviceMotion.m in Sources */,
+				90EABEBA1C51FBC900740B63 /* Health.m in Sources */,
 				90EE2DB81C4E065400C5A64D /* TouchWorker.m in Sources */,
+				90EABEC31C51FBCA00740B63 /* Location.m in Sources */,
 				90EE2DB41C4E065400C5A64D /* HealthWorker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

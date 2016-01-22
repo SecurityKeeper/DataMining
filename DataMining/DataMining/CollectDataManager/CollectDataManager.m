@@ -13,17 +13,7 @@
 #import "FileManager.h"
 #import "TouchWorker.h"
 #import "LocationWorker.h"
-
-
-#define kSpeedFileName      @"加速计.txt"
-#define kAngleFileName      @"旋转角度.txt"
-#define kStepFileName       @"实时步数.txt"
-#define kDistanceFileName   @"实时距离.txt"
-#define mAngleFileName      @"角度.txt"
-#define kTouchFileName      @"触摸.txt"
-#define kLocationFileName @"location.txt"
-
-
+#import "CoreDataManager.h"
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -32,7 +22,9 @@ void messageBox(NSString* str) {
 
 @interface CollectDataManager ()
 
-@property (nonatomic,strong)NSTimer* timer;
+@property (nonatomic, strong)NSTimer* timer;
+@property (atomic, assign)int stepCount;
+@property (atomic, assign)int distanceSize;
 
 @end
 
@@ -83,7 +75,11 @@ void messageBox(NSString* str) {
         
         [locationStr appendFormat:@", lng=%f, lat=%f",longitude,latitude];
         
-        [[FileManager shareInstance] writeFile:locationStr WithFileName:kLocationFileName];
+        //[[FileManager shareInstance] writeFile:locationStr WithFileName:kLocationFileName];
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Location
+                                           WithData:@{@"latitude":[NSNumber numberWithFloat:latitude],
+                                                      @"longitude":[NSNumber numberWithFloat:longitude],
+                                                      @"date":[NSDate date]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];
     }];
     
@@ -92,15 +88,30 @@ void messageBox(NSString* str) {
 - (void)getTouchInfo {
     [[TouchWorker shareInstance] startWork:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Begin：x=%0.2f,y=%0.2f", point.x, point.y];
-        [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        //[[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
+                                           WithData:@{@"touchType":[NSNumber numberWithInt:touchType_begin],
+                                                      @"x":[NSNumber numberWithFloat:point.x],
+                                                      @"y":[NSNumber numberWithFloat:point.y],
+                                                      @"date":[NSDate date]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
-        [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        //[[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
+                                           WithData:@{@"touchType":[NSNumber numberWithInt:touchType_end],
+                                                      @"x":[NSNumber numberWithFloat:point.x],
+                                                      @"y":[NSNumber numberWithFloat:point.y],
+                                                      @"date":[NSDate date]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
-        [[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        //[[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
+                                           WithData:@{@"touchType":[NSNumber numberWithInt:touchType_move],
+                                                      @"x":[NSNumber numberWithFloat:point.x],
+                                                      @"y":[NSNumber numberWithFloat:point.y],
+                                                      @"date":[NSDate date]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
 
     }];
@@ -125,7 +136,12 @@ void messageBox(NSString* str) {
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAccelerometerNotification" object:str];
 
-        [[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
+        //[[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Accelerometer
+                                           WithData:@{@"z":[NSNumber numberWithFloat:accelerometerData.acceleration.z],
+                                                      @"x":[NSNumber numberWithFloat:accelerometerData.acceleration.x],
+                                                      @"y":[NSNumber numberWithFloat:accelerometerData.acceleration.y],
+                                                      @"date":[NSDate date]}];
     }];
     
     
@@ -139,8 +155,13 @@ void messageBox(NSString* str) {
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
         
-        [[FileManager shareInstance]writeFile:str WithFileName:mAngleFileName];
-
+        //[[FileManager shareInstance]writeFile:str WithFileName:mAngleFileName];
+        
+        [[CoreDataManager shareInstance]addEntities:entitiesType_DeviceMontion
+                                           WithData:@{@"pitch":[NSNumber numberWithFloat:pitch],
+                                                      @"roll":[NSNumber numberWithFloat:roll],
+                                                      @"yaw":[NSNumber numberWithFloat:yaw],
+                                                      @"date":[NSDate date]}];
     }];
 }
 
@@ -149,14 +170,26 @@ void messageBox(NSString* str) {
         messageBox(@"当前系统版本不支持获取健康数据信息");
         return;
     }
-    
+
+    __weak typeof(self) weakSelf = self;
     [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double stepValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d步", (int)stepValue];
-        [[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
+        //[[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
+        weakSelf.stepCount = (int)stepValue;
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Health
+                                           WithData:@{@"distance":[NSNumber numberWithInt:_distanceSize],
+                                                      @"stepCount":[NSNumber numberWithInt:(int)stepValue],
+                                                      @"date":[NSDate date]}];
+
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
     } distance:^(double distanceValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d米", (int)distanceValue];
-        [[FileManager shareInstance]writeFile:str WithFileName:kDistanceFileName];
+        //[[FileManager shareInstance]writeFile:str WithFileName:kDistanceFileName];
+        weakSelf.distanceSize = distanceValue;
+        [[CoreDataManager shareInstance]addEntities:entitiesType_Health
+                                           WithData:@{@"distance":[NSNumber numberWithInt:(int)distanceValue],
+                                                      @"stepCount":[NSNumber numberWithInt:_stepCount],
+                                                      @"date":[NSDate date]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateDistanceNotification" object:str];
     }];
 }

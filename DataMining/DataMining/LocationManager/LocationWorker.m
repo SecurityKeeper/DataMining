@@ -34,6 +34,7 @@
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
         [self.locationManager setPausesLocationUpdatesAutomatically:NO];
         [self.locationManager setAllowsBackgroundLocationUpdates:YES];
+        
     }
     return _locationManager;
 }
@@ -80,10 +81,12 @@
     CLLocationCoordinate2D coordate = location.coordinate;
     longitude = coordate.longitude;
     latitude = coordate.latitude;
+    
     AMapReGeocodeSearchRequest * request = [[AMapReGeocodeSearchRequest alloc] init];
     request.location = [AMapGeoPoint locationWithLatitude:coordate.latitude longitude:coordate.longitude];
     request.radius = 1000;
     request.requireExtension = YES;
+    
     
     [self.searchAddress AMapReGoecodeSearch:request];
     
@@ -119,5 +122,10 @@
         }
     }
 }
+
+- (void)AMapSearchRequest:(id)request didFailWithError:(NSError *)error{
+    NSLog(@"error=%@",error);
+}
+
 
 @end

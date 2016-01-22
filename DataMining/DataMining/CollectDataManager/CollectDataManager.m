@@ -77,11 +77,11 @@ void messageBox(NSString* str) {
 - (void)getLocationInfo {
     [[LocationWorker defaultLocation] startUpdateLocation:^(NSDictionary * locationInfo) {
         NSMutableString * locationStr = [NSMutableString stringWithString:@""];
-        [locationStr appendString:locationInfo[@"adcode"]];
+        [locationStr appendString:locationInfo[@"adCode"]];
         double longitude = [locationInfo[@"longitude"] doubleValue];
         double latitude = [locationInfo[@"latitude"] doubleValue];
         
-        [locationStr appendFormat:@"%f , %f",longitude,latitude];
+        [locationStr appendFormat:@", lng=%f, lat=%f",longitude,latitude];
         
         [[FileManager shareInstance] writeFile:locationStr WithFileName:kLocationFileName];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];

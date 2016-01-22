@@ -135,7 +135,7 @@ void messageBox(NSString* str) {
         double pitch = motion.attitude.pitch; //pitch是X周方向的转动，增加的时候表示设备正朝你倾斜，减少的时候表示疏远；
         double yaw = motion.attitude.yaw;   //yaw是Z轴转向，减少是时候是顺时针，增加的时候是逆时针。
         
-        str = [NSString stringWithFormat:@"pitch=%.3f,roll=%.3f,yaw=%.3f",roll,pitch,yaw];
+        str = [NSString stringWithFormat:@"pitch=%.3f,roll=%.3f,yaw=%.3f",pitch,roll,yaw];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
         

@@ -21,6 +21,7 @@
 		90E73A3F1C55ADE300C07A1E /* MotionWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A351C55ADE300C07A1E /* MotionWorker.m */; };
 		90E73A401C55ADE300C07A1E /* DPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A381C55ADE300C07A1E /* DPApplication.m */; };
 		90E73A411C55ADE300C07A1E /* TouchWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A3A1C55ADE300C07A1E /* TouchWorker.m */; };
+		90E73A441C55AE7B00C07A1E /* DataStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A431C55AE7B00C07A1E /* DataStorageManager.m */; };
 		90EA2F491C50D2D3006B8D87 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EA2F481C50D2D3006B8D87 /* libz.dylib */; };
 		90EE2D791C4E05E500C5A64D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D781C4E05E500C5A64D /* main.m */; };
 		90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */; };
@@ -79,6 +80,8 @@
 		90E73A381C55ADE300C07A1E /* DPApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPApplication.m; sourceTree = "<group>"; };
 		90E73A391C55ADE300C07A1E /* TouchWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchWorker.h; sourceTree = "<group>"; };
 		90E73A3A1C55ADE300C07A1E /* TouchWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchWorker.m; sourceTree = "<group>"; };
+		90E73A421C55AE7B00C07A1E /* DataStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataStorageManager.h; sourceTree = "<group>"; };
+		90E73A431C55AE7B00C07A1E /* DataStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataStorageManager.m; sourceTree = "<group>"; };
 		90EA2F481C50D2D3006B8D87 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		90EE2D731C4E05E500C5A64D /* DataMining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataMining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EE2D771C4E05E500C5A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 			children = (
 				90E73A0A1C55ADAB00C07A1E /* CoreDataWorker */,
 				90E73A171C55ADAB00C07A1E /* FileWorker */,
+				90E73A421C55AE7B00C07A1E /* DataStorageManager.h */,
+				90E73A431C55AE7B00C07A1E /* DataStorageManager.m */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				90E73A221C55ADAB00C07A1E /* CoreDataManager.m in Sources */,
 				90E73A3B1C55ADE300C07A1E /* CollectDataManager.m in Sources */,
 				90E73A3D1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.m in Sources */,
+				90E73A441C55AE7B00C07A1E /* DataStorageManager.m in Sources */,
 				90E73A411C55ADE300C07A1E /* TouchWorker.m in Sources */,
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,

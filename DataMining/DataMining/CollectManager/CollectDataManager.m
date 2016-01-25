@@ -40,6 +40,10 @@ void messageBox(NSString* str) {
     return mgr;
 }
 
+- (void)dealloc {
+    [self stopWork];
+}
+
 - (void)startWork {
     //开启线程
     dispatch_queue_t queue = dispatch_queue_create("checkQueue", DISPATCH_QUEUE_PRIORITY_DEFAULT);

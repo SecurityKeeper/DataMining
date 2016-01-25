@@ -34,31 +34,52 @@
     return mgr;
 }
 
-- (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict {
+- (BOOL)addData:(entitiesType)type Data:(NSDictionary*)dict isTemp:(BOOL)isTemp {
     @synchronized(self) {
+        NSString* strName = nil;
         switch (type) {
             case entitiesType_DeviceMontion: {
-                DeviceMotion* deviceMotion = [NSEntityDescription insertNewObjectForEntityForName:@"DeviceMotion" inManagedObjectContext:_managedObjectContext];
+                if (isTemp)
+                    strName = @"DeviceMotion_Temp";
+                else
+                    strName = @"DeviceMotion";
+                DeviceMotion* deviceMotion = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [deviceMotion setDataWithDict:dict];
             }
                 break;
             case entitiesType_Location: {
-                Location* location = [NSEntityDescription insertNewObjectForEntityForName:@"Location" inManagedObjectContext:_managedObjectContext];
+                if (isTemp)
+                    strName = @"Location_Temp";
+                else
+                    strName = @"Location";
+                Location* location = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [location setDataWithDict:dict];
             }
                 break;
             case entitiesType_Touch: {
-                Touch* touch = [NSEntityDescription insertNewObjectForEntityForName:@"Touch" inManagedObjectContext:_managedObjectContext];
+                if (isTemp)
+                    strName = @"Touch_Temp";
+                else
+                    strName = @"Touch";
+                Touch* touch = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [touch setDataWithDict:dict];
             }
                 break;
             case entitiesType_Accelerometer: {
-                Accelerometer* accelerometer = [NSEntityDescription insertNewObjectForEntityForName:@"Accelerometer" inManagedObjectContext:_managedObjectContext];
+                if (isTemp)
+                    strName = @"Accelerometer_Temp";
+                else
+                    strName = @"Accelerometer";
+                Accelerometer* accelerometer = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [accelerometer setDataWithDict:dict];
             }
                 break;
             case entitiesType_Health: {
-                Health* health = [NSEntityDescription insertNewObjectForEntityForName:@"Health" inManagedObjectContext:_managedObjectContext];
+                if (isTemp)
+                    strName = @"Health_Temp";
+                else
+                    strName = @"Health";
+                Health* health = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [health setDataWithDict:dict];
             }
                 break;
@@ -68,10 +89,14 @@
     }
 }
 
-- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count {
+- (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict {
+    return [self addData:type Data:dict isTemp:NO];
+}
+
+- (NSArray*)getData:(entitiesType)type count:(int)count isTemp:(BOOL)isTemp {
     @synchronized(self) {
         NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:1];
-        NSString* entityName = [self entityNameStringFromType:type];
+        NSString* entityName = [self entityNameStringFromType:type isTemp:NO];
         NSError* error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
@@ -80,62 +105,103 @@
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
         for (NSManagedObject* obj in fetchedObjects) {
             @autoreleasepool {
-                if (count == 0) {
-                    break;
+                if (!isTemp) {
+                    if (count == 0)
+                        break;
                 }
+
                 if ([obj respondsToSelector:@selector(getDictionary)]) {
                     NSMutableDictionary* dict = [obj performSelector:@selector(getDictionary) withObject:nil];
                     [array addObject:dict];
-                    count--;
+                    if (!isTemp)
+                        count--;
                 }
             }
         }
         
         return array;
     }
+
 }
 
-- (NSString*)entityNameStringFromType:(entitiesType)type {
+- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count {
+    return [self getData:type count:count isTemp:NO];
+}
+
+- (NSString*)entityNameStringFromType:(entitiesType)type isTemp:(BOOL)isTemp {
     NSString* entityName = nil;
     switch (type) {
         case entitiesType_DeviceMontion:
-            entityName = @"DeviceMontion";
+            if (isTemp)
+                entityName = @"DeviceMontion_Temp";
+            else
+                entityName = @"DeviceMontion";
             break;
         case entitiesType_Location:
-            entityName = @"Location";
+            if (isTemp)
+                entityName = @"Location_Temp";
+            else
+                entityName = @"Location";
             break;
         case entitiesType_Touch:
-            entityName = @"Touch";
+            if (isTemp)
+                entityName = @"Touch_Temp";
+            else
+                entityName = @"Touch";
             break;
         case entitiesType_Accelerometer:
-            entityName = @"Accelerometer";
+            if (isTemp)
+                entityName = @"Accelerometer_Temp";
+            else
+                entityName = @"Accelerometer";
             break;
         case entitiesType_Health:
-            entityName = @"Health";
+            if (isTemp)
+                entityName = @"Health_Temp";
+            else
+                entityName = @"Health";
             break;
     }
     
     return entityName;
 }
 
-- (void)deleteEntities:(entitiesType)type WithCount:(int)count {
+- (void)deleteData:(entitiesType)type count:(int)count isTemp:(BOOL)isTemp {
     @synchronized(self) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSString* entityName = [self entityNameStringFromType:type];
+        NSString* entityName = [self entityNameStringFromType:type isTemp:NO];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
         [fetchRequest setEntity:entity];
         
         NSError *error = nil;
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
         for (NSManagedObject *info in fetchedObjects) {
-            if (count == 0) {
-                break;
+            if (!isTemp) {
+                if (count == 0)
+                    break;
             }
             [_managedObjectContext deleteObject:info];
-            count--;
+            if (!isTemp)
+                count--;
         }
         [_managedObjectContext save:&error];
     }
+}
+
+- (void)deleteEntities:(entitiesType)type WithCount:(int)count {
+    [self deleteData:type count:count isTemp:NO];
+}
+
+- (BOOL)addEntities_Temp:(entitiesType)type WithData:(NSDictionary*)dict {
+    return [self addData:type Data:dict isTemp:YES];
+}
+
+- (NSArray*)getEntitiesData_Temp:(entitiesType)type {
+    return [self getData:type count:0 isTemp:YES];
+}
+
+- (void)deleteEntities_Temp:(entitiesType)type {
+    [self deleteData:type count:0 isTemp:YES];
 }
 
 @end

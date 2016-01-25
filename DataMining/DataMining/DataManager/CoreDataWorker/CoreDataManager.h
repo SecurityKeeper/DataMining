@@ -25,8 +25,15 @@ typedef enum {
 @interface CoreDataManager : NSObject
 
 + (CoreDataManager*)shareInstance;
-- (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict;    //添加一列数据
-- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count;    //获取前count个数据
-- (void)deleteEntities:(entitiesType)type WithCount:(int)count;         //删除前count个数据
+
+/*可信数据库存取操作*/
+- (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict;         //添加一列数据
+- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count;         //获取前count个数据
+- (void)deleteEntities:(entitiesType)type WithCount:(int)count;              //删除前count个数据
+
+/*临时数据库存取操作*/
+- (BOOL)addEntities_Temp:(entitiesType)type WithData:(NSDictionary*)dict;    //添加一列数据
+- (NSArray*)getEntitiesData_Temp:(entitiesType)type;                         //获取数据
+- (void)deleteEntities_Temp:(entitiesType)type;                              //删除数据
 
 @end

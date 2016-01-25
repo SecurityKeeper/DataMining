@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90E73A211C55ADAB00C07A1E /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A0C1C55ADAB00C07A1E /* Accelerometer.m */; };
+		90E73A221C55ADAB00C07A1E /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A0E1C55ADAB00C07A1E /* CoreDataManager.m */; };
+		90E73A231C55ADAB00C07A1E /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A101C55ADAB00C07A1E /* DeviceMotion.m */; };
+		90E73A241C55ADAB00C07A1E /* Health.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A121C55ADAB00C07A1E /* Health.m */; };
+		90E73A251C55ADAB00C07A1E /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A141C55ADAB00C07A1E /* Location.m */; };
+		90E73A261C55ADAB00C07A1E /* Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A161C55ADAB00C07A1E /* Touch.m */; };
+		90E73A271C55ADAB00C07A1E /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A191C55ADAB00C07A1E /* FileManager.m */; };
+		90E73A3B1C55ADE300C07A1E /* CollectDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A2A1C55ADE300C07A1E /* CollectDataManager.m */; };
+		90E73A3C1C55ADE300C07A1E /* HealthWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A2D1C55ADE300C07A1E /* HealthWorker.m */; };
+		90E73A3D1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A2F1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.m */; };
+		90E73A3E1C55ADE300C07A1E /* LocationWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A321C55ADE300C07A1E /* LocationWorker.m */; };
+		90E73A3F1C55ADE300C07A1E /* MotionWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A351C55ADE300C07A1E /* MotionWorker.m */; };
+		90E73A401C55ADE300C07A1E /* DPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A381C55ADE300C07A1E /* DPApplication.m */; };
+		90E73A411C55ADE300C07A1E /* TouchWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E73A3A1C55ADE300C07A1E /* TouchWorker.m */; };
 		90EA2F491C50D2D3006B8D87 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EA2F481C50D2D3006B8D87 /* libz.dylib */; };
-		90EABEB71C51F90600740B63 /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEB61C51F90600740B63 /* CoreDataManager.m */; };
-		90EABEBA1C51FBC900740B63 /* Health.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEB91C51FBC900740B63 /* Health.m */; };
-		90EABEBD1C51FBCA00740B63 /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEBC1C51FBCA00740B63 /* Accelerometer.m */; };
-		90EABEC01C51FBCA00740B63 /* Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEBF1C51FBCA00740B63 /* Touch.m */; };
-		90EABEC31C51FBCA00740B63 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEC21C51FBCA00740B63 /* Location.m */; };
-		90EABEC61C51FBCA00740B63 /* DeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EABEC51C51FBCA00740B63 /* DeviceMotion.m */; };
 		90EE2D791C4E05E500C5A64D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D781C4E05E500C5A64D /* main.m */; };
 		90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */; };
 		90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7D1C4E05E500C5A64D /* DataMining.xcdatamodeld */; };
@@ -22,16 +30,8 @@
 		90EE2D871C4E05E500C5A64D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90EE2D861C4E05E500C5A64D /* Images.xcassets */; };
 		90EE2D8A1C4E05E500C5A64D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90EE2D881C4E05E500C5A64D /* LaunchScreen.xib */; };
 		90EE2D961C4E05E600C5A64D /* DataMiningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D951C4E05E600C5A64D /* DataMiningTests.m */; };
-		90EE2DB21C4E065400C5A64D /* CollectDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DA11C4E065300C5A64D /* CollectDataManager.m */; };
-		90EE2DB31C4E065400C5A64D /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DA41C4E065300C5A64D /* FileManager.m */; };
-		90EE2DB41C4E065400C5A64D /* HealthWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DA71C4E065300C5A64D /* HealthWorker.m */; };
-		90EE2DB51C4E065400C5A64D /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DA91C4E065300C5A64D /* HKHealthStore+AAPLExtensions.m */; };
-		90EE2DB61C4E065400C5A64D /* MotionWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DAC1C4E065300C5A64D /* MotionWorker.m */; };
-		90EE2DB71C4E065400C5A64D /* DPApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DAF1C4E065300C5A64D /* DPApplication.m */; };
-		90EE2DB81C4E065400C5A64D /* TouchWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2DB11C4E065300C5A64D /* TouchWorker.m */; };
 		90EE2DBA1C4E066900C5A64D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DB91C4E066900C5A64D /* HealthKit.framework */; };
 		90EE2DBD1C4E083100C5A64D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */; };
-		EC39F0D71C4F1FA800AEDFF4 /* LocationWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39F0D61C4F1FA800AEDFF4 /* LocationWorker.m */; };
 		EC39F0D91C4F1FD500AEDFF4 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */; };
 		EC39F0DB1C4F1FE100AEDFF4 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */; };
 		ECB2CDD21C4E35670035B1FD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */; };
@@ -51,19 +51,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90E73A0B1C55ADAB00C07A1E /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
+		90E73A0C1C55ADAB00C07A1E /* Accelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Accelerometer.m; sourceTree = "<group>"; };
+		90E73A0D1C55ADAB00C07A1E /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
+		90E73A0E1C55ADAB00C07A1E /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
+		90E73A0F1C55ADAB00C07A1E /* DeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMotion.h; sourceTree = "<group>"; };
+		90E73A101C55ADAB00C07A1E /* DeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMotion.m; sourceTree = "<group>"; };
+		90E73A111C55ADAB00C07A1E /* Health.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Health.h; sourceTree = "<group>"; };
+		90E73A121C55ADAB00C07A1E /* Health.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Health.m; sourceTree = "<group>"; };
+		90E73A131C55ADAB00C07A1E /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		90E73A141C55ADAB00C07A1E /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		90E73A151C55ADAB00C07A1E /* Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Touch.h; sourceTree = "<group>"; };
+		90E73A161C55ADAB00C07A1E /* Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Touch.m; sourceTree = "<group>"; };
+		90E73A181C55ADAB00C07A1E /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
+		90E73A191C55ADAB00C07A1E /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
+		90E73A291C55ADE300C07A1E /* CollectDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectDataManager.h; sourceTree = "<group>"; };
+		90E73A2A1C55ADE300C07A1E /* CollectDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectDataManager.m; sourceTree = "<group>"; };
+		90E73A2C1C55ADE300C07A1E /* HealthWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthWorker.h; sourceTree = "<group>"; };
+		90E73A2D1C55ADE300C07A1E /* HealthWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthWorker.m; sourceTree = "<group>"; };
+		90E73A2E1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+AAPLExtensions.h"; sourceTree = "<group>"; };
+		90E73A2F1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+AAPLExtensions.m"; sourceTree = "<group>"; };
+		90E73A311C55ADE300C07A1E /* LocationWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationWorker.h; sourceTree = "<group>"; };
+		90E73A321C55ADE300C07A1E /* LocationWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationWorker.m; sourceTree = "<group>"; };
+		90E73A341C55ADE300C07A1E /* MotionWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionWorker.h; sourceTree = "<group>"; };
+		90E73A351C55ADE300C07A1E /* MotionWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionWorker.m; sourceTree = "<group>"; };
+		90E73A371C55ADE300C07A1E /* DPApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPApplication.h; sourceTree = "<group>"; };
+		90E73A381C55ADE300C07A1E /* DPApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPApplication.m; sourceTree = "<group>"; };
+		90E73A391C55ADE300C07A1E /* TouchWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchWorker.h; sourceTree = "<group>"; };
+		90E73A3A1C55ADE300C07A1E /* TouchWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchWorker.m; sourceTree = "<group>"; };
 		90EA2F481C50D2D3006B8D87 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		90EABEB51C51F90600740B63 /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
-		90EABEB61C51F90600740B63 /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
-		90EABEB81C51FBC900740B63 /* Health.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Health.h; sourceTree = "<group>"; };
-		90EABEB91C51FBC900740B63 /* Health.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Health.m; sourceTree = "<group>"; };
-		90EABEBB1C51FBCA00740B63 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
-		90EABEBC1C51FBCA00740B63 /* Accelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Accelerometer.m; sourceTree = "<group>"; };
-		90EABEBE1C51FBCA00740B63 /* Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Touch.h; sourceTree = "<group>"; };
-		90EABEBF1C51FBCA00740B63 /* Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Touch.m; sourceTree = "<group>"; };
-		90EABEC11C51FBCA00740B63 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
-		90EABEC21C51FBCA00740B63 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		90EABEC41C51FBCA00740B63 /* DeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMotion.h; sourceTree = "<group>"; };
-		90EABEC51C51FBCA00740B63 /* DeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMotion.m; sourceTree = "<group>"; };
 		90EE2D731C4E05E500C5A64D /* DataMining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataMining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EE2D771C4E05E500C5A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90EE2D781C4E05E500C5A64D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,25 +94,9 @@
 		90EE2D8F1C4E05E600C5A64D /* DataMiningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataMiningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EE2D941C4E05E600C5A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90EE2D951C4E05E600C5A64D /* DataMiningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataMiningTests.m; sourceTree = "<group>"; };
-		90EE2DA01C4E065300C5A64D /* CollectDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectDataManager.h; sourceTree = "<group>"; };
-		90EE2DA11C4E065300C5A64D /* CollectDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectDataManager.m; sourceTree = "<group>"; };
-		90EE2DA31C4E065300C5A64D /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
-		90EE2DA41C4E065300C5A64D /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
-		90EE2DA61C4E065300C5A64D /* HealthWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthWorker.h; sourceTree = "<group>"; };
-		90EE2DA71C4E065300C5A64D /* HealthWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthWorker.m; sourceTree = "<group>"; };
-		90EE2DA81C4E065300C5A64D /* HKHealthStore+AAPLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HKHealthStore+AAPLExtensions.h"; sourceTree = "<group>"; };
-		90EE2DA91C4E065300C5A64D /* HKHealthStore+AAPLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HKHealthStore+AAPLExtensions.m"; sourceTree = "<group>"; };
-		90EE2DAB1C4E065300C5A64D /* MotionWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotionWorker.h; sourceTree = "<group>"; };
-		90EE2DAC1C4E065300C5A64D /* MotionWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotionWorker.m; sourceTree = "<group>"; };
-		90EE2DAE1C4E065300C5A64D /* DPApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPApplication.h; sourceTree = "<group>"; };
-		90EE2DAF1C4E065300C5A64D /* DPApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPApplication.m; sourceTree = "<group>"; };
-		90EE2DB01C4E065300C5A64D /* TouchWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchWorker.h; sourceTree = "<group>"; };
-		90EE2DB11C4E065300C5A64D /* TouchWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchWorker.m; sourceTree = "<group>"; };
 		90EE2DB91C4E066900C5A64D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		90EE2DBB1C4E066900C5A64D /* DataMining.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataMining.entitlements; sourceTree = "<group>"; };
 		90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		EC39F0D51C4F1FA800AEDFF4 /* LocationWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationWorker.h; sourceTree = "<group>"; };
-		EC39F0D61C4F1FA800AEDFF4 /* LocationWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationWorker.m; sourceTree = "<group>"; };
 		EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapLocationKit.framework; sourceTree = "<group>"; };
 		EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -132,23 +132,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		90EABEB41C51F8F700740B63 /* CoreDataManager */ = {
+		90E73A091C55ADAB00C07A1E /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				90EABEB51C51F90600740B63 /* CoreDataManager.h */,
-				90EABEB61C51F90600740B63 /* CoreDataManager.m */,
-				90EABEC41C51FBCA00740B63 /* DeviceMotion.h */,
-				90EABEC51C51FBCA00740B63 /* DeviceMotion.m */,
-				90EABEC11C51FBCA00740B63 /* Location.h */,
-				90EABEC21C51FBCA00740B63 /* Location.m */,
-				90EABEBE1C51FBCA00740B63 /* Touch.h */,
-				90EABEBF1C51FBCA00740B63 /* Touch.m */,
-				90EABEBB1C51FBCA00740B63 /* Accelerometer.h */,
-				90EABEBC1C51FBCA00740B63 /* Accelerometer.m */,
-				90EABEB81C51FBC900740B63 /* Health.h */,
-				90EABEB91C51FBC900740B63 /* Health.m */,
+				90E73A0A1C55ADAB00C07A1E /* CoreDataWorker */,
+				90E73A171C55ADAB00C07A1E /* FileWorker */,
 			);
-			path = CoreDataManager;
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		90E73A0A1C55ADAB00C07A1E /* CoreDataWorker */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A0B1C55ADAB00C07A1E /* Accelerometer.h */,
+				90E73A0C1C55ADAB00C07A1E /* Accelerometer.m */,
+				90E73A0D1C55ADAB00C07A1E /* CoreDataManager.h */,
+				90E73A0E1C55ADAB00C07A1E /* CoreDataManager.m */,
+				90E73A0F1C55ADAB00C07A1E /* DeviceMotion.h */,
+				90E73A101C55ADAB00C07A1E /* DeviceMotion.m */,
+				90E73A111C55ADAB00C07A1E /* Health.h */,
+				90E73A121C55ADAB00C07A1E /* Health.m */,
+				90E73A131C55ADAB00C07A1E /* Location.h */,
+				90E73A141C55ADAB00C07A1E /* Location.m */,
+				90E73A151C55ADAB00C07A1E /* Touch.h */,
+				90E73A161C55ADAB00C07A1E /* Touch.m */,
+			);
+			path = CoreDataWorker;
+			sourceTree = "<group>";
+		};
+		90E73A171C55ADAB00C07A1E /* FileWorker */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A181C55ADAB00C07A1E /* FileManager.h */,
+				90E73A191C55ADAB00C07A1E /* FileManager.m */,
+			);
+			path = FileWorker;
+			sourceTree = "<group>";
+		};
+		90E73A281C55ADE300C07A1E /* CollectManager */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A291C55ADE300C07A1E /* CollectDataManager.h */,
+				90E73A2A1C55ADE300C07A1E /* CollectDataManager.m */,
+				90E73A2B1C55ADE300C07A1E /* HealthWorker */,
+				90E73A301C55ADE300C07A1E /* LocationWorker */,
+				90E73A331C55ADE300C07A1E /* MotionWorker */,
+				90E73A361C55ADE300C07A1E /* TouchWorker */,
+			);
+			path = CollectManager;
+			sourceTree = "<group>";
+		};
+		90E73A2B1C55ADE300C07A1E /* HealthWorker */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A2C1C55ADE300C07A1E /* HealthWorker.h */,
+				90E73A2D1C55ADE300C07A1E /* HealthWorker.m */,
+				90E73A2E1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.h */,
+				90E73A2F1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.m */,
+			);
+			path = HealthWorker;
+			sourceTree = "<group>";
+		};
+		90E73A301C55ADE300C07A1E /* LocationWorker */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A311C55ADE300C07A1E /* LocationWorker.h */,
+				90E73A321C55ADE300C07A1E /* LocationWorker.m */,
+			);
+			path = LocationWorker;
+			sourceTree = "<group>";
+		};
+		90E73A331C55ADE300C07A1E /* MotionWorker */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A341C55ADE300C07A1E /* MotionWorker.h */,
+				90E73A351C55ADE300C07A1E /* MotionWorker.m */,
+			);
+			path = MotionWorker;
+			sourceTree = "<group>";
+		};
+		90E73A361C55ADE300C07A1E /* TouchWorker */ = {
+			isa = PBXGroup;
+			children = (
+				90E73A371C55ADE300C07A1E /* DPApplication.h */,
+				90E73A381C55ADE300C07A1E /* DPApplication.m */,
+				90E73A391C55ADE300C07A1E /* TouchWorker.h */,
+				90E73A3A1C55ADE300C07A1E /* TouchWorker.m */,
+			);
+			path = TouchWorker;
 			sourceTree = "<group>";
 		};
 		90EE2D6A1C4E05E500C5A64D = {
@@ -214,55 +285,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		90EE2D9F1C4E065300C5A64D /* CollectDataManager */ = {
-			isa = PBXGroup;
-			children = (
-				90EE2DA01C4E065300C5A64D /* CollectDataManager.h */,
-				90EE2DA11C4E065300C5A64D /* CollectDataManager.m */,
-			);
-			path = CollectDataManager;
-			sourceTree = "<group>";
-		};
-		90EE2DA21C4E065300C5A64D /* FileManager */ = {
-			isa = PBXGroup;
-			children = (
-				90EE2DA31C4E065300C5A64D /* FileManager.h */,
-				90EE2DA41C4E065300C5A64D /* FileManager.m */,
-			);
-			path = FileManager;
-			sourceTree = "<group>";
-		};
-		90EE2DA51C4E065300C5A64D /* Health */ = {
-			isa = PBXGroup;
-			children = (
-				90EE2DA61C4E065300C5A64D /* HealthWorker.h */,
-				90EE2DA71C4E065300C5A64D /* HealthWorker.m */,
-				90EE2DA81C4E065300C5A64D /* HKHealthStore+AAPLExtensions.h */,
-				90EE2DA91C4E065300C5A64D /* HKHealthStore+AAPLExtensions.m */,
-			);
-			path = Health;
-			sourceTree = "<group>";
-		};
-		90EE2DAA1C4E065300C5A64D /* MotionManager */ = {
-			isa = PBXGroup;
-			children = (
-				90EE2DAB1C4E065300C5A64D /* MotionWorker.h */,
-				90EE2DAC1C4E065300C5A64D /* MotionWorker.m */,
-			);
-			path = MotionManager;
-			sourceTree = "<group>";
-		};
-		90EE2DAD1C4E065300C5A64D /* TouchManager */ = {
-			isa = PBXGroup;
-			children = (
-				90EE2DAE1C4E065300C5A64D /* DPApplication.h */,
-				90EE2DAF1C4E065300C5A64D /* DPApplication.m */,
-				90EE2DB01C4E065300C5A64D /* TouchWorker.h */,
-				90EE2DB11C4E065300C5A64D /* TouchWorker.m */,
-			);
-			path = TouchManager;
-			sourceTree = "<group>";
-		};
 		90EE2DBE1C4E085700C5A64D /* framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,24 +304,10 @@
 		90EE2DBF1C4E088800C5A64D /* Collector */ = {
 			isa = PBXGroup;
 			children = (
-				90EABEB41C51F8F700740B63 /* CoreDataManager */,
-				EC39F0D41C4F1F4E00AEDFF4 /* LocationManager */,
-				90EE2D9F1C4E065300C5A64D /* CollectDataManager */,
-				90EE2DA21C4E065300C5A64D /* FileManager */,
-				90EE2DA51C4E065300C5A64D /* Health */,
-				90EE2DAA1C4E065300C5A64D /* MotionManager */,
-				90EE2DAD1C4E065300C5A64D /* TouchManager */,
+				90E73A281C55ADE300C07A1E /* CollectManager */,
+				90E73A091C55ADAB00C07A1E /* DataManager */,
 			);
 			name = Collector;
-			sourceTree = "<group>";
-		};
-		EC39F0D41C4F1F4E00AEDFF4 /* LocationManager */ = {
-			isa = PBXGroup;
-			children = (
-				EC39F0D51C4F1FA800AEDFF4 /* LocationWorker.h */,
-				EC39F0D61C4F1FA800AEDFF4 /* LocationWorker.m */,
-			);
-			path = LocationManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,24 +419,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90EE2DB51C4E065400C5A64D /* HKHealthStore+AAPLExtensions.m in Sources */,
-				90EABEB71C51F90600740B63 /* CoreDataManager.m in Sources */,
 				90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */,
-				90EABEBD1C51FBCA00740B63 /* Accelerometer.m in Sources */,
+				90E73A3C1C55ADE300C07A1E /* HealthWorker.m in Sources */,
+				90E73A221C55ADAB00C07A1E /* CoreDataManager.m in Sources */,
+				90E73A3B1C55ADE300C07A1E /* CollectDataManager.m in Sources */,
+				90E73A3D1C55ADE300C07A1E /* HKHealthStore+AAPLExtensions.m in Sources */,
+				90E73A411C55ADE300C07A1E /* TouchWorker.m in Sources */,
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
-				90EABEC01C51FBCA00740B63 /* Touch.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
-				90EE2DB21C4E065400C5A64D /* CollectDataManager.m in Sources */,
+				90E73A401C55ADE300C07A1E /* DPApplication.m in Sources */,
+				90E73A231C55ADAB00C07A1E /* DeviceMotion.m in Sources */,
+				90E73A211C55ADAB00C07A1E /* Accelerometer.m in Sources */,
+				90E73A3F1C55ADE300C07A1E /* MotionWorker.m in Sources */,
 				90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */,
-				EC39F0D71C4F1FA800AEDFF4 /* LocationWorker.m in Sources */,
-				90EE2DB61C4E065400C5A64D /* MotionWorker.m in Sources */,
-				90EE2DB31C4E065400C5A64D /* FileManager.m in Sources */,
-				90EE2DB71C4E065400C5A64D /* DPApplication.m in Sources */,
-				90EABEC61C51FBCA00740B63 /* DeviceMotion.m in Sources */,
-				90EABEBA1C51FBC900740B63 /* Health.m in Sources */,
-				90EE2DB81C4E065400C5A64D /* TouchWorker.m in Sources */,
-				90EABEC31C51FBCA00740B63 /* Location.m in Sources */,
-				90EE2DB41C4E065400C5A64D /* HealthWorker.m in Sources */,
+				90E73A251C55ADAB00C07A1E /* Location.m in Sources */,
+				90E73A261C55ADAB00C07A1E /* Touch.m in Sources */,
+				90E73A3E1C55ADE300C07A1E /* LocationWorker.m in Sources */,
+				90E73A241C55ADAB00C07A1E /* Health.m in Sources */,
+				90E73A271C55ADAB00C07A1E /* FileManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

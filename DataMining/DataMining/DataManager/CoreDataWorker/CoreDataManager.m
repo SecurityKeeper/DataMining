@@ -106,7 +106,7 @@
         for (NSManagedObject* obj in fetchedObjects) {
             @autoreleasepool {
                 if (!isTemp) {
-                    if (count == 0)
+                    if (count <= 0)
                         break;
                 }
 
@@ -125,6 +125,9 @@
 }
 
 - (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count {
+    if (count <= 0) {
+        return nil;
+    }
     return [self getData:type count:count isTemp:NO];
 }
 

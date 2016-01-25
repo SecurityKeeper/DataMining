@@ -14,8 +14,9 @@
 + (DataStorageManager*)shareInstance;
 
 //==================上层调用  取数据==================
-- (NSArray*)getDataType:(entitiesType)type WithCount:(int)count;  
+- (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count;  
 - (void)removeAllTempStorageData;
+- (void)removeMemoryData;
 - (void)moveTempToReliableStorage;
 
 //==================下层调用  存数据==================

@@ -15,6 +15,7 @@
 @property (atomic, strong)NSMutableArray* locationArray;
 @property (atomic, strong)NSMutableArray* touchArray;
 @property (atomic, strong)NSMutableArray* accelerometerArray;
+@property (nonatomic,strong)NSTimer* timer;
 
 @end
 
@@ -25,13 +26,14 @@
     static dispatch_once_t once_token;
     dispatch_once(&once_token, ^{
         data = [[DataStorageManager alloc]init];
-        [data initData];
+        [data createDataArray];
+        [data startThread];
     });
     
     return data;
 }
 
-- (void)initData {
+- (void)createDataArray {
     self.deviceMotionArray = [NSMutableArray array];
     self.healthArray = [NSMutableArray array];
     self.locationArray = [NSMutableArray array];
@@ -39,24 +41,91 @@
     self.accelerometerArray = [NSMutableArray array];
 }
 
+- (void)startThread {
+    dispatch_queue_t queue = dispatch_queue_create("saveData", DISPATCH_QUEUE_PRIORITY_DEFAULT);
+    dispatch_async(queue, ^{
+        //每隔10分钟将内存数据存入临时数据库中
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:60*10 target:self selector:@selector(timerWorking) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop]run];
+    });
+}
+
+- (void)timerWorking {
+    [self saveDataToTempStorage];
+}
+
 - (void)dealloc {
+    [self.timer invalidate];
+    self.timer = nil;
     [self releaseArray];
 }
 
 - (void)releaseArray {
     @synchronized(self) {
-        self.deviceMotionArray = nil;
         self.healthArray = nil;
         self.locationArray = nil;
         self.touchArray = nil;
+        self.deviceMotionArray = nil;
         self.accelerometerArray = nil;
     }
 }
 
-- (NSArray*)getDataType:(entitiesType)type WithCount:(int)count {
+- (void)removeMemoryData {
+    [self releaseArray];
+    [self createDataArray];
+}
+
+- (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count {
     //内存＋临时＋可信数据库
-    
-    return nil;
+    NSMutableArray* dataArray = [NSMutableArray array];
+    NSArray* tempArray = nil;
+    NSArray* reliableArray = nil;
+    @synchronized(self) {
+        switch (type) {
+            case entitiesType_DeviceMontion: {
+                [dataArray addObjectsFromArray:self.deviceMotionArray];
+                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_DeviceMontion];
+                [dataArray addObjectsFromArray:tempArray];
+                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_DeviceMontion WithCount:count- tempArray.count - self.deviceMotionArray.count];
+                [dataArray addObjectsFromArray:reliableArray];
+            }
+                break;
+            case entitiesType_Location: {
+                [dataArray addObjectsFromArray:self.locationArray];
+                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Location];
+                [dataArray addObjectsFromArray:tempArray];
+                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Location WithCount:count- tempArray.count - self.locationArray.count];
+                [dataArray addObjectsFromArray:reliableArray];
+            }
+                break;
+            case entitiesType_Touch: {
+                [dataArray addObjectsFromArray:self.touchArray];
+                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Touch];
+                [dataArray addObjectsFromArray:tempArray];
+                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Touch WithCount:count- tempArray.count - self.touchArray.count];
+                [dataArray addObjectsFromArray:reliableArray];
+            }
+                break;
+            case entitiesType_Accelerometer: {
+                [dataArray addObjectsFromArray:self.accelerometerArray];
+                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Accelerometer];
+                [dataArray addObjectsFromArray:tempArray];
+                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Accelerometer WithCount:count- tempArray.count - self.accelerometerArray.count];
+                [dataArray addObjectsFromArray:reliableArray];
+            }
+                break;
+            case entitiesType_Health: {
+                [dataArray addObjectsFromArray:self.healthArray];
+                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Health];
+                [dataArray addObjectsFromArray:tempArray];
+                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Health WithCount:count- tempArray.count - self.healthArray.count];
+                [dataArray addObjectsFromArray:reliableArray];
+            }
+                break;
+        }
+  
+        return dataArray;
+    }
 }
 
 - (void)removeAllTempStorageData {
@@ -111,6 +180,7 @@
             [[CoreDataManager shareInstance]addEntities_Temp:entitiesType_Health WithData:dict];
         }
         [self releaseArray];
+        [self createDataArray];
     }
 }
 

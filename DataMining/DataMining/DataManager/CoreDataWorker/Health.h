@@ -13,6 +13,7 @@
 @interface Health : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSNumber * timesTamp;
 @property (nonatomic, retain) NSNumber * distance;
 @property (nonatomic, retain) NSNumber * stepCount;
 

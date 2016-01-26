@@ -85,10 +85,10 @@ void messageBox(NSString* str) {
                                            WithData:@{@"latitude":[NSNumber numberWithFloat:latitude],
                                                       @"longitude":[NSNumber numberWithFloat:longitude],
                                                       @"adCode":locationInfo[@"adCode"],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];
     }];
-    
 }
 
 - (void)getTouchInfo {
@@ -99,7 +99,8 @@ void messageBox(NSString* str) {
                                            WithData:@{@"touchType":[NSNumber numberWithInt:touchType_begin],
                                                       @"x":[NSNumber numberWithFloat:point.x],
                                                       @"y":[NSNumber numberWithFloat:point.y],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
@@ -108,7 +109,8 @@ void messageBox(NSString* str) {
                                            WithData:@{@"touchType":[NSNumber numberWithInt:touchType_end],
                                                       @"x":[NSNumber numberWithFloat:point.x],
                                                       @"y":[NSNumber numberWithFloat:point.y],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
@@ -117,9 +119,9 @@ void messageBox(NSString* str) {
                                            WithData:@{@"touchType":[NSNumber numberWithInt:touchType_move],
                                                       @"x":[NSNumber numberWithFloat:point.x],
                                                       @"y":[NSNumber numberWithFloat:point.y],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
-
     }];
 }
 
@@ -147,10 +149,10 @@ void messageBox(NSString* str) {
                                            WithData:@{@"z":[NSNumber numberWithFloat:accelerometerData.acceleration.z],
                                                       @"x":[NSNumber numberWithFloat:accelerometerData.acceleration.x],
                                                       @"y":[NSNumber numberWithFloat:accelerometerData.acceleration.y],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
     }];
-    
-    
+
     [[MotionWorker shareInstance] startDeviceMotionUpdate:^(CMDeviceMotion *motion, NSError *error) {
         
         double roll = motion.attitude.roll; //roll是Y轴的转向，值减少的时候表示正往左边转，增加的时候往右；
@@ -167,7 +169,8 @@ void messageBox(NSString* str) {
                                            WithData:@{@"pitch":[NSNumber numberWithFloat:pitch],
                                                       @"roll":[NSNumber numberWithFloat:roll],
                                                       @"yaw":[NSNumber numberWithFloat:yaw],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
     }];
 }
 
@@ -185,7 +188,8 @@ void messageBox(NSString* str) {
         [[CoreDataManager shareInstance]addEntities:entitiesType_Health
                                            WithData:@{@"distance":[NSNumber numberWithInt:_distanceSize],
                                                       @"stepCount":[NSNumber numberWithInt:(int)stepValue],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
     } distance:^(double distanceValue, NSError *error) {
@@ -195,9 +199,16 @@ void messageBox(NSString* str) {
         [[CoreDataManager shareInstance]addEntities:entitiesType_Health
                                            WithData:@{@"distance":[NSNumber numberWithInt:(int)distanceValue],
                                                       @"stepCount":[NSNumber numberWithInt:_stepCount],
-                                                      @"date":[NSDate date]}];
+                                                      @"date":[NSDate date],
+                                                      @"timesTamp":[self getTimeTamp]}];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateDistanceNotification" object:str];
     }];
+}
+
+- (NSNumber*)getTimeTamp {
+    double timesTamp = [[NSDate date] timeIntervalSince1970];
+    NSNumber* numTamp = [NSNumber numberWithDouble:timesTamp];
+    return numTamp;
 }
 
 @end

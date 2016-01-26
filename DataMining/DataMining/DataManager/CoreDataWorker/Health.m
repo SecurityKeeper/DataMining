@@ -14,17 +14,20 @@
 @dynamic date;
 @dynamic distance;
 @dynamic stepCount;
+@dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
     self.date         = [dict objectForKey:@"date"];
     self.distance     = [dict objectForKey:@"distance"];
     self.stepCount    = [dict objectForKey:@"stepCount"];
+    self.timesTamp    = [dict objectForKey:@"timesTamp"];
 }
 
 - (NSDictionary*)getDictionary {
     NSDictionary* dict = @{@"date":self.date,
                            @"distance":self.distance,
-                           @"stepCount":self.stepCount};
+                           @"stepCount":self.stepCount,
+                           @"timesTamp":self.timesTamp};
     return dict;
 }
 

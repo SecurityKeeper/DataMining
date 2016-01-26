@@ -12,7 +12,6 @@
 
 @interface DeviceMotion : NSManagedObject
 
-@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber* timesTamp;
 @property (nonatomic, retain) NSNumber * pitch;
 @property (nonatomic, retain) NSNumber * roll;

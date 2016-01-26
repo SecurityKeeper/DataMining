@@ -8,17 +8,14 @@
 
 #import "Accelerometer.h"
 
-
 @implementation Accelerometer
 
-@dynamic date;
 @dynamic x;
 @dynamic y;
 @dynamic z;
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.date  = [dict objectForKey:@"date"];
     self.x     = [dict objectForKey:@"x"];
     self.y     = [dict objectForKey:@"y"];
     self.z     = [dict objectForKey:@"z"];
@@ -26,8 +23,7 @@
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"date":self.date,
-                           @"x":self.x,
+    NSDictionary* dict = @{@"x":self.x,
                            @"y":self.y,
                            @"z":self.z,
                            @"timesTamp":self.timesTamp};

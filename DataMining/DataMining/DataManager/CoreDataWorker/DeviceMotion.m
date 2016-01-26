@@ -11,14 +11,12 @@
 
 @implementation DeviceMotion
 
-@dynamic date;
 @dynamic pitch;
 @dynamic roll;
 @dynamic yaw;
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.date      = [dict objectForKey:@"date"];
     self.pitch     = [dict objectForKey:@"pitch"];
     self.roll      = [dict objectForKey:@"roll"];
     self.yaw       = [dict objectForKey:@"yaw"];
@@ -26,8 +24,7 @@
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"date":self.date,
-                           @"pitch":self.pitch,
+    NSDictionary* dict = @{@"pitch":self.pitch,
                            @"roll":self.roll,
                            @"yaw":self.yaw,
                            @"timesTamp":self.timesTamp};

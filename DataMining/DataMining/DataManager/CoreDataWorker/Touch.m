@@ -11,14 +11,12 @@
 
 @implementation Touch
 
-@dynamic date;
 @dynamic touchType;
 @dynamic x;
 @dynamic y;
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.date      = [dict objectForKey:@"date"];
     self.x         = [dict objectForKey:@"x"];
     self.y         = [dict objectForKey:@"y"];
     self.touchType = [dict objectForKey:@"touchType"];
@@ -26,8 +24,7 @@
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"date":self.date,
-                           @"x":self.x,
+    NSDictionary* dict = @{@"x":self.x,
                            @"y":self.y,
                            @"touchType":self.touchType,
                            @"timesTamp":self.timesTamp};

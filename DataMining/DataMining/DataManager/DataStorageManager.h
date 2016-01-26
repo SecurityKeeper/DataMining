@@ -13,13 +13,10 @@
 
 + (DataStorageManager*)shareInstance;
 
-//==================上层调用  取数据==================
+- (void)saveType:(entitiesType)type WithData:(NSDictionary*)dict;
 - (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count;  
 - (void)removeAllTempStorageData;
 - (void)removeMemoryData;
 - (void)moveTempToReliableStorage;
-
-//==================下层调用  存数据==================
-- (void)saveType:(entitiesType)type WithData:(NSDictionary*)dict;
 
 @end

@@ -21,7 +21,13 @@ void messageBox(NSString* str) {
     [view show];
 }
 
-@interface CollectDataManager ()
+@interface CollectDataManager () {
+    NSDictionary* _preHealthDict;
+    NSDictionary* _preLocaltionDict;
+    NSDictionary* _preMotionDict;
+    NSDictionary* _preTouchDict;
+    NSDictionary* _preaccelerometerDict;
+}
 
 @property (nonatomic, strong)NSTimer* timer;
 @property (atomic, assign)int stepCount;
@@ -77,16 +83,17 @@ void messageBox(NSString* str) {
         [locationStr appendString:locationInfo[@"adCode"]];
         double longitude = [locationInfo[@"longitude"] doubleValue];
         double latitude = [locationInfo[@"latitude"] doubleValue];
-        
         [locationStr appendFormat:@", lng=%f, lat=%f",longitude,latitude];
         
-        //[[FileManager shareInstance] writeFile:locationStr WithFileName:kLocationFileName];
+        NSDictionary* dict = @{@"latitude":[NSNumber numberWithFloat:latitude],
+                               @"longitude":[NSNumber numberWithFloat:longitude],
+                               @"adCode":locationInfo[@"adCode"],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Location]) {
+            return;
+        }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Location
-                                           WithData:@{@"latitude":[NSNumber numberWithFloat:latitude],
-                                                      @"longitude":[NSNumber numberWithFloat:longitude],
-                                                      @"adCode":locationInfo[@"adCode"],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];
     }];
 }
@@ -94,33 +101,42 @@ void messageBox(NSString* str) {
 - (void)getTouchInfo {
     [[TouchWorker shareInstance] startWork:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Begin：x=%0.2f,y=%0.2f", point.x, point.y];
-        //[[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+
+        NSDictionary* dict = @{@"touchType":[NSNumber numberWithInt:touchType_begin],
+                               @"x":[NSNumber numberWithFloat:point.x],
+                               @"y":[NSNumber numberWithFloat:point.y],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
+            return;
+        }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-                                           WithData:@{@"touchType":[NSNumber numberWithInt:touchType_begin],
-                                                      @"x":[NSNumber numberWithFloat:point.x],
-                                                      @"y":[NSNumber numberWithFloat:point.y],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
-        //[[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        
+        NSDictionary* dict = @{@"touchType":[NSNumber numberWithInt:touchType_end],
+                               @"x":[NSNumber numberWithFloat:point.x],
+                               @"y":[NSNumber numberWithFloat:point.y],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
+            return;
+        }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-                                           WithData:@{@"touchType":[NSNumber numberWithInt:touchType_end],
-                                                      @"x":[NSNumber numberWithFloat:point.x],
-                                                      @"y":[NSNumber numberWithFloat:point.y],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
-        //[[FileManager shareInstance]writeFile:str WithFileName:kTouchFileName];
+        
+        NSDictionary* dict = @{@"touchType":[NSNumber numberWithInt:touchType_move],
+                               @"x":[NSNumber numberWithFloat:point.x],
+                               @"y":[NSNumber numberWithFloat:point.y],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
+            return;
+        }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-                                           WithData:@{@"touchType":[NSNumber numberWithInt:touchType_move],
-                                                      @"x":[NSNumber numberWithFloat:point.x],
-                                                      @"y":[NSNumber numberWithFloat:point.y],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
     }];
 }
@@ -142,35 +158,38 @@ void messageBox(NSString* str) {
     } accelerometer:^(CMAccelerometerData *accelerometerData, NSError *error) {
         str = [NSString stringWithFormat:@"加速计:X:%.3f,Y:%.3f,Z:%.3f",accelerometerData.acceleration.x,accelerometerData.acceleration.y,accelerometerData.acceleration.z];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAccelerometerNotification" object:str];
-
-        //[[FileManager shareInstance]writeFile:str WithFileName:kSpeedFileName];
+        NSDictionary* dict = @{@"z":[NSNumber numberWithFloat:accelerometerData.acceleration.z],
+                               @"x":[NSNumber numberWithFloat:accelerometerData.acceleration.x],
+                               @"y":[NSNumber numberWithFloat:accelerometerData.acceleration.y],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Accelerometer]) {
+            return;
+        }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Accelerometer
-                                           WithData:@{@"z":[NSNumber numberWithFloat:accelerometerData.acceleration.z],
-                                                      @"x":[NSNumber numberWithFloat:accelerometerData.acceleration.x],
-                                                      @"y":[NSNumber numberWithFloat:accelerometerData.acceleration.y],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAccelerometerNotification"
+                                                            object:str];
     }];
 
     [[MotionWorker shareInstance] startDeviceMotionUpdate:^(CMDeviceMotion *motion, NSError *error) {
         
-        double roll = motion.attitude.roll; //roll是Y轴的转向，值减少的时候表示正往左边转，增加的时候往右；
-        double pitch = motion.attitude.pitch; //pitch是X周方向的转动，增加的时候表示设备正朝你倾斜，减少的时候表示疏远；
-        double yaw = motion.attitude.yaw;   //yaw是Z轴转向，减少是时候是顺时针，增加的时候是逆时针。
+        double roll = motion.attitude.roll;     //roll是Y轴的转向，值减少的时候表示正往左边转，增加的时候往右；
+        double pitch = motion.attitude.pitch;   //pitch是X周方向的转动，增加的时候表示设备正朝你倾斜，减少的时候表示疏远；
+        double yaw = motion.attitude.yaw;       //yaw是Z轴转向，减少是时候是顺时针，增加的时候是逆时针。
         
         str = [NSString stringWithFormat:@"pitch=%.3f,roll=%.3f,yaw=%.3f",pitch,roll,yaw];
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
-        
-        //[[FileManager shareInstance]writeFile:str WithFileName:mAngleFileName];
-        
+        NSDictionary* dict = @{@"pitch":[NSNumber numberWithFloat:pitch],
+                               @"roll":[NSNumber numberWithFloat:roll],
+                               @"yaw":[NSNumber numberWithFloat:yaw],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_DeviceMontion]) {
+            return;
+        }
         [[CoreDataManager shareInstance]addEntities:entitiesType_DeviceMontion
-                                           WithData:@{@"pitch":[NSNumber numberWithFloat:pitch],
-                                                      @"roll":[NSNumber numberWithFloat:roll],
-                                                      @"yaw":[NSNumber numberWithFloat:yaw],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
     }];
 }
 
@@ -183,24 +202,32 @@ void messageBox(NSString* str) {
     __weak typeof(self) weakSelf = self;
     [[HealthWorker shareInstance] getRealTimeStepCountCompletionHandler:^(double stepValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d步", (int)stepValue];
-        //[[FileManager shareInstance]writeFile:str WithFileName:kStepFileName];
         weakSelf.stepCount = (int)stepValue;
+        
+        NSDictionary* dict = @{@"distance":[NSNumber numberWithInt:_distanceSize],
+                               @"stepCount":[NSNumber numberWithInt:(int)stepValue],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Health]) {
+            return;
+        }
+        
         [[CoreDataManager shareInstance]addEntities:entitiesType_Health
-                                           WithData:@{@"distance":[NSNumber numberWithInt:_distanceSize],
-                                                      @"stepCount":[NSNumber numberWithInt:(int)stepValue],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
     } distance:^(double distanceValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d米", (int)distanceValue];
-        //[[FileManager shareInstance]writeFile:str WithFileName:kDistanceFileName];
         weakSelf.distanceSize = distanceValue;
+        
+        NSDictionary* dict = @{@"distance":[NSNumber numberWithInt:(int)distanceValue],
+                               @"stepCount":[NSNumber numberWithInt:_stepCount],
+                               @"timesTamp":[self getTimeTamp]};
+        if (![self checkDataIsChange:dict type:entitiesType_Health]) {
+            return;
+        }
+        
         [[CoreDataManager shareInstance]addEntities:entitiesType_Health
-                                           WithData:@{@"distance":[NSNumber numberWithInt:(int)distanceValue],
-                                                      @"stepCount":[NSNumber numberWithInt:_stepCount],
-                                                      @"date":[NSDate date],
-                                                      @"timesTamp":[self getTimeTamp]}];
+                                           WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateDistanceNotification" object:str];
     }];
 }
@@ -209,6 +236,102 @@ void messageBox(NSString* str) {
     double timesTamp = [[NSDate date] timeIntervalSince1970];
     NSNumber* numTamp = [NSNumber numberWithDouble:timesTamp];
     return numTamp;
+}
+
+- (BOOL)checkDataIsChange:(NSDictionary*)dict type:(entitiesType)type {
+    //判断数据有无变化，无变化则不写入数据库中，防止出现很多相同的冗余数据
+    switch (type) {
+        case entitiesType_DeviceMontion:
+            if (!_preMotionDict) {
+                _preMotionDict = [NSDictionary dictionaryWithDictionary:dict];
+            }
+            else {
+                float pitch = ((NSNumber*)[dict objectForKey:@"pitch"]).floatValue;
+                float roll = ((NSNumber*)[dict objectForKey:@"roll"]).floatValue;
+                float yaw = ((NSNumber*)[dict objectForKey:@"yaw"]).floatValue;
+       
+                float prePitch = ((NSNumber*)[_preMotionDict objectForKey:@"pitch"]).floatValue;
+                float preRoll = ((NSNumber*)[_preMotionDict objectForKey:@"roll"]).floatValue;
+                float preYaw = ((NSNumber*)[_preMotionDict objectForKey:@"yaw"]).floatValue;
+                
+                if (pitch == prePitch && roll == preRoll && yaw == preYaw) {
+                    return NO;
+                }
+            }
+            break;
+        case entitiesType_Location:
+            if (!_preLocaltionDict) {
+                _preLocaltionDict = [NSDictionary dictionaryWithDictionary:dict];
+            }
+            else {
+                float latitude = ((NSNumber*)[dict objectForKey:@"latitude"]).floatValue;
+                float longitude = ((NSNumber*)[dict objectForKey:@"longitude"]).floatValue;
+                NSString* adCode = [dict objectForKey:@"adCode"];
+                
+                float preLatitude = ((NSNumber*)[_preLocaltionDict objectForKey:@"latitude"]).floatValue;
+                float preLongitude = ((NSNumber*)[_preLocaltionDict objectForKey:@"longitude"]).floatValue;
+                NSString* preAdCode = [_preLocaltionDict objectForKey:@"adCode"];
+                
+                if (latitude == preLatitude && longitude == preLongitude && [adCode isEqualToString:preAdCode]) {
+                    return NO;
+                }
+            }
+            break;
+        case entitiesType_Touch:
+            if (!_preTouchDict) {
+                _preTouchDict = [NSDictionary dictionaryWithDictionary:dict];
+            }
+            else {
+                int touchType = ((NSNumber*)[dict objectForKey:@"touchType"]).intValue;
+                float x = ((NSNumber*)[dict objectForKey:@"x"]).floatValue;
+                float y = ((NSNumber*)[dict objectForKey:@"y"]).floatValue;
+                
+                int preTouchType = ((NSNumber*)[_preMotionDict objectForKey:@"touchType"]).intValue;
+                float preX = ((NSNumber*)[_preMotionDict objectForKey:@"x"]).floatValue;
+                float preY = ((NSNumber*)[_preMotionDict objectForKey:@"y"]).floatValue;
+                
+                if (touchType == preTouchType && x == preX && y == preY) {
+                    return NO;
+                }
+            }
+            break;
+        case entitiesType_Accelerometer:
+            if (!_preaccelerometerDict) {
+                _preaccelerometerDict = [NSDictionary dictionaryWithDictionary:dict];
+            }
+            else {
+                float x = ((NSNumber*)[dict objectForKey:@"x"]).floatValue;
+                float y = ((NSNumber*)[dict objectForKey:@"y"]).floatValue;
+                float z = ((NSNumber*)[dict objectForKey:@"z"]).floatValue;
+                
+                float preX = ((NSNumber*)[_preMotionDict objectForKey:@"x"]).floatValue;
+                float preY = ((NSNumber*)[_preMotionDict objectForKey:@"y"]).floatValue;
+                float preZ = ((NSNumber*)[_preMotionDict objectForKey:@"z"]).floatValue;
+                
+                if (x == preX && y == preY && z == preZ) {
+                    return NO;
+                }
+            }
+            break;
+        case entitiesType_Health:
+            if (!_preHealthDict) {
+                _preHealthDict = [NSDictionary dictionaryWithDictionary:dict];
+            }
+            else {
+                int distance = ((NSNumber*)[dict objectForKey:@"distance"]).intValue;
+                int stepCount = ((NSNumber*)[dict objectForKey:@"stepCount"]).intValue;
+  
+                int preDistance = ((NSNumber*)[_preMotionDict objectForKey:@"distance"]).intValue;
+                int preStepCount = ((NSNumber*)[_preMotionDict objectForKey:@"stepCount"]).intValue;
+
+                if (distance == preDistance && stepCount == preStepCount) {
+                    return NO;
+                }
+            }
+            break;
+    }
+    
+    return YES;
 }
 
 @end

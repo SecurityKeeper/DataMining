@@ -1,83 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Accelerometer" representedClassName="Accelerometer" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="z" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Accelerometer_Temp" representedClassName="Accelerometer" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="z" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="DeviceMotion" representedClassName="DeviceMotion" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="pitch" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="roll" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="yaw" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="DeviceMotion__Temp" representedClassName="DeviceMotion" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="pitch" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="roll" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="yaw" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Health" representedClassName="Health" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="stepCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Health_Temp" representedClassName="Health" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="stepCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Location" representedClassName="Location" syncable="YES">
         <attribute name="adCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Location_Temp" representedClassName="Location" syncable="YES">
         <attribute name="adCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Touch" representedClassName="Touch" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="touchType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Touch_Temp" representedClassName="Touch" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="touchType" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Accelerometer" positionX="-18" positionY="72" width="128" height="120"/>
-        <element name="Accelerometer_Temp" positionX="-18" positionY="72" width="128" height="120"/>
-        <element name="DeviceMotion" positionX="0" positionY="90" width="128" height="120"/>
-        <element name="DeviceMotion__Temp" positionX="-9" positionY="81" width="128" height="120"/>
-        <element name="Health" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Health_Temp" positionX="9" positionY="99" width="128" height="105"/>
-        <element name="Location" positionX="-54" positionY="18" width="128" height="120"/>
-        <element name="Location_Temp" positionX="0" positionY="90" width="128" height="120"/>
-        <element name="Touch" positionX="-36" positionY="45" width="128" height="120"/>
-        <element name="Touch_Temp" positionX="-27" positionY="63" width="128" height="120"/>
+        <element name="Accelerometer" positionX="-18" positionY="72" width="128" height="105"/>
+        <element name="Accelerometer_Temp" positionX="-18" positionY="72" width="128" height="105"/>
+        <element name="DeviceMotion" positionX="0" positionY="90" width="128" height="105"/>
+        <element name="DeviceMotion__Temp" positionX="-9" positionY="81" width="128" height="105"/>
+        <element name="Health" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Health_Temp" positionX="9" positionY="99" width="128" height="90"/>
+        <element name="Location" positionX="-54" positionY="18" width="128" height="105"/>
+        <element name="Location_Temp" positionX="0" positionY="90" width="128" height="105"/>
+        <element name="Touch" positionX="-36" positionY="45" width="128" height="105"/>
+        <element name="Touch_Temp" positionX="-27" positionY="63" width="128" height="105"/>
     </elements>
 </model>

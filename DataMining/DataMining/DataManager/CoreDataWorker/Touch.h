@@ -11,7 +11,6 @@
 
 @interface Touch : NSManagedObject
 
-@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * timesTamp;
 @property (nonatomic, retain) NSNumber * touchType;
 @property (nonatomic, retain) NSNumber * x;

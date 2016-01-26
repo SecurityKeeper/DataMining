@@ -6,6 +6,8 @@
 //  Copyright (c) 2016年 SecurityKeeper. All rights reserved.
 //
 
+#define kDatabaseMaxSize        100000      //10万条
+
 #import "DataStorageManager.h"
 
 @interface DataStorageManager()
@@ -52,6 +54,7 @@
 
 - (void)timerWorking {
     [self saveDataToTempStorage];
+    [self removeMoreData];
 }
 
 - (void)dealloc {
@@ -61,18 +64,42 @@
 }
 
 - (void)releaseArray {
-    @synchronized(self) {
+   @synchronized(self) {
         self.healthArray = nil;
         self.locationArray = nil;
         self.touchArray = nil;
         self.deviceMotionArray = nil;
         self.accelerometerArray = nil;
-    }
+   }
 }
 
 - (void)removeMemoryData {
     [self releaseArray];
     [self createDataArray];
+}
+
+- (void)removeMoreData {
+    @synchronized(self) {
+        //移除数据库中超出最大额度的数据
+        NSArray* typeArray = @[@0, @1, @2, @3, @4];
+        for (NSNumber* num in typeArray) {
+            entitiesType type = num.intValue;
+            //临时
+            NSUInteger count = [[CoreDataManager shareInstance] getTotalCount:type isTemp:YES];
+            if (count >= kDatabaseMaxSize) {
+                //删除前(kDatabaseMaxSize/2+(count-kDatabaseMaxSize))条数据
+                NSUInteger deleteCount = kDatabaseMaxSize/2+(count-kDatabaseMaxSize);
+                [[CoreDataManager shareInstance]deleteEntities_Temp:type WithCount:deleteCount];
+            }
+            //可信
+            count = [[CoreDataManager shareInstance] getTotalCount:type isTemp:NO];
+            if (count >= kDatabaseMaxSize) {
+                //删除前(kDatabaseMaxSize/2+(count-kDatabaseMaxSize))条数据
+                NSUInteger deleteCount = kDatabaseMaxSize/2+(count-kDatabaseMaxSize);
+                [[CoreDataManager shareInstance]deleteEntities:type WithCount:deleteCount];
+            }
+        }
+    }
 }
 
 - (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count {
@@ -133,7 +160,8 @@
         NSArray* typeArray = @[@0, @1, @2, @3, @4];
         for (NSNumber* num in typeArray) {
             entitiesType type = num.intValue;
-            [[CoreDataManager shareInstance] deleteEntities_Temp:type];
+            NSUInteger totalCount = [[CoreDataManager shareInstance]getTotalCount:type isTemp:YES];
+            [[CoreDataManager shareInstance] deleteEntities_Temp:type WithCount:totalCount];
         }
     }
 }
@@ -181,6 +209,7 @@
         }
         [self releaseArray];
         [self createDataArray];
+        [self removeMoreData];
     }
 }
 
@@ -194,8 +223,10 @@
             for (NSDictionary* dict in array) {
                 [[CoreDataManager shareInstance]addEntities:type WithData:dict];
             }
-            [[CoreDataManager shareInstance] deleteEntities_Temp:type];
+            NSUInteger totalCount = [[CoreDataManager shareInstance]getTotalCount:type isTemp:YES];
+            [[CoreDataManager shareInstance] deleteEntities_Temp:type WithCount:totalCount];
         }
+        [self removeMoreData];
     }
 }
 

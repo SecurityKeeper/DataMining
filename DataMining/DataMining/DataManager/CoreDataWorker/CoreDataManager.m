@@ -93,10 +93,10 @@
     return [self addData:type Data:dict isTemp:NO];
 }
 
-- (NSArray*)getData:(entitiesType)type count:(int)count isTemp:(BOOL)isTemp {
+- (NSArray*)getData:(entitiesType)type count:(NSUInteger)count isTemp:(BOOL)isTemp {
     @synchronized(self) {
         NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:1];
-        NSString* entityName = [self entityNameStringFromType:type isTemp:NO];
+        NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
         NSError* error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
@@ -124,7 +124,7 @@
 
 }
 
-- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(int)count {
+- (NSArray*)getEntitiesData:(entitiesType)type WithCount:(NSUInteger)count {
     if (count <= 0) {
         return nil;
     }
@@ -169,29 +169,42 @@
     return entityName;
 }
 
-- (void)deleteData:(entitiesType)type count:(int)count isTemp:(BOOL)isTemp {
+- (void)deleteData:(entitiesType)type count:(NSUInteger)count isTemp:(BOOL)isTemp {
     @synchronized(self) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSString* entityName = [self entityNameStringFromType:type isTemp:NO];
+        NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
         [fetchRequest setEntity:entity];
         
         NSError *error = nil;
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
         for (NSManagedObject *info in fetchedObjects) {
-            if (!isTemp) {
+            //if (!isTemp) {
                 if (count == 0)
                     break;
-            }
+            //}
             [_managedObjectContext deleteObject:info];
-            if (!isTemp)
+            //if (!isTemp)
                 count--;
         }
         [_managedObjectContext save:&error];
     }
 }
 
-- (void)deleteEntities:(entitiesType)type WithCount:(int)count {
+- (NSUInteger)getTotalCount:(entitiesType)type isTemp:(BOOL)isTemp {
+    @synchronized(self) {
+        NSString* entityName = [self entityNameStringFromType:type isTemp:NO];
+        NSError* error = nil;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
+                                                  inManagedObjectContext:_managedObjectContext];
+        [fetchRequest setEntity:entity];
+        NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        return fetchedObjects.count;
+    }
+}
+
+- (void)deleteEntities:(entitiesType)type WithCount:(NSUInteger)count {
     [self deleteData:type count:count isTemp:NO];
 }
 
@@ -203,8 +216,8 @@
     return [self getData:type count:0 isTemp:YES];
 }
 
-- (void)deleteEntities_Temp:(entitiesType)type {
-    [self deleteData:type count:0 isTemp:YES];
+- (void)deleteEntities_Temp:(entitiesType)type WithCount:(NSUInteger)count {
+    [self deleteData:type count:count isTemp:YES];
 }
 
 @end

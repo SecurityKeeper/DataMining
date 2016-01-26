@@ -149,18 +149,18 @@
 		90E73A0A1C55ADAB00C07A1E /* CoreDataWorker */ = {
 			isa = PBXGroup;
 			children = (
-				90E73A0B1C55ADAB00C07A1E /* Accelerometer.h */,
-				90E73A0C1C55ADAB00C07A1E /* Accelerometer.m */,
 				90E73A0D1C55ADAB00C07A1E /* CoreDataManager.h */,
 				90E73A0E1C55ADAB00C07A1E /* CoreDataManager.m */,
 				90E73A0F1C55ADAB00C07A1E /* DeviceMotion.h */,
 				90E73A101C55ADAB00C07A1E /* DeviceMotion.m */,
-				90E73A111C55ADAB00C07A1E /* Health.h */,
-				90E73A121C55ADAB00C07A1E /* Health.m */,
 				90E73A131C55ADAB00C07A1E /* Location.h */,
 				90E73A141C55ADAB00C07A1E /* Location.m */,
+				90E73A111C55ADAB00C07A1E /* Health.h */,
+				90E73A121C55ADAB00C07A1E /* Health.m */,
 				90E73A151C55ADAB00C07A1E /* Touch.h */,
 				90E73A161C55ADAB00C07A1E /* Touch.m */,
+				90E73A0B1C55ADAB00C07A1E /* Accelerometer.h */,
+				90E73A0C1C55ADAB00C07A1E /* Accelerometer.m */,
 			);
 			path = CoreDataWorker;
 			sourceTree = "<group>";

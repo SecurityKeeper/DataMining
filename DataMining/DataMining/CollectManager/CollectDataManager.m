@@ -14,6 +14,7 @@
 #import "TouchWorker.h"
 #import "LocationWorker.h"
 #import "CoreDataManager.h"
+#import "DataStorageManager.h"
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

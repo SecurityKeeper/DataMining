@@ -7,17 +7,18 @@
 //
 
 #define kDatabaseMaxSize        100000      //10万条
+#define kMemoryMaxSize          1000        //1000条
 
 #import "DataStorageManager.h"
 
 @interface DataStorageManager()
 
-@property (atomic, strong)NSMutableArray* deviceMotionArray;
-@property (atomic, strong)NSMutableArray* healthArray;
-@property (atomic, strong)NSMutableArray* locationArray;
-@property (atomic, strong)NSMutableArray* touchArray;
-@property (atomic, strong)NSMutableArray* accelerometerArray;
-@property (nonatomic,strong)NSTimer* timer;
+@property (nonatomic, strong)NSMutableArray* deviceMotionArray;
+@property (nonatomic, strong)NSMutableArray* healthArray;
+@property (nonatomic, strong)NSMutableArray* locationArray;
+@property (nonatomic, strong)NSMutableArray* touchArray;
+@property (nonatomic, strong)NSMutableArray* accelerometerArray;
+@property (nonatomic, strong)NSTimer* timer;
 
 @end
 
@@ -28,19 +29,45 @@
     static dispatch_once_t once_token;
     dispatch_once(&once_token, ^{
         data = [[DataStorageManager alloc]init];
-        [data createDataArray];
         [data startThread];
     });
     
     return data;
 }
 
-- (void)createDataArray {
-    self.deviceMotionArray = [NSMutableArray array];
-    self.healthArray = [NSMutableArray array];
-    self.locationArray = [NSMutableArray array];
-    self.touchArray = [NSMutableArray array];
-    self.accelerometerArray = [NSMutableArray array];
+- (NSMutableArray*)deviceMotionArray {
+    if (_deviceMotionArray) {
+        _deviceMotionArray = [NSMutableArray array];
+    }
+    return _deviceMotionArray;
+}
+
+- (NSMutableArray*)healthArray {
+    if (_healthArray) {
+        _healthArray = [NSMutableArray array];
+    }
+    return _healthArray;
+}
+
+- (NSMutableArray*)locationArray {
+    if (_locationArray) {
+        _locationArray = [NSMutableArray array];
+    }
+    return _locationArray;
+}
+
+- (NSMutableArray*)touchArray {
+    if (_touchArray) {
+        _touchArray = [NSMutableArray array];
+    }
+    return _touchArray;
+}
+
+- (NSMutableArray*)accelerometerArray {
+    if (_accelerometerArray) {
+        _accelerometerArray = [NSMutableArray array];
+    }
+    return _accelerometerArray;
 }
 
 - (void)startThread {
@@ -60,6 +87,8 @@
 - (void)dealloc {
     [self.timer invalidate];
     self.timer = nil;
+    [self saveDataToTempStorage];       //内存数据合并临时数据库
+    [self moveTempToReliableStorage];   //临时数据库合并入可信数据库
     [self releaseArray];
 }
 
@@ -75,7 +104,6 @@
 
 - (void)removeMemoryData {
     [self releaseArray];
-    [self createDataArray];
 }
 
 - (void)removeMoreData {
@@ -172,18 +200,50 @@
         switch (type) {
             case entitiesType_DeviceMontion:
                 [self.deviceMotionArray addObject:dict];
+                [self moveMoreDataToTempStorage:self.deviceMotionArray type:entitiesType_DeviceMontion];
                 break;
             case entitiesType_Location:
                 [self.locationArray addObject:dict];
+                [self moveMoreDataToTempStorage:self.locationArray type:entitiesType_Location];
                 break;
             case entitiesType_Touch:
                 [self.touchArray addObject:dict];
+                [self moveMoreDataToTempStorage:self.touchArray type:entitiesType_Touch];
                 break;
             case entitiesType_Accelerometer:
                 [self.accelerometerArray addObject:dict];
+                [self moveMoreDataToTempStorage:self.accelerometerArray type:entitiesType_Accelerometer];
                 break;
             case entitiesType_Health:
                 [self.healthArray addObject:dict];
+                [self moveMoreDataToTempStorage:self.healthArray type:entitiesType_Health];
+                break;
+        }
+    }
+}
+
+- (void)moveMoreDataToTempStorage:(NSMutableArray*)array
+                             type:(entitiesType)type {
+    if (array.count >= kMemoryMaxSize) {
+        for (NSDictionary* dict in array) {
+            [[CoreDataManager shareInstance]addEntities_Temp:type WithData:dict];
+        }
+        [self removeMoreData];
+        switch (type) {
+            case entitiesType_DeviceMontion:
+                self.deviceMotionArray = nil;
+                break;
+            case entitiesType_Location:
+                self.locationArray = nil;
+                break;
+            case entitiesType_Touch:
+                self.touchArray = nil;
+                break;
+            case entitiesType_Accelerometer:
+                self.accelerometerArray = nil;
+                break;
+            case entitiesType_Health:
+                self.healthArray = nil;
                 break;
         }
     }
@@ -208,7 +268,6 @@
             [[CoreDataManager shareInstance]addEntities_Temp:entitiesType_Health WithData:dict];
         }
         [self releaseArray];
-        [self createDataArray];
         [self removeMoreData];
     }
 }

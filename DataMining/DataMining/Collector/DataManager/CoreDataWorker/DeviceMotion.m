@@ -7,7 +7,7 @@
 //
 
 #import "DeviceMotion.h"
-
+#import "CollectorDef.h"
 
 @implementation DeviceMotion
 
@@ -17,17 +17,17 @@
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.pitch     = [dict objectForKey:@"pitch"];
-    self.roll      = [dict objectForKey:@"roll"];
-    self.yaw       = [dict objectForKey:@"yaw"];
-    self.timesTamp = [dict objectForKey:@"timesTamp"];
+    self.pitch     = [dict objectForKey:kPitch];
+    self.roll      = [dict objectForKey:kRoll];
+    self.yaw       = [dict objectForKey:kYaw];
+    self.timesTamp = [dict objectForKey:kTimesTamp];
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"pitch":self.pitch,
-                           @"roll":self.roll,
-                           @"yaw":self.yaw,
-                           @"timesTamp":self.timesTamp};
+    NSDictionary* dict = @{kPitch:self.pitch,
+                           kRoll:self.roll,
+                           kYaw:self.yaw,
+                           kTimesTamp:self.timesTamp};
     
     return dict;
 }

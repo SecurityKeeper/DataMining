@@ -281,9 +281,9 @@
 		90EF438F1C585AD8008A22D6 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				90EF43901C585AD8008A22D6 /* CoreDataWorker */,
 				90EF439D1C585AD8008A22D6 /* DataStorageManager.h */,
 				90EF439E1C585AD8008A22D6 /* DataStorageManager.m */,
+				90EF43901C585AD8008A22D6 /* CoreDataWorker */,
 				90EF439F1C585AD8008A22D6 /* FileWorker */,
 			);
 			path = DataManager;

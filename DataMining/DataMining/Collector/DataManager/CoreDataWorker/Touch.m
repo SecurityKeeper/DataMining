@@ -7,7 +7,7 @@
 //
 
 #import "Touch.h"
-
+#import "CollectorDef.h"
 
 @implementation Touch
 
@@ -17,17 +17,17 @@
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.x         = [dict objectForKey:@"x"];
-    self.y         = [dict objectForKey:@"y"];
-    self.touchType = [dict objectForKey:@"touchType"];
-    self.timesTamp = [dict objectForKey:@"timesTamp"];
+    self.x         = [dict objectForKey:kX];
+    self.y         = [dict objectForKey:kY];
+    self.touchType = [dict objectForKey:kTouchType];
+    self.timesTamp = [dict objectForKey:kTimesTamp];
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"x":self.x,
-                           @"y":self.y,
-                           @"touchType":self.touchType,
-                           @"timesTamp":self.timesTamp};
+    NSDictionary* dict = @{kX:self.x,
+                           kY:self.y,
+                           kTouchType:self.touchType,
+                           kTimesTamp:self.timesTamp};
     return dict;
 }
 

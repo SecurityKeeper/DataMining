@@ -47,4 +47,15 @@ typedef enum {
 #define kDistance                           @"distance"
 #define kStepCount                          @"stepCount"
 
+#define kDeviceMotion                       @"DeviceMotion"
+#define kDeviceMotion_Temp                  @"DeviceMotion_Temp"
+#define kLocation                           @"Location"
+#define kLocation_Temp                      @"Location_Temp"
+#define kTouch                              @"Touch"
+#define kTouch_Temp                         @"Touch_Temp"
+#define kAccelerometer                      @"Accelerometer"
+#define kAccelerometer_Temp                 @"Accelerometer_Temp"
+#define kHealth                             @"Health"
+#define kHealth_Temp                        @"Health_Temp"
+
 #endif

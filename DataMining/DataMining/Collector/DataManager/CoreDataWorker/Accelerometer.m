@@ -7,6 +7,7 @@
 //
 
 #import "Accelerometer.h"
+#import "CollectorDef.h"
 
 @implementation Accelerometer
 
@@ -16,17 +17,17 @@
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.x     = [dict objectForKey:@"x"];
-    self.y     = [dict objectForKey:@"y"];
-    self.z     = [dict objectForKey:@"z"];
-    self.timesTamp = [dict objectForKey:@"timesTamp"];
+    self.x     = [dict objectForKey:kX];
+    self.y     = [dict objectForKey:kY];
+    self.z     = [dict objectForKey:kZ];
+    self.timesTamp = [dict objectForKey:kTimesTamp];
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"x":self.x,
-                           @"y":self.y,
-                           @"z":self.z,
-                           @"timesTamp":self.timesTamp};
+    NSDictionary* dict = @{kX:self.x,
+                           kY:self.y,
+                           kZ:self.z,
+                           kTimesTamp:self.timesTamp};
     return dict;
 }
 

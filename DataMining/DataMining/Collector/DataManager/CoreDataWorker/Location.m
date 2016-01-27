@@ -7,7 +7,7 @@
 //
 
 #import "Location.h"
-
+#import "CollectorDef.h"
 
 @implementation Location
 
@@ -17,17 +17,17 @@
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.latitude  = [dict objectForKey:@"latitude"];
-    self.longitude = [dict objectForKey:@"longitude"];
-    self.adCode    = [dict objectForKey:@"adCode"];
-    self.timesTamp = [dict objectForKey:@"timesTamp"];
+    self.latitude  = [dict objectForKey:kLatitude];
+    self.longitude = [dict objectForKey:kLongitude];
+    self.adCode    = [dict objectForKey:kAdCode];
+    self.timesTamp = [dict objectForKey:kTimesTamp];
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"latitude":self.latitude,
-                           @"longitude":self.longitude,
-                           @"adCode":self.adCode,
-                           @"timesTamp":self.timesTamp};
+    NSDictionary* dict = @{kLatitude:self.latitude,
+                           kLongitude:self.longitude,
+                           kAdCode:self.adCode,
+                           kTimesTamp:self.timesTamp};
     return dict;
 }
 

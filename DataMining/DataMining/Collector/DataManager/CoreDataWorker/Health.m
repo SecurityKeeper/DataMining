@@ -7,7 +7,7 @@
 //
 
 #import "Health.h"
-
+#import "CollectorDef.h"
 
 @implementation Health
 
@@ -16,15 +16,15 @@
 @dynamic timesTamp;
 
 - (void)setDataWithDict:(NSDictionary*)dict {
-    self.distance     = [dict objectForKey:@"distance"];
-    self.stepCount    = [dict objectForKey:@"stepCount"];
-    self.timesTamp    = [dict objectForKey:@"timesTamp"];
+    self.distance     = [dict objectForKey:kDistance];
+    self.stepCount    = [dict objectForKey:kStepCount];
+    self.timesTamp    = [dict objectForKey:kTimesTamp];
 }
 
 - (NSDictionary*)getDictionary {
-    NSDictionary* dict = @{@"distance":self.distance,
-                           @"stepCount":self.stepCount,
-                           @"timesTamp":self.timesTamp};
+    NSDictionary* dict = @{kDistance:self.distance,
+                           kStepCount:self.stepCount,
+                           kTimesTamp:self.timesTamp};
     return dict;
 }
 

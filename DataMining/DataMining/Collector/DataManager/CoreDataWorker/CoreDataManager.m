@@ -40,45 +40,45 @@
         switch (type) {
             case entitiesType_DeviceMontion: {
                 if (isTemp)
-                    strName = @"DeviceMotion_Temp";
+                    strName = kDeviceMotion_Temp;
                 else
-                    strName = @"DeviceMotion";
+                    strName = kDeviceMotion;
                 DeviceMotion* deviceMotion = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [deviceMotion setDataWithDict:dict];
             }
                 break;
             case entitiesType_Location: {
                 if (isTemp)
-                    strName = @"Location_Temp";
+                    strName = kLocation_Temp;
                 else
-                    strName = @"Location";
+                    strName = kLocation;
                 Location* location = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [location setDataWithDict:dict];
             }
                 break;
             case entitiesType_Touch: {
                 if (isTemp)
-                    strName = @"Touch_Temp";
+                    strName = kTouch_Temp;
                 else
-                    strName = @"Touch";
+                    strName = kTouch;
                 Touch* touch = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [touch setDataWithDict:dict];
             }
                 break;
             case entitiesType_Accelerometer: {
                 if (isTemp)
-                    strName = @"Accelerometer_Temp";
+                    strName = kAccelerometer_Temp;
                 else
-                    strName = @"Accelerometer";
+                    strName = kAccelerometer;
                 Accelerometer* accelerometer = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [accelerometer setDataWithDict:dict];
             }
                 break;
             case entitiesType_Health: {
                 if (isTemp)
-                    strName = @"Health_Temp";
+                    strName = kHealth_Temp;
                 else
-                    strName = @"Health";
+                    strName = kHealth;
                 Health* health = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
                 [health setDataWithDict:dict];
             }
@@ -136,33 +136,33 @@
     switch (type) {
         case entitiesType_DeviceMontion:
             if (isTemp)
-                entityName = @"DeviceMontion_Temp";
+                entityName = kDeviceMotion_Temp;
             else
-                entityName = @"DeviceMontion";
+                entityName = kDeviceMotion;
             break;
         case entitiesType_Location:
             if (isTemp)
-                entityName = @"Location_Temp";
+                entityName = kLocation_Temp;
             else
-                entityName = @"Location";
+                entityName = kLocation;
             break;
         case entitiesType_Touch:
             if (isTemp)
-                entityName = @"Touch_Temp";
+                entityName = kTouch_Temp;
             else
-                entityName = @"Touch";
+                entityName = kTouch;
             break;
         case entitiesType_Accelerometer:
             if (isTemp)
-                entityName = @"Accelerometer_Temp";
+                entityName = kAccelerometer_Temp;
             else
-                entityName = @"Accelerometer";
+                entityName = kAccelerometer;
             break;
         case entitiesType_Health:
             if (isTemp)
-                entityName = @"Health_Temp";
+                entityName = kHealth_Temp;
             else
-                entityName = @"Health";
+                entityName = kHealth;
             break;
     }
     

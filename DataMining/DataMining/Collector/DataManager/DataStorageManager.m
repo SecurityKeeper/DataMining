@@ -33,35 +33,35 @@
 }
 
 - (NSMutableArray*)deviceMotionArray {
-    if (_deviceMotionArray) {
+    if (!_deviceMotionArray) {
         _deviceMotionArray = [NSMutableArray array];
     }
     return _deviceMotionArray;
 }
 
 - (NSMutableArray*)healthArray {
-    if (_healthArray) {
+    if (!_healthArray) {
         _healthArray = [NSMutableArray array];
     }
     return _healthArray;
 }
 
 - (NSMutableArray*)locationArray {
-    if (_locationArray) {
+    if (!_locationArray) {
         _locationArray = [NSMutableArray array];
     }
     return _locationArray;
 }
 
 - (NSMutableArray*)touchArray {
-    if (_touchArray) {
+    if (!_touchArray) {
         _touchArray = [NSMutableArray array];
     }
     return _touchArray;
 }
 
 - (NSMutableArray*)accelerometerArray {
-    if (_accelerometerArray) {
+    if (!_accelerometerArray) {
         _accelerometerArray = [NSMutableArray array];
     }
     return _accelerometerArray;
@@ -77,14 +77,14 @@
 }
 
 - (void)timerWorking {
-    [self saveDataToTempStorage];
+    [self moveMemoryDataToTempStorage];
     [self removeMoreData];
 }
 
 - (void)dealloc {
     [self.timer invalidate];
     self.timer = nil;
-    [self saveDataToTempStorage];       //内存数据合并临时数据库
+    [self moveMemoryDataToTempStorage]; //内存数据合并临时数据库
     [self moveTempToReliableStorage];   //临时数据库合并入可信数据库
     [self releaseArray];
 }
@@ -246,7 +246,7 @@
     }
 }
 
-- (void)saveDataToTempStorage {
+- (void)moveMemoryDataToTempStorage {
     //将数据从内存存入临时数据库
     @synchronized(self) {
         for (NSDictionary* dict in self.deviceMotionArray) {

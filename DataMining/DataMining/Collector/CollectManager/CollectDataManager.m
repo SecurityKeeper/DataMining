@@ -71,6 +71,9 @@ void messageBox(NSString* str) {
     [[MotionWorker shareInstance] stop];
     [[TouchWorker shareInstance] stopWork];
     [[LocationWorker defaultLocation] stopUpdateLocation];
+    //将内存数据->临时数据库->可信数据库中
+    [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
+    [[DataStorageManager shareInstance]moveTempToReliableStorage];
 }
 
 - (void)timerWorking {
@@ -93,8 +96,9 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Location]) {
             return;
         }
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Location
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Location
+         //                                  WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Location WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateLocationNotification object:locationStr];
     }];
 }
@@ -110,8 +114,9 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch
+        //                                   WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
@@ -123,8 +128,9 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch
+        //                                   WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
@@ -136,8 +142,9 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch
+        //                                   WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     }];
 }
@@ -166,8 +173,9 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Accelerometer]) {
             return;
         }
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Accelerometer
-                                           WithData:dict];
+       // [[CoreDataManager shareInstance]addEntities:entitiesType_Accelerometer
+         //                                  WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Accelerometer WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateAccelerometerNotification
                                                             object:str];
     }];
@@ -187,8 +195,9 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_DeviceMontion]) {
             return;
         }
-        [[CoreDataManager shareInstance]addEntities:entitiesType_DeviceMontion
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_DeviceMontion
+         //                                  WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_DeviceMontion WithData:dict];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateMotionNotification object:str];
     }];
@@ -212,8 +221,9 @@ void messageBox(NSString* str) {
             return;
         }
         
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Health
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Health
+         //                                  WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateStepNotification object:str];
     } distance:^(double distanceValue, NSError *error) {
@@ -227,8 +237,10 @@ void messageBox(NSString* str) {
             return;
         }
         
-        [[CoreDataManager shareInstance]addEntities:entitiesType_Health
-                                           WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Health
+        //                                   WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict];
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateDistanceNotification object:str];
     }];
 }

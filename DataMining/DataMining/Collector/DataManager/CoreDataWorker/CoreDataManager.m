@@ -101,6 +101,9 @@
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                                   inManagedObjectContext:_managedObjectContext];
+        if (!entity) {
+            return nil;
+        }
         [fetchRequest setEntity:entity];
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
         for (NSManagedObject* obj in fetchedObjects) {
@@ -174,6 +177,9 @@
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
+        if (!entity) {
+            return;
+        }
         [fetchRequest setEntity:entity];
         
         NSError *error = nil;
@@ -193,11 +199,14 @@
 
 - (NSUInteger)getTotalCount:(entitiesType)type isTemp:(BOOL)isTemp {
     @synchronized(self) {
-        NSString* entityName = [self entityNameStringFromType:type isTemp:NO];
+        NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
         NSError* error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                                   inManagedObjectContext:_managedObjectContext];
+        if (!entity) {
+            return 0;
+        }
         [fetchRequest setEntity:entity];
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
         return fetchedObjects.count;

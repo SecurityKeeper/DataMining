@@ -18,6 +18,7 @@
 - (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count;  
 - (void)removeAllTempStorageData;
 - (void)removeMemoryData;
+- (void)moveMemoryDataToTempStorage;
 - (void)moveTempToReliableStorage;
 
 @end

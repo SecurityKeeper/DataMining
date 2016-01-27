@@ -23,6 +23,12 @@ typedef enum {
     touchType_end
 }touchType;
 
+typedef enum {
+    dataSrcType_memory = 1,
+    dataSrcType_tempStorage,
+    dataSrcType_reliableStorage
+}dataSrcType;
+
 #define kDatabaseMaxSize                    100000      //10万条
 #define kMemoryMaxSize                      1000        //1000条
 

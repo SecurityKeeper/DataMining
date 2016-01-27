@@ -127,55 +127,62 @@
     }
 }
 
-- (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count {
-    //内存＋临时＋可信数据库
-    NSMutableArray* dataArray = [NSMutableArray array];
-    NSArray* tempArray = nil;
-    NSArray* reliableArray = nil;
+- (NSArray*)getArray:(entitiesType)type dataFrom:(dataSrcType)src {
+    NSArray* array   = nil;
+    NSUInteger count = 0;
+    if (src != dataSrcType_memory) {
+        BOOL isTemp = (src == dataSrcType_tempStorage) ? YES : NO;
+        count = [[CoreDataManager shareInstance]getTotalCount:type isTemp:isTemp];
+    }
+    
+    switch (type) {
+        case entitiesType_DeviceMontion:
+            if (src == dataSrcType_memory)
+                array = self.deviceMotionArray;
+            break;
+        case entitiesType_Location:
+            if (src == dataSrcType_memory)
+                array = self.locationArray;
+            break;
+        case entitiesType_Touch:
+            if (src == dataSrcType_memory)
+                array = self.touchArray;
+            break;
+        case entitiesType_Accelerometer:
+            if (src == dataSrcType_memory)
+                array = self.accelerometerArray;
+            break;
+        case entitiesType_Health:
+            if (src == dataSrcType_memory)
+                array = self.healthArray;
+            break;
+        default:
+            return nil;
+    }
+    if (src == dataSrcType_tempStorage)
+        array = [[CoreDataManager shareInstance]getEntitiesData_Temp:type];
+    else if (src == dataSrcType_reliableStorage)
+        array = [[CoreDataManager shareInstance]getEntitiesData:type WithCount:count];
+    
+    return array;
+}
+
+- (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count dataFrom:(dataSrcType)src {
     @synchronized(self) {
-        switch (type) {
-            case entitiesType_DeviceMontion: {
-                [dataArray addObjectsFromArray:self.deviceMotionArray];
-                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_DeviceMontion];
-                [dataArray addObjectsFromArray:tempArray];
-                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_DeviceMontion WithCount:count- tempArray.count - self.deviceMotionArray.count];
-                [dataArray addObjectsFromArray:reliableArray];
-            }
-                break;
-            case entitiesType_Location: {
-                [dataArray addObjectsFromArray:self.locationArray];
-                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Location];
-                [dataArray addObjectsFromArray:tempArray];
-                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Location WithCount:count- tempArray.count - self.locationArray.count];
-                [dataArray addObjectsFromArray:reliableArray];
-            }
-                break;
-            case entitiesType_Touch: {
-                [dataArray addObjectsFromArray:self.touchArray];
-                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Touch];
-                [dataArray addObjectsFromArray:tempArray];
-                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Touch WithCount:count- tempArray.count - self.touchArray.count];
-                [dataArray addObjectsFromArray:reliableArray];
-            }
-                break;
-            case entitiesType_Accelerometer: {
-                [dataArray addObjectsFromArray:self.accelerometerArray];
-                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Accelerometer];
-                [dataArray addObjectsFromArray:tempArray];
-                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Accelerometer WithCount:count- tempArray.count - self.accelerometerArray.count];
-                [dataArray addObjectsFromArray:reliableArray];
-            }
-                break;
-            case entitiesType_Health: {
-                [dataArray addObjectsFromArray:self.healthArray];
-                tempArray = [[CoreDataManager shareInstance]getEntitiesData_Temp:entitiesType_Health];
-                [dataArray addObjectsFromArray:tempArray];
-                reliableArray = [[CoreDataManager shareInstance]getEntitiesData:entitiesType_Health WithCount:count- tempArray.count - self.healthArray.count];
-                [dataArray addObjectsFromArray:reliableArray];
-            }
-                break;
+        NSMutableArray* dataArray = nil;
+        NSArray* array = [self getArray:type dataFrom:src];
+        NSRange range;
+        range.length   = count;
+        range.location = 0;
+        
+        if (count == 0 || count >= array.count) {
+            dataArray = [NSMutableArray arrayWithArray:array];
         }
-  
+        else {
+            NSArray* tempArray = [array subarrayWithRange:range];
+            dataArray = [NSMutableArray arrayWithArray:tempArray];
+        }
+
         return dataArray;
     }
 }

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "CollectDataManager.h"
-
+#import "CollectorDef.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -79,22 +79,19 @@
     
     
     [self removeAllNotification];
-    
     if (currentBtn.tag == 0) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateMotionNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:kUpdateMotionNotification object:nil];
     }else if (currentBtn.tag == 1){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateAccelerometerNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:kUpdateAccelerometerNotification object:nil];
     }else if (currentBtn.tag == 2){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateStepNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:kUpdateStepNotification object:nil];
     }else if (currentBtn.tag == 3){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateDistanceNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:kUpdateDistanceNotification object:nil];
     }else if (currentBtn.tag == 4){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateTouchNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:kUpdateTouchNotification object:nil];
     }else if (currentBtn.tag == 5){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:@"UpdateLocationNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMotionDataNotification:) name:kUpdateLocationNotification object:nil];
     }
-    
-    //距离(UpdateDistanceNotification)、位置(...)
 }
 
 

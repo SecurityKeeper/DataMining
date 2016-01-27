@@ -6,9 +6,6 @@
 //  Copyright (c) 2016年 SecurityKeeper. All rights reserved.
 //
 
-#define kDatabaseMaxSize        100000      //10万条
-#define kMemoryMaxSize          1000        //1000条
-
 #import "DataStorageManager.h"
 
 @interface DataStorageManager()

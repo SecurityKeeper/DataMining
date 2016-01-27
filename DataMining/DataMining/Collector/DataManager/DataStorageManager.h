@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CoreDataManager.h"
+#import "CollectorDef.h"
 
 @interface DataStorageManager : NSObject
 

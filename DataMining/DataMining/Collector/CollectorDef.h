@@ -1,0 +1,50 @@
+//
+//  collectorDef.h
+//  DataMining
+//
+//  Created by liuxu on 16/1/27.
+//  Copyright (c) 2016年 SecurityKeeper. All rights reserved.
+//
+
+#ifndef DataMining_collectorDef_h
+#define DataMining_collectorDef_h
+
+typedef enum {
+    entitiesType_DeviceMontion = 0,
+    entitiesType_Location,
+    entitiesType_Touch,
+    entitiesType_Accelerometer,
+    entitiesType_Health
+}entitiesType;
+
+typedef enum {
+    touchType_begin = 1,
+    touchType_move,
+    touchType_end
+}touchType;
+
+#define kDatabaseMaxSize                    100000      //10万条
+#define kMemoryMaxSize                      1000        //1000条
+
+#define kUpdateMotionNotification           @"UpdateMotionNotification"
+#define kUpdateAccelerometerNotification    @"UpdateAccelerometerNotification"
+#define kUpdateStepNotification             @"UpdateStepNotification"
+#define kUpdateDistanceNotification         @"UpdateDistanceNotification"
+#define kUpdateTouchNotification            @"UpdateTouchNotification"
+#define kUpdateLocationNotification         @"UpdateLocationNotification"
+
+#define kTimesTamp                          @"timesTamp"
+#define kLatitude                           @"latitude"
+#define kLongitude                          @"longitude"
+#define kAdCode                             @"adCode"
+#define kTouchType                          @"touchType"
+#define kX                                  @"x"
+#define kY                                  @"y"
+#define kZ                                  @"z"
+#define kPitch                              @"pitch"
+#define kRoll                               @"roll"
+#define kYaw                                @"yaw"
+#define kDistance                           @"distance"
+#define kStepCount                          @"stepCount"
+
+#endif

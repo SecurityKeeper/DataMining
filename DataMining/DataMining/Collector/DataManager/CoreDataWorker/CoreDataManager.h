@@ -7,20 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef enum {
-    entitiesType_DeviceMontion = 0,
-    entitiesType_Location,
-    entitiesType_Touch,
-    entitiesType_Accelerometer,
-    entitiesType_Health
-}entitiesType;
-
-typedef enum {
-    touchType_begin = 1,
-    touchType_move,
-    touchType_end
-}touchType;
+#import "CollectorDef.h"
 
 @interface CoreDataManager : NSObject
 

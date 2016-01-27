@@ -15,6 +15,7 @@
 #import "LocationWorker.h"
 #import "CoreDataManager.h"
 #import "DataStorageManager.h"
+#import "CollectorDef.h"
 
 void messageBox(NSString* str) {
     UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -85,16 +86,16 @@ void messageBox(NSString* str) {
         double latitude = [locationInfo[@"latitude"] doubleValue];
         [locationStr appendFormat:@", lng=%f, lat=%f",longitude,latitude];
         
-        NSDictionary* dict = @{@"latitude":[NSNumber numberWithFloat:latitude],
-                               @"longitude":[NSNumber numberWithFloat:longitude],
-                               @"adCode":locationInfo[@"adCode"],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kLatitude:[NSNumber numberWithFloat:latitude],
+                               kLongitude:[NSNumber numberWithFloat:longitude],
+                               kAdCode:locationInfo[@"adCode"],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Location]) {
             return;
         }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Location
                                            WithData:dict];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateLocationNotification" object:locationStr];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateLocationNotification object:locationStr];
     }];
 }
 
@@ -102,42 +103,42 @@ void messageBox(NSString* str) {
     [[TouchWorker shareInstance] startWork:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Begin：x=%0.2f,y=%0.2f", point.x, point.y];
 
-        NSDictionary* dict = @{@"touchType":[NSNumber numberWithInt:touchType_begin],
-                               @"x":[NSNumber numberWithFloat:point.x],
-                               @"y":[NSNumber numberWithFloat:point.y],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kTouchType:[NSNumber numberWithInt:touchType_begin],
+                               kX:[NSNumber numberWithFloat:point.x],
+                               kY:[NSNumber numberWithFloat:point.y],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
                                            WithData:dict];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
         
-        NSDictionary* dict = @{@"touchType":[NSNumber numberWithInt:touchType_end],
-                               @"x":[NSNumber numberWithFloat:point.x],
-                               @"y":[NSNumber numberWithFloat:point.y],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kTouchType:[NSNumber numberWithInt:touchType_end],
+                               kX:[NSNumber numberWithFloat:point.x],
+                               kY:[NSNumber numberWithFloat:point.y],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
                                            WithData:dict];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
         
-        NSDictionary* dict = @{@"touchType":[NSNumber numberWithInt:touchType_move],
-                               @"x":[NSNumber numberWithFloat:point.x],
-                               @"y":[NSNumber numberWithFloat:point.y],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kTouchType:[NSNumber numberWithInt:touchType_move],
+                               kX:[NSNumber numberWithFloat:point.x],
+                               kY:[NSNumber numberWithFloat:point.y],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Touch
                                            WithData:dict];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateTouchNotification" object:str];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     }];
 }
 
@@ -158,16 +159,16 @@ void messageBox(NSString* str) {
     } accelerometer:^(CMAccelerometerData *accelerometerData, NSError *error) {
         str = [NSString stringWithFormat:@"加速计:X:%.3f,Y:%.3f,Z:%.3f",accelerometerData.acceleration.x,accelerometerData.acceleration.y,accelerometerData.acceleration.z];
         
-        NSDictionary* dict = @{@"z":[NSNumber numberWithFloat:accelerometerData.acceleration.z],
-                               @"x":[NSNumber numberWithFloat:accelerometerData.acceleration.x],
-                               @"y":[NSNumber numberWithFloat:accelerometerData.acceleration.y],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kZ:[NSNumber numberWithFloat:accelerometerData.acceleration.z],
+                               kX:[NSNumber numberWithFloat:accelerometerData.acceleration.x],
+                               kY:[NSNumber numberWithFloat:accelerometerData.acceleration.y],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Accelerometer]) {
             return;
         }
         [[CoreDataManager shareInstance]addEntities:entitiesType_Accelerometer
                                            WithData:dict];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateAccelerometerNotification"
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateAccelerometerNotification
                                                             object:str];
     }];
 
@@ -179,17 +180,17 @@ void messageBox(NSString* str) {
         
         str = [NSString stringWithFormat:@"pitch=%.3f,roll=%.3f,yaw=%.3f",pitch,roll,yaw];
 
-        NSDictionary* dict = @{@"pitch":[NSNumber numberWithFloat:pitch],
-                               @"roll":[NSNumber numberWithFloat:roll],
-                               @"yaw":[NSNumber numberWithFloat:yaw],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kPitch:[NSNumber numberWithFloat:pitch],
+                               kRoll:[NSNumber numberWithFloat:roll],
+                               kYaw:[NSNumber numberWithFloat:yaw],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_DeviceMontion]) {
             return;
         }
         [[CoreDataManager shareInstance]addEntities:entitiesType_DeviceMontion
                                            WithData:dict];
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateMotionNotification" object:str];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateMotionNotification object:str];
     }];
 }
 
@@ -204,9 +205,9 @@ void messageBox(NSString* str) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前步数：%d步", (int)stepValue];
         weakSelf.stepCount = (int)stepValue;
         
-        NSDictionary* dict = @{@"distance":[NSNumber numberWithInt:_distanceSize],
-                               @"stepCount":[NSNumber numberWithInt:(int)stepValue],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kDistance:[NSNumber numberWithInt:_distanceSize],
+                               kStepCount:[NSNumber numberWithInt:(int)stepValue],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Health]) {
             return;
         }
@@ -214,21 +215,21 @@ void messageBox(NSString* str) {
         [[CoreDataManager shareInstance]addEntities:entitiesType_Health
                                            WithData:dict];
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateStepNotification" object:str];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateStepNotification object:str];
     } distance:^(double distanceValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d米", (int)distanceValue];
         weakSelf.distanceSize = distanceValue;
         
-        NSDictionary* dict = @{@"distance":[NSNumber numberWithInt:(int)distanceValue],
-                               @"stepCount":[NSNumber numberWithInt:_stepCount],
-                               @"timesTamp":[self getTimeTamp]};
+        NSDictionary* dict = @{kDistance:[NSNumber numberWithInt:(int)distanceValue],
+                               kStepCount:[NSNumber numberWithInt:_stepCount],
+                               kTimesTamp:[self getTimeTamp]};
         if (![self checkDataIsChange:dict type:entitiesType_Health]) {
             return;
         }
         
         [[CoreDataManager shareInstance]addEntities:entitiesType_Health
                                            WithData:dict];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateDistanceNotification" object:str];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateDistanceNotification object:str];
     }];
 }
 
@@ -246,13 +247,13 @@ void messageBox(NSString* str) {
                 _preMotionDict = [NSDictionary dictionaryWithDictionary:dict];
             }
             else {
-                float pitch = ((NSNumber*)[dict objectForKey:@"pitch"]).floatValue;
-                float roll = ((NSNumber*)[dict objectForKey:@"roll"]).floatValue;
-                float yaw = ((NSNumber*)[dict objectForKey:@"yaw"]).floatValue;
+                float pitch = ((NSNumber*)[dict objectForKey:kPitch]).floatValue;
+                float roll = ((NSNumber*)[dict objectForKey:kRoll]).floatValue;
+                float yaw = ((NSNumber*)[dict objectForKey:kYaw]).floatValue;
        
-                float prePitch = ((NSNumber*)[_preMotionDict objectForKey:@"pitch"]).floatValue;
-                float preRoll = ((NSNumber*)[_preMotionDict objectForKey:@"roll"]).floatValue;
-                float preYaw = ((NSNumber*)[_preMotionDict objectForKey:@"yaw"]).floatValue;
+                float prePitch = ((NSNumber*)[_preMotionDict objectForKey:kPitch]).floatValue;
+                float preRoll = ((NSNumber*)[_preMotionDict objectForKey:kRoll]).floatValue;
+                float preYaw = ((NSNumber*)[_preMotionDict objectForKey:kYaw]).floatValue;
                 
                 if (pitch == prePitch && roll == preRoll && yaw == preYaw) {
                     return NO;
@@ -264,13 +265,13 @@ void messageBox(NSString* str) {
                 _preLocaltionDict = [NSDictionary dictionaryWithDictionary:dict];
             }
             else {
-                float latitude = ((NSNumber*)[dict objectForKey:@"latitude"]).floatValue;
-                float longitude = ((NSNumber*)[dict objectForKey:@"longitude"]).floatValue;
-                NSString* adCode = [dict objectForKey:@"adCode"];
+                float latitude = ((NSNumber*)[dict objectForKey:kLatitude]).floatValue;
+                float longitude = ((NSNumber*)[dict objectForKey:kLongitude]).floatValue;
+                NSString* adCode = [dict objectForKey:kAdCode];
                 
-                float preLatitude = ((NSNumber*)[_preLocaltionDict objectForKey:@"latitude"]).floatValue;
-                float preLongitude = ((NSNumber*)[_preLocaltionDict objectForKey:@"longitude"]).floatValue;
-                NSString* preAdCode = [_preLocaltionDict objectForKey:@"adCode"];
+                float preLatitude = ((NSNumber*)[_preLocaltionDict objectForKey:kLatitude]).floatValue;
+                float preLongitude = ((NSNumber*)[_preLocaltionDict objectForKey:kLongitude]).floatValue;
+                NSString* preAdCode = [_preLocaltionDict objectForKey:kAdCode];
                 
                 if (latitude == preLatitude && longitude == preLongitude && [adCode isEqualToString:preAdCode]) {
                     return NO;
@@ -282,13 +283,13 @@ void messageBox(NSString* str) {
                 _preTouchDict = [NSDictionary dictionaryWithDictionary:dict];
             }
             else {
-                int touchType = ((NSNumber*)[dict objectForKey:@"touchType"]).intValue;
-                float x = ((NSNumber*)[dict objectForKey:@"x"]).floatValue;
-                float y = ((NSNumber*)[dict objectForKey:@"y"]).floatValue;
+                int touchType = ((NSNumber*)[dict objectForKey:kTouchType]).intValue;
+                float x = ((NSNumber*)[dict objectForKey:kX]).floatValue;
+                float y = ((NSNumber*)[dict objectForKey:kY]).floatValue;
                 
-                int preTouchType = ((NSNumber*)[_preMotionDict objectForKey:@"touchType"]).intValue;
-                float preX = ((NSNumber*)[_preMotionDict objectForKey:@"x"]).floatValue;
-                float preY = ((NSNumber*)[_preMotionDict objectForKey:@"y"]).floatValue;
+                int preTouchType = ((NSNumber*)[_preMotionDict objectForKey:kTouchType]).intValue;
+                float preX = ((NSNumber*)[_preMotionDict objectForKey:kX]).floatValue;
+                float preY = ((NSNumber*)[_preMotionDict objectForKey:kY]).floatValue;
                 
                 if (touchType == preTouchType && x == preX && y == preY) {
                     return NO;
@@ -300,13 +301,13 @@ void messageBox(NSString* str) {
                 _preaccelerometerDict = [NSDictionary dictionaryWithDictionary:dict];
             }
             else {
-                float x = ((NSNumber*)[dict objectForKey:@"x"]).floatValue;
-                float y = ((NSNumber*)[dict objectForKey:@"y"]).floatValue;
-                float z = ((NSNumber*)[dict objectForKey:@"z"]).floatValue;
+                float x = ((NSNumber*)[dict objectForKey:kX]).floatValue;
+                float y = ((NSNumber*)[dict objectForKey:kY]).floatValue;
+                float z = ((NSNumber*)[dict objectForKey:kZ]).floatValue;
                 
-                float preX = ((NSNumber*)[_preMotionDict objectForKey:@"x"]).floatValue;
-                float preY = ((NSNumber*)[_preMotionDict objectForKey:@"y"]).floatValue;
-                float preZ = ((NSNumber*)[_preMotionDict objectForKey:@"z"]).floatValue;
+                float preX = ((NSNumber*)[_preMotionDict objectForKey:kX]).floatValue;
+                float preY = ((NSNumber*)[_preMotionDict objectForKey:kY]).floatValue;
+                float preZ = ((NSNumber*)[_preMotionDict objectForKey:kZ]).floatValue;
                 
                 if (x == preX && y == preY && z == preZ) {
                     return NO;
@@ -318,11 +319,11 @@ void messageBox(NSString* str) {
                 _preHealthDict = [NSDictionary dictionaryWithDictionary:dict];
             }
             else {
-                int distance = ((NSNumber*)[dict objectForKey:@"distance"]).intValue;
-                int stepCount = ((NSNumber*)[dict objectForKey:@"stepCount"]).intValue;
+                int distance = ((NSNumber*)[dict objectForKey:kDistance]).intValue;
+                int stepCount = ((NSNumber*)[dict objectForKey:kStepCount]).intValue;
   
-                int preDistance = ((NSNumber*)[_preMotionDict objectForKey:@"distance"]).intValue;
-                int preStepCount = ((NSNumber*)[_preMotionDict objectForKey:@"stepCount"]).intValue;
+                int preDistance = ((NSNumber*)[_preMotionDict objectForKey:kDistance]).intValue;
+                int preStepCount = ((NSNumber*)[_preMotionDict objectForKey:kStepCount]).intValue;
 
                 if (distance == preDistance && stepCount == preStepCount) {
                     return NO;

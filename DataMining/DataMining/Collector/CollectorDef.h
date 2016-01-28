@@ -9,6 +9,8 @@
 #ifndef DataMining_collectorDef_h
 #define DataMining_collectorDef_h
 
+#import "FileManager.h"
+
 typedef enum {
     entitiesType_DeviceMontion = 0,
     entitiesType_Location,
@@ -63,5 +65,10 @@ typedef enum {
 #define kAccelerometer_Temp                 @"Accelerometer_Temp"
 #define kHealth                             @"Health"
 #define kHealth_Temp                        @"Health_Temp"
+
+#define kWriteLog(str)                      [[FileManager shareInstance]writeLogFile:   \
+                                            [NSString stringWithFormat:                 \
+                                            @"文件：%s\r\n函数：%s\r\n行号：%d\r\n描述：%@\r\n",  \
+                                            __FILE__, __func__, __LINE__, str]]
 
 #endif

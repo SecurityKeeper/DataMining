@@ -8,6 +8,8 @@
 
 #import "FileManager.h"
 
+#define kLogFileName @"logFile.txt"
+
 @implementation FileManager
 
 + (FileManager*)shareInstance {
@@ -17,6 +19,10 @@
         mgr = [[FileManager alloc]init];
     });
     return mgr;
+}
+
+- (BOOL)writeLogFile:(NSString*)str {
+    return [self writeFile:str WithFileName:kLogFileName];
 }
 
 - (BOOL)writeFile:(NSString*)str WithFileName:(NSString*)fileName {

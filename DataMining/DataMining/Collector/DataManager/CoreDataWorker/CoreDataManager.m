@@ -102,7 +102,12 @@
 
 - (BOOL)saveData {
     NSError* error = nil;
-    return [_managedObjectContext save:&error];
+    if (![_managedObjectContext save:&error]) {
+        kWriteLog([error description]);
+        return NO;
+    }
+
+    return YES;
 }
 
 - (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict {

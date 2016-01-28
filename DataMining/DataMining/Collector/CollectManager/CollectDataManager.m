@@ -13,7 +13,6 @@
 #import "FileManager.h"
 #import "TouchWorker.h"
 #import "LocationWorker.h"
-#import "CoreDataManager.h"
 #import "DataStorageManager.h"
 #import "CollectorDef.h"
 
@@ -96,8 +95,6 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Location]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Location
-         //                                  WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Location WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateLocationNotification object:locationStr];
     }];
@@ -114,7 +111,6 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchEnd:^(CGPoint point) {
@@ -127,7 +123,6 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchMove:^(CGPoint point) {
@@ -140,7 +135,6 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch  WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     }];
@@ -170,8 +164,6 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Accelerometer]) {
             return;
         }
-       // [[CoreDataManager shareInstance]addEntities:entitiesType_Accelerometer
-         //                                  WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Accelerometer WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateAccelerometerNotification
                                                             object:str];
@@ -192,10 +184,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_DeviceMontion]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_DeviceMontion
-         //                                  WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_DeviceMontion WithData:dict];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateMotionNotification object:str];
     }];
 }
@@ -217,11 +206,8 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Health]) {
             return;
         }
-        
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Health
-         //                                  WithData:dict];
+    
         [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict];
-
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateStepNotification object:str];
     } distance:^(double distanceValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d米", (int)distanceValue];
@@ -234,10 +220,7 @@ void messageBox(NSString* str) {
             return;
         }
         
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Health
-        //                                   WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict];
-        
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateDistanceNotification object:str];
     }];
 }

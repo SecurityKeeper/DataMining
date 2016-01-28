@@ -16,7 +16,7 @@
 
 @interface CoreDataManager()
 
-@property (nonatomic,strong)NSManagedObjectContext* managedObjectContext;
+@property (nonatomic,weak)NSManagedObjectContext* managedObjectContext;
 
 @end
 
@@ -43,7 +43,9 @@
                     strName = kDeviceMotion_Temp;
                 else
                     strName = kDeviceMotion;
+                [self.managedObjectContext tryLock];
                 DeviceMotion* deviceMotion = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
+                [self.managedObjectContext unlock];
                 [deviceMotion setDataWithDict:dict];
             }
                 break;
@@ -52,7 +54,9 @@
                     strName = kLocation_Temp;
                 else
                     strName = kLocation;
+                [self.managedObjectContext tryLock];
                 Location* location = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
+                [self.managedObjectContext unlock];
                 [location setDataWithDict:dict];
             }
                 break;
@@ -61,7 +65,9 @@
                     strName = kTouch_Temp;
                 else
                     strName = kTouch;
+                [self.managedObjectContext tryLock];
                 Touch* touch = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
+                [self.managedObjectContext unlock];
                 [touch setDataWithDict:dict];
             }
                 break;
@@ -70,7 +76,9 @@
                     strName = kAccelerometer_Temp;
                 else
                     strName = kAccelerometer;
+                [self.managedObjectContext tryLock];
                 Accelerometer* accelerometer = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
+                [self.managedObjectContext unlock];
                 [accelerometer setDataWithDict:dict];
             }
                 break;
@@ -79,14 +87,22 @@
                     strName = kHealth_Temp;
                 else
                     strName = kHealth;
+                [self.managedObjectContext tryLock];
                 Health* health = [NSEntityDescription insertNewObjectForEntityForName:strName inManagedObjectContext:_managedObjectContext];
+                [self.managedObjectContext unlock];
                 [health setDataWithDict:dict];
             }
                 break;
         }
-        NSError* error = nil;
-        return [_managedObjectContext save:&error];
+        //NSError* error = nil;
+        //return [_managedObjectContext save:&error];
+        return YES;
     }
+}
+
+- (BOOL)saveData {
+    NSError* error = nil;
+    return [_managedObjectContext save:&error];
 }
 
 - (BOOL)addEntities:(entitiesType)type WithData:(NSDictionary*)dict {
@@ -98,14 +114,17 @@
         NSMutableArray* array = [[NSMutableArray alloc]initWithCapacity:1];
         NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
         NSError* error = nil;
+        [self.managedObjectContext tryLock];
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                                   inManagedObjectContext:_managedObjectContext];
         if (!entity) {
+            [self.managedObjectContext unlock];
             return nil;
         }
         [fetchRequest setEntity:entity];
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        [self.managedObjectContext unlock];
         for (NSManagedObject* obj in fetchedObjects) {
             @autoreleasepool {
                 if (!isTemp) {
@@ -121,7 +140,7 @@
                 }
             }
         }
-        
+ 
         return array;
     }
 
@@ -176,24 +195,29 @@
     @synchronized(self) {
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
+        [self.managedObjectContext tryLock];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:_managedObjectContext];
         if (!entity) {
+            [self.managedObjectContext unlock];
             return;
         }
         [fetchRequest setEntity:entity];
         
         NSError *error = nil;
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        [self.managedObjectContext unlock];
         for (NSManagedObject *info in fetchedObjects) {
-            //if (!isTemp) {
+            @autoreleasepool {
+                //if (!isTemp) {
                 if (count == 0)
                     break;
-            //}
-            [_managedObjectContext deleteObject:info];
-            //if (!isTemp)
+                //}
+                [_managedObjectContext deleteObject:info];
+                //if (!isTemp)
                 count--;
+            }
         }
-        [_managedObjectContext save:&error];
+        //[_managedObjectContext save:&error];
     }
 }
 
@@ -202,13 +226,16 @@
         NSString* entityName = [self entityNameStringFromType:type isTemp:isTemp];
         NSError* error = nil;
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [self.managedObjectContext tryLock];
         NSEntityDescription *entity = [NSEntityDescription entityForName:entityName
                                                   inManagedObjectContext:_managedObjectContext];
         if (!entity) {
+            [self.managedObjectContext unlock];
             return 0;
         }
         [fetchRequest setEntity:entity];
         NSArray *fetchedObjects = [_managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        [self.managedObjectContext unlock];
         return fetchedObjects.count;
     }
 }

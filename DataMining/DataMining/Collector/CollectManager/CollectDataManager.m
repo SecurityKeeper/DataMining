@@ -114,8 +114,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-        //                                   WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchEnd:^(CGPoint point) {
@@ -128,8 +127,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-        //                                   WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchMove:^(CGPoint point) {
@@ -142,8 +140,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch
-        //                                   WithData:dict];
+        //[[CoreDataManager shareInstance]addEntities:entitiesType_Touch  WithData:dict];
         [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     }];

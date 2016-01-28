@@ -25,5 +25,6 @@
 
 /*公共*/
 - (NSUInteger)getTotalCount:(entitiesType)type isTemp:(BOOL)isTemp;          //获取数据库条数
+- (BOOL)saveData;
 
 @end

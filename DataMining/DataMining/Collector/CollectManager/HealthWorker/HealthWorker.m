@@ -94,7 +94,7 @@
 - (void)getRealTimeStepCountCompletionHandler:(void(^)(double stepValue, NSError *error))stepHandler
                                      distance:(void(^)(double distanceValue, NSError *error))distanceHandler {
     if (HKVersion < 8.0) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
     }
     else {
         [self getPermissions:^(BOOL success) {
@@ -126,7 +126,7 @@
 - (void)getDistanceCount:(NSPredicate *)predicate
        completionHandler:(void(^)(double value, NSError *error))handler {
     if (HKVersion < 8.0) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
         return;
     }
     else {
@@ -155,7 +155,7 @@
 
 - (void)getStepCount:(NSPredicate *)predicate completionHandler:(void(^)(double value, NSError *error))handler {
     if (HKVersion < 8.0) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
         return;
     }
     else {
@@ -185,7 +185,7 @@
 
 - (void)getKilocalorieUnit:(NSPredicate *)predicate quantityType:(HKQuantityType*)quantityType completionHandler:(void(^)(double value, NSError *error))handler {
     if (HKVersion < 8.0) {
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
+        [NSDictionary dictionaryWithObject:@"iOS 系统低于8.0"                                                                      forKey:NSLocalizedDescriptionKey];
         return;
     }
     else {

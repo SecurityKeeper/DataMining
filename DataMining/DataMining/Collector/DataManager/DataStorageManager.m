@@ -124,6 +124,7 @@
                 [[CoreDataManager shareInstance]deleteEntities:type WithCount:deleteCount];
             }
         }
+        [[CoreDataManager shareInstance]saveData];
     }
 }
 
@@ -232,6 +233,7 @@
         for (NSDictionary* dict in array) {
             [[CoreDataManager shareInstance]addEntities_Temp:type WithData:dict];
         }
+        [[CoreDataManager shareInstance]saveData];
         [self removeMoreData];
         switch (type) {
             case entitiesType_DeviceMontion:
@@ -272,6 +274,7 @@
             [[CoreDataManager shareInstance]addEntities_Temp:entitiesType_Health WithData:dict];
         }
         [self releaseArray];
+        [[CoreDataManager shareInstance]saveData];
         [self removeMoreData];
     }
 }
@@ -289,6 +292,7 @@
             NSUInteger totalCount = [[CoreDataManager shareInstance]getTotalCount:type isTemp:YES];
             [[CoreDataManager shareInstance] deleteEntities_Temp:type WithCount:totalCount];
         }
+        [[CoreDataManager shareInstance]saveData];
         [self removeMoreData];
     }
 }

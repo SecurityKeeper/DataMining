@@ -18,7 +18,7 @@
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="yaw" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="DeviceMotion__Temp" representedClassName="DeviceMotion" syncable="YES">
+    <entity name="DeviceMotion_Temp" representedClassName="DeviceMotion" syncable="YES">
         <attribute name="pitch" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="roll" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -62,7 +62,7 @@
         <element name="Accelerometer" positionX="-18" positionY="72" width="128" height="105"/>
         <element name="Accelerometer_Temp" positionX="-18" positionY="72" width="128" height="105"/>
         <element name="DeviceMotion" positionX="0" positionY="90" width="128" height="105"/>
-        <element name="DeviceMotion__Temp" positionX="-9" positionY="81" width="128" height="105"/>
+        <element name="DeviceMotion_Temp" positionX="-9" positionY="81" width="128" height="105"/>
         <element name="Health" positionX="-63" positionY="-18" width="128" height="90"/>
         <element name="Health_Temp" positionX="9" positionY="99" width="128" height="90"/>
         <element name="Location" positionX="-54" positionY="18" width="128" height="105"/>

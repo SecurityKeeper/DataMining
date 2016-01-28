@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TouchWorker.h"
+#import "CollectorDef.h"
 
 @interface TouchWorker()
 
@@ -35,9 +36,9 @@
     self.touchBegin = touchBegin;
     self.touchEnd = touchEnd;
     self.touchMove = touchMove;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"notiScreenTouchBegin" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchEnd:) name:@"notiScreenTouchEnd" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchMove:) name:@"notiScreenTouchMove" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:kNotiScreenTouchBegin object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchEnd:) name:kNotiScreenTouchEnd object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouchMove:) name:kNotiScreenTouchMove object:nil];
 }
 
 - (void)stopWork {

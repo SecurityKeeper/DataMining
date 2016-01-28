@@ -122,6 +122,7 @@ static NSString * APIKey = @"90690cd8fd800d60f45bad636fa0c535";
     if (!coordinator) {
         return nil;
     }
+
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;

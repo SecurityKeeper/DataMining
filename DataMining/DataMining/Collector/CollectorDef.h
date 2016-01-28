@@ -40,6 +40,9 @@ typedef enum {
 #define kUpdateDistanceNotification         @"UpdateDistanceNotification"
 #define kUpdateTouchNotification            @"UpdateTouchNotification"
 #define kUpdateLocationNotification         @"UpdateLocationNotification"
+#define kNotiScreenTouchBegin               @"notiScreenTouchBegin"
+#define kNotiScreenTouchMove                @"notiScreenTouchMove"
+#define kNotiScreenTouchEnd                 @"notiScreenTouchEnd"
 
 #define kTimesTamp                          @"timesTamp"
 #define kLatitude                           @"latitude"

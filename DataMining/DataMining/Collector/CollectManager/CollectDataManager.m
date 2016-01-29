@@ -17,8 +17,9 @@
 #import "CollectorDef.h"
 
 void messageBox(NSString* str) {
-    UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [view show];
+//    UIAlertView* view = [[UIAlertView alloc]initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//    [view show];
+    kWriteLog(str);
 }
 
 @interface CollectDataManager () {

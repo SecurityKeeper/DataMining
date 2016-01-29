@@ -11,9 +11,6 @@
 @interface FileManager : NSObject
 
 + (FileManager*)shareInstance;
-
-//追加写调试日志文件
 - (BOOL)writeLogFile:(NSString*)str;
-- (BOOL)writeFile:(NSString*)str WithFileName:(NSString*)fileName;
 
 @end

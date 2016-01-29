@@ -22,10 +22,20 @@
 }
 
 - (BOOL)writeLogFile:(NSString*)str {
-    return [self writeFile:str WithFileName:kLogFileName];
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* dateStr = [formatter stringFromDate:[NSDate date]];
+    NSString* log = [NSString stringWithFormat:@"%@时间：%@\r\n", str, dateStr];
+    
+    
+    
+
+    
+    
+    return [self appendWriteFile:log WithFileName:kLogFileName];
 }
 
-- (BOOL)writeFile:(NSString*)str WithFileName:(NSString*)fileName {
+- (BOOL)appendWriteFile:(NSString*)str WithFileName:(NSString*)fileName {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString* strFile = [docDir stringByAppendingFormat:@"/%@", fileName];

@@ -26,12 +26,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* dateStr = [formatter stringFromDate:[NSDate date]];
     NSString* log = [NSString stringWithFormat:@"%@时间：%@\r\n", str, dateStr];
-    
-    
-    
 
-    
-    
     return [self appendWriteFile:log WithFileName:kLogFileName];
 }
 
@@ -39,6 +34,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *docDir = [paths objectAtIndex:0];
     NSString* strFile = [docDir stringByAppendingFormat:@"/%@", fileName];
+    NSLog(@"logFilePath = \r\n%@", strFile);
     NSFileManager* fileMgr = [[NSFileManager alloc]init];
     if (![fileMgr fileExistsAtPath:strFile]) {
         BOOL isCreate = [fileMgr createFileAtPath:strFile contents:nil attributes:nil];

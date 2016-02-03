@@ -39,6 +39,7 @@
 		ECB2CDD41C4E35840035B1FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */; };
 		ECB2CDD61C4E359F0035B1FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD51C4E359F0035B1FD /* libz.tbd */; };
 		ECB2CDD81C4E35B00035B1FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */; };
+		ECDEC2871C5F305300D7134B /* DMAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,8 @@
 		ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ECB2CDD51C4E359F0035B1FD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		ECDEC2851C5F305300D7134B /* DMAverageCalculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAverageCalculate.h; sourceTree = "<group>"; };
+		ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAverageCalculate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,8 @@
 				90EF437B1C585AD8008A22D6 /* Collector */,
 				90EE2D7A1C4E05E500C5A64D /* AppDelegate.h */,
 				90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */,
+				ECDEC2851C5F305300D7134B /* DMAverageCalculate.h */,
+				ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */,
 				90EE2D801C4E05E500C5A64D /* ViewController.h */,
 				90EE2D811C4E05E500C5A64D /* ViewController.m */,
 				90EE2D831C4E05E500C5A64D /* Main.storyboard */,
@@ -448,6 +453,7 @@
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
 				90EF43A31C585AD8008A22D6 /* HealthWorker.m in Sources */,
+				ECDEC2871C5F305300D7134B /* DMAverageCalculate.m in Sources */,
 				90EF43AB1C585AD8008A22D6 /* DeviceMotion.m in Sources */,
 				90EF43A41C585AD8008A22D6 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				90EF43A21C585AD8008A22D6 /* CollectDataManager.m in Sources */,

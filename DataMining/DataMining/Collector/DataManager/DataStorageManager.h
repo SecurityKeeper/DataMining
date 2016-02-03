@@ -17,7 +17,7 @@
 //count =＝ 0则获取该数据源类型的全部数据
 - (NSArray*)getDataType:(entitiesType)type WithCount:(NSUInteger)count dataFrom:(dataSrcType)src;
 
-- (void)saveType:(entitiesType)type WithData:(NSDictionary*)dict;
+- (void)saveType:(entitiesType)type WithData:(NSDictionary*)dict storage:(dataSrcType)storage;
 - (void)removeAllTempStorageData;
 - (void)removeMemoryData;
 - (void)moveMemoryDataToTempStorage;

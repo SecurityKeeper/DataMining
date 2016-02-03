@@ -199,6 +199,18 @@
     }
 }
 
+- (void)saveType:(entitiesType)type WithData:(NSDictionary*)dict storage:(dataSrcType)storage {
+    if (storage == dataSrcType_memory) {
+        [self saveType:type WithData:dict];
+    }
+    else if (storage == dataSrcType_tempStorage) {
+        [[CoreDataManager shareInstance]addEntities_Temp:type WithData:dict];
+    }
+    else if (storage == dataSrcType_reliableStorage) {
+        [[CoreDataManager shareInstance]addEntities:type WithData:dict];
+    }
+}
+
 - (void)saveType:(entitiesType)type WithData:(NSDictionary*)dict {
     //存入内存
     @synchronized(self) {

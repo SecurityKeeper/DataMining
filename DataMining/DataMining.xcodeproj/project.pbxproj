@@ -140,7 +140,8 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = Analysis;
+			name = Analysis;
+			path = Collector/Analysis;
 			sourceTree = "<group>";
 		};
 		0FDAE8991C61E5C3006D43F8 /* Modeling */ = {
@@ -171,6 +172,7 @@
 		90EE2D751C4E05E500C5A64D /* DataMining */ = {
 			isa = PBXGroup;
 			children = (
+				0FDAE8981C61E5C3006D43F8 /* Analysis */,
 				90EF437B1C585AD8008A22D6 /* Collector */,
 				90EE2D7A1C4E05E500C5A64D /* AppDelegate.h */,
 				90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */,
@@ -232,7 +234,6 @@
 		90EF437B1C585AD8008A22D6 /* Collector */ = {
 			isa = PBXGroup;
 			children = (
-				0FDAE8981C61E5C3006D43F8 /* Analysis */,
 				0FDAE8991C61E5C3006D43F8 /* Modeling */,
 				90EF43B11C585AFE008A22D6 /* CollectorDef.h */,
 				90EF437C1C585AD8008A22D6 /* CollectManager */,

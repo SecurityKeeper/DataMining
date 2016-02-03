@@ -96,7 +96,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Location]) {
             return;
         }
-        [[DataStorageManager shareInstance]saveType:entitiesType_Location WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Location WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateLocationNotification object:locationStr];
     }];
 }
@@ -112,7 +112,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchEnd:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标End：x=%0.2f,y=%0.2f", point.x, point.y];
@@ -124,7 +124,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     } touchMove:^(CGPoint point) {
         NSString* str = [[NSString alloc]initWithFormat:@"触摸坐标Move：x=%0.2f,y=%0.2f", point.x, point.y];
@@ -136,7 +136,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Touch]) {
             return;
         }
-        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Touch WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateTouchNotification object:str];
     }];
 }
@@ -165,7 +165,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_Accelerometer]) {
             return;
         }
-        [[DataStorageManager shareInstance]saveType:entitiesType_Accelerometer WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Accelerometer WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateAccelerometerNotification
                                                             object:str];
     }];
@@ -185,7 +185,7 @@ void messageBox(NSString* str) {
         if (![self checkDataIsChange:dict type:entitiesType_DeviceMontion]) {
             return;
         }
-        [[DataStorageManager shareInstance]saveType:entitiesType_DeviceMontion WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_DeviceMontion WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateMotionNotification object:str];
     }];
 }
@@ -204,11 +204,11 @@ void messageBox(NSString* str) {
         NSDictionary* dict = @{kDistance:[NSNumber numberWithInt:_distanceSize],
                                kStepCount:[NSNumber numberWithInt:(int)stepValue],
                                kTimesTamp:[self getTimeTamp]};
-        if (![self checkDataIsChange:dict type:entitiesType_Health]) {
+        if (![weakSelf checkDataIsChange:dict type:entitiesType_Health]) {
             return;
         }
     
-        [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateStepNotification object:str];
     } distance:^(double distanceValue, NSError *error) {
         NSString* str = [[NSString alloc]initWithFormat:@"当前行走距离：%d米", (int)distanceValue];
@@ -216,12 +216,12 @@ void messageBox(NSString* str) {
         
         NSDictionary* dict = @{kDistance:[NSNumber numberWithInt:(int)distanceValue],
                                kStepCount:[NSNumber numberWithInt:_stepCount],
-                               kTimesTamp:[self getTimeTamp]};
-        if (![self checkDataIsChange:dict type:entitiesType_Health]) {
+                               kTimesTamp:[weakSelf getTimeTamp]};
+        if (![weakSelf checkDataIsChange:dict type:entitiesType_Health]) {
             return;
         }
         
-        [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict];
+        [[DataStorageManager shareInstance]saveType:entitiesType_Health WithData:dict storage:dataSrcType_memory];
         [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateDistanceNotification object:str];
     }];
 }
@@ -318,7 +318,7 @@ void messageBox(NSString* str) {
                 int preDistance = ((NSNumber*)[_preMotionDict objectForKey:kDistance]).intValue;
                 int preStepCount = ((NSNumber*)[_preMotionDict objectForKey:kStepCount]).intValue;
 
-                if (distance == preDistance && stepCount == preStepCount) {
+                if (distance == preDistance /*&&*/ || stepCount == preStepCount) {
                     return NO;
                 }
             }

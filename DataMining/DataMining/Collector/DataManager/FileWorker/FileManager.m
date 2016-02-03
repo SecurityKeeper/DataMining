@@ -18,6 +18,7 @@
     dispatch_once(&onceToken, ^{
         mgr = [[FileManager alloc]init];
     });
+    
     return mgr;
 }
 

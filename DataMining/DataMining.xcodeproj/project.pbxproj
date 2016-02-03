@@ -136,6 +136,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FDAE8981C61E5C3006D43F8 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Analysis;
+			sourceTree = "<group>";
+		};
+		0FDAE8991C61E5C3006D43F8 /* Modeling */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modeling;
+			sourceTree = "<group>";
+		};
 		90EE2D6A1C4E05E500C5A64D = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +232,8 @@
 		90EF437B1C585AD8008A22D6 /* Collector */ = {
 			isa = PBXGroup;
 			children = (
+				0FDAE8981C61E5C3006D43F8 /* Analysis */,
+				0FDAE8991C61E5C3006D43F8 /* Modeling */,
 				90EF43B11C585AFE008A22D6 /* CollectorDef.h */,
 				90EF437C1C585AD8008A22D6 /* CollectManager */,
 				90EF438F1C585AD8008A22D6 /* DataManager */,

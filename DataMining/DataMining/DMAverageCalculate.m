@@ -11,34 +11,11 @@
 
 @interface DMAverageCalculate ()
 
-@property (nonatomic,copy) calculateResult resultValue;
 @property (nonatomic,copy) NSArray * number;
 
 @end
 
 @implementation DMAverageCalculate
-
-- (DMAverageCalculate *)sharedManager {
-    static DMAverageCalculate * averageCalculate;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        averageCalculate = [[DMAverageCalculate alloc] init];
-    });
-    return averageCalculate;
-}
-
-- (void)calculateType:(entitiesType)numberType
-                Value:(double)value
-               result:(calculateResult)result {
-    NSArray * arr = [[DataStorageManager shareInstance] getDataType:numberType WithCount:0 dataFrom:dataSrcType_reliableStorage];
-    
-    long double avrValue   = [self aveValue:_number newValue:value];
-    long double valueTemp  = [self varianceAveValue:avrValue valueArr:_number newValue:value];
-    long double resultTemp = [self conValue:_number.count+1 variance:valueTemp];
-    if (result) {
-        result(resultTemp);
-    }
-}
 
 - (long double)conValue:(double)aveValue variance :(long double)variacne {
     long double varianceTemp = sqrt(variacne);

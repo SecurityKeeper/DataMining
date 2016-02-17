@@ -9,13 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "CollectorDef.h"
 
-typedef void(^calculate)(long double,long double);
-typedef void(^calculateResult)(long double);
 
 @interface DMAverageCalculate : NSObject
 
-- (DMAverageCalculate *)sharedManager;
-
-- (void)calculateType:(entitiesType)numberType Value:(double)value result:(calculateResult)result;
 
 @end

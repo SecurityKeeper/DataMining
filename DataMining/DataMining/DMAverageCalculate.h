@@ -12,5 +12,6 @@
 
 @interface DMAverageCalculate : NSObject
 
-
++ (DMAverageCalculate *)defaultInstance;
+- (long double)probabilityCalculate:(NSArray *)array newValue:(long double) newValue;
 @end

@@ -10,6 +10,7 @@
 #import "CollectDataManager.h"
 #import "CollectorDef.h"
 
+#import "DMAverageCalculate.h" //test
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* dataArray;
@@ -48,6 +49,8 @@
         btn.tag = i;
         [self.view addSubview:btn];
     }
+
+
 }
 
 

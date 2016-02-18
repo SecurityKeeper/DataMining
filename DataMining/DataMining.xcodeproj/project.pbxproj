@@ -39,6 +39,7 @@
 		ECB2CDD41C4E35840035B1FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */; };
 		ECB2CDD61C4E359F0035B1FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD51C4E359F0035B1FD /* libz.tbd */; };
 		ECB2CDD81C4E35B00035B1FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */; };
+		ECDBE0BE1C75653B0076D79E /* DMTouchTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */; settings = {ASSET_TAGS = (); }; };
 		ECDEC2871C5F305300D7134B /* DMAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,8 @@
 		ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ECB2CDD51C4E359F0035B1FD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		ECDBE0BC1C75653B0076D79E /* DMTouchTimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTouchTimeModel.h; sourceTree = "<group>"; };
+		ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTouchTimeModel.m; sourceTree = "<group>"; };
 		ECDEC2851C5F305300D7134B /* DMAverageCalculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAverageCalculate.h; sourceTree = "<group>"; };
 		ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAverageCalculate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +184,8 @@
 				90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */,
 				ECDEC2851C5F305300D7134B /* DMAverageCalculate.h */,
 				ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */,
+				ECDBE0BC1C75653B0076D79E /* DMTouchTimeModel.h */,
+				ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */,
 				90EE2D801C4E05E500C5A64D /* ViewController.h */,
 				90EE2D811C4E05E500C5A64D /* ViewController.m */,
 				90EE2D831C4E05E500C5A64D /* Main.storyboard */,
@@ -462,6 +467,7 @@
 				90EF43A51C585AD8008A22D6 /* LocationWorker.m in Sources */,
 				90EF43A71C585AD8008A22D6 /* DPApplication.m in Sources */,
 				90EF43A91C585AD8008A22D6 /* Accelerometer.m in Sources */,
+				ECDBE0BE1C75653B0076D79E /* DMTouchTimeModel.m in Sources */,
 				90EF43A81C585AD8008A22D6 /* TouchWorker.m in Sources */,
 				90EF43AF1C585AD8008A22D6 /* DataStorageManager.m in Sources */,
 				90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */,

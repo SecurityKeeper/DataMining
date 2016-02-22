@@ -18,6 +18,7 @@
 		90EE2D961C4E05E600C5A64D /* DataMiningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D951C4E05E600C5A64D /* DataMiningTests.m */; };
 		90EE2DBA1C4E066900C5A64D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DB91C4E066900C5A64D /* HealthKit.framework */; };
 		90EE2DBD1C4E083100C5A64D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */; };
+		90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EEF16E1C76AE3000205B0E /* HealthModel.m */; };
 		90EF43A21C585AD8008A22D6 /* CollectDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF437E1C585AD8008A22D6 /* CollectDataManager.m */; };
 		90EF43A31C585AD8008A22D6 /* HealthWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF43811C585AD8008A22D6 /* HealthWorker.m */; };
 		90EF43A41C585AD8008A22D6 /* HKHealthStore+AAPLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF43831C585AD8008A22D6 /* HKHealthStore+AAPLExtensions.m */; };
@@ -72,6 +73,8 @@
 		90EE2DB91C4E066900C5A64D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		90EE2DBB1C4E066900C5A64D /* DataMining.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DataMining.entitlements; sourceTree = "<group>"; };
 		90EE2DBC1C4E083100C5A64D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		90EEF16D1C76AE3000205B0E /* HealthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthModel.h; path = DataMining/Modeling/HealthModel.h; sourceTree = SOURCE_ROOT; };
+		90EEF16E1C76AE3000205B0E /* HealthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthModel.m; path = DataMining/Modeling/HealthModel.m; sourceTree = SOURCE_ROOT; };
 		90EF437D1C585AD8008A22D6 /* CollectDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectDataManager.h; sourceTree = "<group>"; };
 		90EF437E1C585AD8008A22D6 /* CollectDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectDataManager.m; sourceTree = "<group>"; };
 		90EF43801C585AD8008A22D6 /* HealthWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthWorker.h; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 		0FDAE8991C61E5C3006D43F8 /* Modeling */ = {
 			isa = PBXGroup;
 			children = (
+				90EEF16D1C76AE3000205B0E /* HealthModel.h */,
+				90EEF16E1C76AE3000205B0E /* HealthModel.m */,
 			);
 			path = Modeling;
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				90EF43AD1C585AD8008A22D6 /* Location.m in Sources */,
 				90EF43AE1C585AD8008A22D6 /* Touch.m in Sources */,
 				90EF43AC1C585AD8008A22D6 /* Health.m in Sources */,
+				90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

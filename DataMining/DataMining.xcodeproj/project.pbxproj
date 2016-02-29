@@ -40,8 +40,8 @@
 		ECB2CDD41C4E35840035B1FD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD31C4E35840035B1FD /* CoreLocation.framework */; };
 		ECB2CDD61C4E359F0035B1FD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD51C4E359F0035B1FD /* libz.tbd */; };
 		ECB2CDD81C4E35B00035B1FD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD71C4E35B00035B1FD /* SystemConfiguration.framework */; };
-		ECDBE0BE1C75653B0076D79E /* DMTouchTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */; settings = {ASSET_TAGS = (); }; };
-		ECDEC2871C5F305300D7134B /* DMAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */; settings = {ASSET_TAGS = (); }; };
+		ECDBE0BE1C75653B0076D79E /* DMTouchTimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */; };
+		ECDEC2871C5F305300D7134B /* DMAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEC2861C5F305300D7134B /* DMAverageCalculate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

@@ -28,6 +28,7 @@ static long double const e = 2.718281828459;
     });
     return averageCal;
 }
+
 //概率
 - (long double)probabilityCalculate:(NSArray *)array
                            newValue:(long double)newValue {
@@ -81,7 +82,4 @@ static long double const e = 2.718281828459;
     
     return newValue?total/(numberArr.count +1):total/numberArr.count;
 }
-
-
-
 @end

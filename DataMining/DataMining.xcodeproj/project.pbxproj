@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F885E311C857A1500A9AE83 /* DAClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E271C857A1500A9AE83 /* DAClustering.m */; };
+		0F885E321C857A1500A9AE83 /* chlkFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2A1C857A1500A9AE83 /* chlkFunction.m */; };
+		0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2C1C857A1500A9AE83 /* LinearRegression.m */; };
+		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
 		90EA2F491C50D2D3006B8D87 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EA2F481C50D2D3006B8D87 /* libz.dylib */; };
 		90EE2D791C4E05E500C5A64D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D781C4E05E500C5A64D /* main.m */; };
 		90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */; };
@@ -55,6 +59,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F885E261C857A1500A9AE83 /* DAClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAClustering.h; sourceTree = "<group>"; };
+		0F885E271C857A1500A9AE83 /* DAClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAClustering.m; sourceTree = "<group>"; };
+		0F885E291C857A1500A9AE83 /* chlkFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chlkFunction.h; sourceTree = "<group>"; };
+		0F885E2A1C857A1500A9AE83 /* chlkFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chlkFunction.m; sourceTree = "<group>"; };
+		0F885E2B1C857A1500A9AE83 /* LinearRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearRegression.h; sourceTree = "<group>"; };
+		0F885E2C1C857A1500A9AE83 /* LinearRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearRegression.m; sourceTree = "<group>"; };
+		0F885E2F1C857A1500A9AE83 /* LogRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRegression.h; sourceTree = "<group>"; };
+		0F885E301C857A1500A9AE83 /* LogRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRegression.m; sourceTree = "<group>"; };
 		90EA2F481C50D2D3006B8D87 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		90EE2D731C4E05E500C5A64D /* DataMining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataMining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EE2D771C4E05E500C5A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,9 +157,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F885E251C857A1500A9AE83 /* Clustering */ = {
+			isa = PBXGroup;
+			children = (
+				0F885E261C857A1500A9AE83 /* DAClustering.h */,
+				0F885E271C857A1500A9AE83 /* DAClustering.m */,
+			);
+			name = Clustering;
+			path = DataMining/Analysis/Clustering;
+			sourceTree = SOURCE_ROOT;
+		};
+		0F885E281C857A1500A9AE83 /* LinearRegression */ = {
+			isa = PBXGroup;
+			children = (
+				0F885E291C857A1500A9AE83 /* chlkFunction.h */,
+				0F885E2A1C857A1500A9AE83 /* chlkFunction.m */,
+				0F885E2B1C857A1500A9AE83 /* LinearRegression.h */,
+				0F885E2C1C857A1500A9AE83 /* LinearRegression.m */,
+			);
+			name = LinearRegression;
+			path = DataMining/Analysis/LinearRegression;
+			sourceTree = SOURCE_ROOT;
+		};
+		0F885E2E1C857A1500A9AE83 /* LogisticRegression */ = {
+			isa = PBXGroup;
+			children = (
+				0F885E2F1C857A1500A9AE83 /* LogRegression.h */,
+				0F885E301C857A1500A9AE83 /* LogRegression.m */,
+			);
+			name = LogisticRegression;
+			path = DataMining/Analysis/LogisticRegression;
+			sourceTree = SOURCE_ROOT;
+		};
 		0FDAE8981C61E5C3006D43F8 /* Analysis */ = {
 			isa = PBXGroup;
 			children = (
+				0F885E251C857A1500A9AE83 /* Clustering */,
+				0F885E281C857A1500A9AE83 /* LinearRegression */,
+				0F885E2E1C857A1500A9AE83 /* LogisticRegression */,
 			);
 			name = Analysis;
 			path = Collector/Analysis;
@@ -184,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				0FDAE8981C61E5C3006D43F8 /* Analysis */,
+				0FDAE8991C61E5C3006D43F8 /* Modeling */,
 				90EF437B1C585AD8008A22D6 /* Collector */,
 				90EE2D7A1C4E05E500C5A64D /* AppDelegate.h */,
 				90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */,
@@ -249,7 +297,6 @@
 		90EF437B1C585AD8008A22D6 /* Collector */ = {
 			isa = PBXGroup;
 			children = (
-				0FDAE8991C61E5C3006D43F8 /* Modeling */,
 				90EF43B11C585AFE008A22D6 /* CollectorDef.h */,
 				90EF437C1C585AD8008A22D6 /* CollectManager */,
 				90EF438F1C585AD8008A22D6 /* DataManager */,
@@ -459,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */,
+				0F885E321C857A1500A9AE83 /* chlkFunction.m in Sources */,
 				90EF43AA1C585AD8008A22D6 /* CoreDataManager.m in Sources */,
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
@@ -469,6 +517,7 @@
 				90EF43A21C585AD8008A22D6 /* CollectDataManager.m in Sources */,
 				90EF43B01C585AD8008A22D6 /* FileManager.m in Sources */,
 				90EF43A61C585AD8008A22D6 /* MotionWorker.m in Sources */,
+				0F885E311C857A1500A9AE83 /* DAClustering.m in Sources */,
 				90EF43A51C585AD8008A22D6 /* LocationWorker.m in Sources */,
 				90EF43A71C585AD8008A22D6 /* DPApplication.m in Sources */,
 				90EF43A91C585AD8008A22D6 /* Accelerometer.m in Sources */,
@@ -477,8 +526,10 @@
 				90EF43AF1C585AD8008A22D6 /* DataStorageManager.m in Sources */,
 				90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */,
 				90EF43AD1C585AD8008A22D6 /* Location.m in Sources */,
+				0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */,
 				90EF43AE1C585AD8008A22D6 /* Touch.m in Sources */,
 				90EF43AC1C585AD8008A22D6 /* Health.m in Sources */,
+				0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */,
 				90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,17 +1,16 @@
 //
-//  DMAverageCalculate.h
-//  DataMining
+//  DAAverageCalculate.h
+//  DataAnalysis
 //
-//  Created by 郑红 on 2/1/16.
+//  Created by 郑红 on 3/30/16.
 //  Copyright © 2016 SecurityKeeper. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "CollectorDef.h"
 
 
-@interface DMAverageCalculate : NSObject
+@interface DAAverageCalculate : NSObject
 
-+ (DMAverageCalculate *)defaultInstance;
++ (DAAverageCalculate *)defaultInstance;
 - (long double)probabilityCalculate:(NSArray *)array newValue:(long double) newValue;
 @end

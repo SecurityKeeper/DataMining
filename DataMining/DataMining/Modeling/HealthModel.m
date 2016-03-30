@@ -8,7 +8,7 @@
 
 #import "HealthModel.h"
 #import "DataStorageManager.h"
-#import "DMAverageCalculate.h"
+#import "DAAverageCalculate.h"
 
 @interface HealthModel()
 
@@ -81,7 +81,7 @@
         return 0;
     }
     
-    return [[DMAverageCalculate defaultInstance] probabilityCalculate:tempArray newValue:newValue];
+    return [[DAAverageCalculate defaultInstance] probabilityCalculate:tempArray newValue:newValue];
 }
 
 @end

@@ -1,30 +1,29 @@
 //
-//  DMAverageCalculate.m
-//  DataMining
+//  DAAverageCalculate.m
+//  DataAnalysis
 //
-//  Created by 郑红 on 2/1/16.
+//  Created by 郑红 on 3/30/16.
 //  Copyright © 2016 SecurityKeeper. All rights reserved.
 //
 
-#import "DMAverageCalculate.h"
-#import "DataStorageManager.h"
+#import "DAAverageCalculate.h"
 
 static double const defaultStandard = 0.95;//1.96
-static long double const pai = 3.1415926535898;
-static long double const e = 2.718281828459;
-@interface DMAverageCalculate ()
+static long double const pai = M_PI;
+static long double const e = M_E;
+@interface DAAverageCalculate ()
 
 @property (nonatomic,copy) NSArray * number;
 
 @end
 
-@implementation DMAverageCalculate
+@implementation DAAverageCalculate
 
-+ (DMAverageCalculate *)defaultInstance {
++ (DAAverageCalculate *)defaultInstance {
     static dispatch_once_t token;
-    static DMAverageCalculate * averageCal;
+    static DAAverageCalculate * averageCal;
     dispatch_once(&token, ^{
-        averageCal = [[DMAverageCalculate alloc] init];
+        averageCal = [[DAAverageCalculate alloc] init];
     });
     return averageCal;
 }
@@ -60,7 +59,7 @@ static long double const e = 2.718281828459;
         total += [number doubleValue];
     }
     if (newValue) {
-      total += newValue;
+        total += newValue;
     }
     return newValue?total/(numberArr.count+1):total/(numberArr.count);
 }
@@ -78,7 +77,7 @@ static long double const e = 2.718281828459;
     if (newValue) {
         total += pow((newValue - aveValue), 2);
     }
-  
+    
     
     return newValue?total/(numberArr.count +1):total/numberArr.count;
 }

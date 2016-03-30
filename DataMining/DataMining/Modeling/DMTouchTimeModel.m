@@ -9,7 +9,7 @@
 #import "DMTouchTimeModel.h"
 #import "DataStorageManager.h"
 #import "CollectorDef.h"
-#import "DMAverageCalculate.h"
+#import "DAAverageCalculate.h"
 
 @interface DMTouchTimeModel ()
 {
@@ -30,7 +30,7 @@
 
 - (long double)getProbability:(double)newValue {
     NSMutableArray * arrTemp = [self getTouchTime];
-    long double result  =[[DMAverageCalculate defaultInstance] probabilityCalculate:arrTemp newValue:newValue];
+    long double result  =[[DAAverageCalculate defaultInstance] probabilityCalculate:arrTemp newValue:newValue];
     return result;
 }
 

@@ -10,7 +10,7 @@
 #import "CollectDataManager.h"
 #import "CollectorDef.h"
 
-#import "DMAverageCalculate.h" //test
+#import "DAAverageCalculate.h" //test
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* dataArray;

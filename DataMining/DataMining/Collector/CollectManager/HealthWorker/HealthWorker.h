@@ -26,4 +26,7 @@
 /*当天时间段*/
 + (NSPredicate *)predicateForSamplesToday;
 
+
+- (void)stop;
+
 @end

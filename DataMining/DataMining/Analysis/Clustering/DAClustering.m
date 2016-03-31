@@ -127,7 +127,12 @@ static DAClustering *clusterInstance = nil;
     NSMutableArray *sortDataArray;
     long kValue = [self getTargetKValue:data];
     for (long i = 0; i < kValue; i++) {
-        [centerArray addObject:[data objectAtIndex:i]];
+        for (long j = i; j < data.count; j++) {
+            if (![centerArray containsObject:[data objectAtIndex:j]]) {
+                [centerArray addObject:[data objectAtIndex:j]];
+                break;
+            }
+        }
     }
     while (![tempArray isEqual:centerArray]) {
         tempArray = [NSMutableArray arrayWithArray:centerArray];

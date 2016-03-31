@@ -18,6 +18,7 @@ typedef enum : NSUInteger {
 @private
     float averageDistance;
     float minDistance;
+    long maxSeedTime;
 }
 
 /**

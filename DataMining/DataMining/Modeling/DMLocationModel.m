@@ -24,8 +24,8 @@
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
         NSMutableDictionary *tmpDic = [[NSMutableDictionary alloc]init];
-        double latitude = [[dic objectForKey:@"latitude"] doubleValue];
-        double longitude = [[dic objectForKey:@"longitude"] doubleValue];
+        float latitude = [[dic objectForKey:@"latitude"] floatValue];
+        float longitude = [[dic objectForKey:@"longitude"] floatValue];
         [tmpDic setObject:@(latitude) forKey:@"latitude"];
         [tmpDic setObject:@(longitude) forKey:@"longitude"];
         [dataSet addObject:tmpDic];

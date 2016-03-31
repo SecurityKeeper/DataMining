@@ -11,6 +11,8 @@
 #import "CollectorDef.h"
 
 #import "DAAverageCalculate.h" //test
+
+#import "DMLocationModel.h"
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* dataArray;
@@ -50,6 +52,8 @@
         [self.view addSubview:btn];
     }
 
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.5419),@"latitude",@(104.0634),@"longitude", nil];
+    NSLog(@"weight = %f",[[DMLocationModel sharedInstance]getWeight:dic]);
 }
 
 

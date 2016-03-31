@@ -12,6 +12,7 @@
 		0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2C1C857A1500A9AE83 /* LinearRegression.m */; };
 		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
 		0FF7B9181CAB6CB800ECE12D /* DAAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */; };
+		20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AC96421CAB72D000FF6A67 /* DMLocationModel.m */; };
 		90EA2F491C50D2D3006B8D87 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EA2F481C50D2D3006B8D87 /* libz.dylib */; };
 		90EE2D791C4E05E500C5A64D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D781C4E05E500C5A64D /* main.m */; };
 		90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EE2D7B1C4E05E500C5A64D /* AppDelegate.m */; };
@@ -69,6 +70,8 @@
 		0F885E301C857A1500A9AE83 /* LogRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRegression.m; sourceTree = "<group>"; };
 		0FF7B9161CAB6CB800ECE12D /* DAAverageCalculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAAverageCalculate.h; sourceTree = "<group>"; };
 		0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAAverageCalculate.m; sourceTree = "<group>"; };
+		20AC96411CAB72D000FF6A67 /* DMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLocationModel.h; sourceTree = "<group>"; };
+		20AC96421CAB72D000FF6A67 /* DMLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMLocationModel.m; sourceTree = "<group>"; };
 		90EA2F481C50D2D3006B8D87 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		90EE2D731C4E05E500C5A64D /* DataMining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DataMining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90EE2D771C4E05E500C5A64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				90EEF16E1C76AE3000205B0E /* HealthModel.m */,
 				ECDBE0BC1C75653B0076D79E /* DMTouchTimeModel.h */,
 				ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */,
+				20AC96411CAB72D000FF6A67 /* DMLocationModel.h */,
+				20AC96421CAB72D000FF6A67 /* DMLocationModel.m */,
 			);
 			path = Modeling;
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 				90EF43AC1C585AD8008A22D6 /* Health.m in Sources */,
 				0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */,
 				90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */,
+				20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,13 +26,13 @@
     return model;
 }
 
-- (long double)getOriginalAnalyzeData {
+- (long double)getAnalyzeData:(long double)newValue {
     //可信数据库获得数据
     NSArray* datas = [[DataStorageManager shareInstance]getDataType:entitiesType_Health WithCount:0 dataFrom:dataSrcType_reliableStorage];
-    return [self doAnalyze:datas];
+    return [self doAnalyze:datas newValue:newValue];
 }
 
-- (long double)getCurrentAnalyzeData {
+/*- (long double)getCurrentAnalyzeData {
     //内存中获得数据
     NSArray* datas = [[DataStorageManager shareInstance]getDataType:entitiesType_Health WithCount:0 dataFrom:dataSrcType_memory];
     if (datas.count < 2) {
@@ -40,12 +40,12 @@
     }
     
     return [self doAnalyze:datas];
-}
+}*/
 
-- (long double)doAnalyze:(NSArray*)datas {
+- (long double)doAnalyze:(NSArray*)datas newValue:(long double)newValue{
     long double preDistance = 0, preStepCount = 0;
     double preTimesTamp = 0.0;
-    long double newValue = 0;
+    //long double newValue = 0;
     NSMutableArray* tempArray = [NSMutableArray array];
     for (int i=0; i<datas.count; i++) {
         NSDictionary* dict = datas[i];
@@ -64,9 +64,9 @@
         
         //进行原始计算
         long double perStepDistance = (distance - preDistance) / (stepCount - preStepCount);
-        if (i == datas.count-1) {
-            newValue = perStepDistance;
-        }
+//        if (i == datas.count-1) {
+//            newValue = perStepDistance;
+//        }
         
         NSNumber* perStepDistanceNum = [NSNumber numberWithFloat:perStepDistance];
         [tempArray addObject:perStepDistanceNum];

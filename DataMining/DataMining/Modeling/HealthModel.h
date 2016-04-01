@@ -11,7 +11,6 @@
 @interface HealthModel : NSObject
 
 + (HealthModel*)shareInstance;
-- (long double)getOriginalAnalyzeData;
-- (long double)getCurrentAnalyzeData;
+- (long double)getAnalyzeData:(long double)newValue;
 
 @end

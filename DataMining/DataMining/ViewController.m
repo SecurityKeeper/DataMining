@@ -13,6 +13,9 @@
 #import "DAAverageCalculate.h" //test
 
 #import "DMLocationModel.h"
+
+#import "DMAngleModel.h"
+
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray* dataArray;
@@ -54,6 +57,10 @@
 
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.541844),@"latitude",@(104.063019),@"longitude", nil];
     NSLog(@"weight = %f",[[DMLocationModel sharedInstance]getWeight:dic]);
+    
+    
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
+//    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);
 }
 
 

@@ -24,10 +24,10 @@
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
         NSMutableDictionary *tmpDic = [[NSMutableDictionary alloc]init];
-        float latitude = [[dic objectForKey:@"latitude"] floatValue];
-        float longitude = [[dic objectForKey:@"longitude"] floatValue];
-        [tmpDic setObject:@(latitude) forKey:@"latitude"];
-        [tmpDic setObject:@(longitude) forKey:@"longitude"];
+        float latitude = [[dic objectForKey:kLatitude] floatValue];
+        float longitude = [[dic objectForKey:kLongitude] floatValue];
+        [tmpDic setObject:@(latitude) forKey:kLatitude];
+        [tmpDic setObject:@(longitude) forKey:kLongitude];
         [dataSet addObject:tmpDic];
     }
     if (dataSet.count == 0||data == nil) {

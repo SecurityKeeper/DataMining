@@ -13,6 +13,7 @@
 #import "Touch.h"
 #import "Accelerometer.h"
 #import "Health.h"
+#import "AnalysisData.h"
 
 #include <sys/sysctl.h>
 #include <mach/mach.h>
@@ -105,6 +106,13 @@ double usedMemory() {
                 [health setDataWithDict:dict];
             }
                 break;
+            case entitiesType_AnalysisData:
+            {
+                AnalysisData *data = [NSEntityDescription insertNewObjectForEntityForName:kAnalysisData inManagedObjectContext:_managedObjectContext];
+                [data setDataWithDict:dict];
+                [_managedObjectContext save:nil];
+            }
+            break;
         }
         
         return YES;
@@ -208,6 +216,9 @@ double usedMemory() {
                 entityName = kHealth_Temp;
             else
                 entityName = kHealth;
+            break;
+        case entitiesType_AnalysisData:
+            entityName = kAnalysisData;
             break;
     }
     

@@ -71,6 +71,7 @@
     <elements>
         <element name="Accelerometer" positionX="-18" positionY="72" width="128" height="105"/>
         <element name="Accelerometer_Temp" positionX="-18" positionY="72" width="128" height="105"/>
+        <element name="AnalysisData" positionX="-18" positionY="72" width="128" height="165"/>
         <element name="DeviceMotion" positionX="0" positionY="90" width="128" height="105"/>
         <element name="DeviceMotion_Temp" positionX="-9" positionY="81" width="128" height="105"/>
         <element name="Health" positionX="-63" positionY="-18" width="128" height="90"/>
@@ -79,6 +80,5 @@
         <element name="Location_Temp" positionX="0" positionY="90" width="128" height="105"/>
         <element name="Touch" positionX="-36" positionY="45" width="128" height="105"/>
         <element name="Touch_Temp" positionX="-27" positionY="63" width="128" height="105"/>
-        <element name="AnalysisData" positionX="-18" positionY="72" width="128" height="165"/>
     </elements>
 </model>

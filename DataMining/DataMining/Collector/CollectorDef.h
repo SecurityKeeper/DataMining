@@ -16,7 +16,8 @@ typedef enum {
     entitiesType_Location,
     entitiesType_Touch,
     entitiesType_Accelerometer,
-    entitiesType_Health
+    entitiesType_Health,
+    entitiesType_AnalysisData
 }entitiesType;
 
 typedef enum {
@@ -57,6 +58,13 @@ typedef enum {
 #define kYaw                                @"yaw"
 #define kDistance                           @"distance"
 #define kStepCount                          @"stepCount"
+#define kAnalysisOut                        @"analysisOut"
+#define kAngle                              @"angle"
+#define kEuler                              @"euler"
+#define kPlace                              @"place"
+#define kStepLength                         @"stepLength"
+#define kTouchForce                         @"touchForce"
+#define kTouchMove                          @"touchMove"
 
 #define kDeviceMotion                       @"DeviceMotion"
 #define kDeviceMotion_Temp                  @"DeviceMotion_Temp"
@@ -68,6 +76,7 @@ typedef enum {
 #define kAccelerometer_Temp                 @"Accelerometer_Temp"
 #define kHealth                             @"Health"
 #define kHealth_Temp                        @"Health_Temp"
+#define kAnalysisData                       @"AnalysisData"
 
 #define kWriteLog(str)                      [[FileManager shareInstance]writeLogFile:   \
                                             [NSString stringWithFormat:                 \

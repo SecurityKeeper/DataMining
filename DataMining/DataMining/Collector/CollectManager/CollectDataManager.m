@@ -323,6 +323,8 @@ void messageBox(NSString* str) {
                 }
             }
             break;
+        default:
+            break;
     }
     
     return YES;

@@ -11,6 +11,7 @@
 		0F885E321C857A1500A9AE83 /* chlkFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2A1C857A1500A9AE83 /* chlkFunction.m */; };
 		0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2C1C857A1500A9AE83 /* LinearRegression.m */; };
 		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
+		0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */; };
 		0FF7B9181CAB6CB800ECE12D /* DAAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */; };
 		20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AC96421CAB72D000FF6A67 /* DMLocationModel.m */; };
 		41AE0E7B1CAE738A009DCA24 /* DMAngleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AE0E7A1CAE738A009DCA24 /* DMAngleModel.m */; };
@@ -69,6 +70,9 @@
 		0F885E2C1C857A1500A9AE83 /* LinearRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearRegression.m; sourceTree = "<group>"; };
 		0F885E2F1C857A1500A9AE83 /* LogRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRegression.h; sourceTree = "<group>"; };
 		0F885E301C857A1500A9AE83 /* LogRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRegression.m; sourceTree = "<group>"; };
+		0FC84CFA1CB7802500453CE8 /* DataMining2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataMining2.xcdatamodel; sourceTree = "<group>"; };
+		0FC84CFB1CB7807B00453CE8 /* AnalysisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisData.h; sourceTree = "<group>"; };
+		0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisData.m; sourceTree = "<group>"; };
 		0FF7B9161CAB6CB800ECE12D /* DAAverageCalculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAAverageCalculate.h; sourceTree = "<group>"; };
 		0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAAverageCalculate.m; sourceTree = "<group>"; };
 		20AC96411CAB72D000FF6A67 /* DMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLocationModel.h; sourceTree = "<group>"; };
@@ -390,6 +394,8 @@
 		90EF43901C585AD8008A22D6 /* CoreDataWorker */ = {
 			isa = PBXGroup;
 			children = (
+				0FC84CFB1CB7807B00453CE8 /* AnalysisData.h */,
+				0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */,
 				90EF43911C585AD8008A22D6 /* Accelerometer.h */,
 				90EF43921C585AD8008A22D6 /* Accelerometer.m */,
 				90EF43931C585AD8008A22D6 /* CoreDataManager.h */,
@@ -551,6 +557,7 @@
 				0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */,
 				90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */,
 				20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */,
+				0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,9 +792,10 @@
 		90EE2D7D1C4E05E500C5A64D /* DataMining.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0FC84CFA1CB7802500453CE8 /* DataMining2.xcdatamodel */,
 				90EE2D7E1C4E05E500C5A64D /* DataMining.xcdatamodel */,
 			);
-			currentVersion = 90EE2D7E1C4E05E500C5A64D /* DataMining.xcdatamodel */;
+			currentVersion = 0FC84CFA1CB7802500453CE8 /* DataMining2.xcdatamodel */;
 			path = DataMining.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

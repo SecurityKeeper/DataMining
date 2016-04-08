@@ -26,12 +26,12 @@
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
         NSMutableDictionary *tmpDic = [[NSMutableDictionary alloc]init];
-        float pitch = [[dic objectForKey:@"pitch"] floatValue];
-        float roll = [[dic objectForKey:@"roll"] floatValue];
-        float yaw = [[dic objectForKey:@"yaw"] floatValue];
-        [tmpDic setObject:@(pitch) forKey:@"pitch"];
-        [tmpDic setObject:@(roll) forKey:@"roll"];
-        [tmpDic setObject:@(yaw) forKey:@"yaw"];
+        float pitch = [[dic objectForKey:kPitch] floatValue];
+        float roll = [[dic objectForKey:kRoll] floatValue];
+        float yaw = [[dic objectForKey:kYaw] floatValue];
+        [tmpDic setObject:@(pitch) forKey:kPitch];
+        [tmpDic setObject:@(roll) forKey:kRoll];
+        [tmpDic setObject:@(yaw) forKey:kYaw];
         [dataSet addObject:tmpDic];
     }
     if (dataSet.count == 0||data == nil) {
@@ -48,12 +48,12 @@
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
         NSMutableDictionary *tmpDic = [[NSMutableDictionary alloc]init];
-        float x = [[dic objectForKey:@"x"] floatValue];
-        float y = [[dic objectForKey:@"y"] floatValue];
-        float z = [[dic objectForKey:@"z"] floatValue];
-        [tmpDic setObject:@(x) forKey:@"x"];
-        [tmpDic setObject:@(y) forKey:@"y"];
-        [tmpDic setObject:@(z) forKey:@"z"];
+        float x = [[dic objectForKey:kX] floatValue];
+        float y = [[dic objectForKey:kY] floatValue];
+        float z = [[dic objectForKey:kZ] floatValue];
+        [tmpDic setObject:@(x) forKey:kX];
+        [tmpDic setObject:@(y) forKey:kY];
+        [tmpDic setObject:@(z) forKey:kZ];
         [dataSet addObject:tmpDic];
     }
     if (dataSet.count == 0||data == nil) {

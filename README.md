@@ -11,7 +11,7 @@
 
 架构图如下：
 
-![image](https://github.com/SecurityKeeper)
+![image](https://github.com/SecurityKeeper/DataMining/blob/master/ReadMe/architect.png)
 
 ----------
 
@@ -34,8 +34,10 @@
 ## 数据挖掘流程
 数据写入流程(简要)：
 
+![image](https://github.com/SecurityKeeper/DataMining/blob/master/ReadMe/collecting.png)
 
 触摸数据收集流程：
 
+![image](https://github.com/SecurityKeeper/DataMining/blob/master/ReadMe/touch.png)
 
 其他数据收集流程同上，触摸、角度、位置是实时监听收集，步数与距离是每隔1s收集一次。

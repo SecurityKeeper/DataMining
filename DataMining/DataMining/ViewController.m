@@ -62,8 +62,8 @@
     
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
 //    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);
-    double error = [[dataAnalysis defaultInstance] analysis:dataX and :dataY];
-//    NSLog(@"%lf",error);
+    //double r = [[dataAnalysis defaultInstance] analysis:dataX and :dataY];
+//    NSLog(@"%lf",r);
 }
 
 

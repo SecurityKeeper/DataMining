@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F885E311C857A1500A9AE83 /* DAClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E271C857A1500A9AE83 /* DAClustering.m */; };
-		0F885E321C857A1500A9AE83 /* chlkFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2A1C857A1500A9AE83 /* chlkFunction.m */; };
-		0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E2C1C857A1500A9AE83 /* LinearRegression.m */; };
 		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
 		0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */; };
 		0FF7B9181CAB6CB800ECE12D /* DAAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */; };
@@ -65,10 +63,6 @@
 /* Begin PBXFileReference section */
 		0F885E261C857A1500A9AE83 /* DAClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAClustering.h; sourceTree = "<group>"; };
 		0F885E271C857A1500A9AE83 /* DAClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAClustering.m; sourceTree = "<group>"; };
-		0F885E291C857A1500A9AE83 /* chlkFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chlkFunction.h; sourceTree = "<group>"; };
-		0F885E2A1C857A1500A9AE83 /* chlkFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chlkFunction.m; sourceTree = "<group>"; };
-		0F885E2B1C857A1500A9AE83 /* LinearRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearRegression.h; sourceTree = "<group>"; };
-		0F885E2C1C857A1500A9AE83 /* LinearRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearRegression.m; sourceTree = "<group>"; };
 		0F885E2F1C857A1500A9AE83 /* LogRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRegression.h; sourceTree = "<group>"; };
 		0F885E301C857A1500A9AE83 /* LogRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRegression.m; sourceTree = "<group>"; };
 		0FC84CFA1CB7802500453CE8 /* DataMining2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataMining2.xcdatamodel; sourceTree = "<group>"; };
@@ -183,10 +177,6 @@
 		0F885E281C857A1500A9AE83 /* LinearRegression */ = {
 			isa = PBXGroup;
 			children = (
-				0F885E291C857A1500A9AE83 /* chlkFunction.h */,
-				0F885E2A1C857A1500A9AE83 /* chlkFunction.m */,
-				0F885E2B1C857A1500A9AE83 /* LinearRegression.h */,
-				0F885E2C1C857A1500A9AE83 /* LinearRegression.m */,
 				D153715C1CC0E7C30071EFC4 /* dataAnalysis.h */,
 				D153715D1CC0E7C30071EFC4 /* dataAnalysis.m */,
 			);
@@ -535,7 +525,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */,
-				0F885E321C857A1500A9AE83 /* chlkFunction.m in Sources */,
 				41AE0E7B1CAE738A009DCA24 /* DMAngleModel.m in Sources */,
 				90EF43AA1C585AD8008A22D6 /* CoreDataManager.m in Sources */,
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
@@ -560,7 +549,6 @@
 				0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */,
 				90EF43AE1C585AD8008A22D6 /* Touch.m in Sources */,
 				90EF43AC1C585AD8008A22D6 /* Health.m in Sources */,
-				0F885E331C857A1500A9AE83 /* LinearRegression.m in Sources */,
 				90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */,
 				20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */,
 				0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */,

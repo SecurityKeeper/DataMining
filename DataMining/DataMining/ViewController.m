@@ -9,12 +9,11 @@
 #import "ViewController.h"
 #import "CollectDataManager.h"
 #import "CollectorDef.h"
-
 #import "DAAverageCalculate.h" //test
-
 #import "DMLocationModel.h"
-
 #import "DMAngleModel.h"
+#import "dataAnalysis.h"
+
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -34,6 +33,8 @@
   
     
     dataArray = [NSMutableArray array];
+    NSMutableArray *dataX = [[NSMutableArray alloc]init];
+    NSMutableArray *dataY = [[NSMutableArray alloc]init];
     
     table = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 120)];
     table.delegate = self;
@@ -61,6 +62,8 @@
     
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
 //    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);
+    double error = [[dataAnalysis defaultInstance] analysis:dataX and :dataY];
+//    NSLog(@"%lf",error);
 }
 
 

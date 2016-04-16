@@ -11,7 +11,7 @@
 @interface dataAnalysis : NSObject
 
 + (dataAnalysis *)defaultInstance;
-- (void) analysis :(NSMutableArray *)data and:(NSMutableArray *)data2;
+- (double) analysis :(NSMutableArray *)data and:(NSMutableArray *)data2;
 
 - (void) loadData;
 

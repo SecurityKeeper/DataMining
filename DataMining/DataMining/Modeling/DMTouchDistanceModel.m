@@ -12,11 +12,14 @@
 #import "DMTouchTimeModel.h"
 #import "dataAnalysis.h"
 
-@implementation DMTouchDistanceModel
+@interface DMTouchDistanceModel()
 
-double a,b;
-NSMutableArray *dataX;
-NSMutableArray *dataY;
+@property (nonatomic,strong) NSMutableArray *dataX;
+@property (nonatomic,strong) NSMutableArray *dataY;
+
+@end
+
+@implementation DMTouchDistanceModel
 
 + (DMTouchDistanceModel *)defaultInstance{
     static dispatch_once_t token;
@@ -28,17 +31,17 @@ NSMutableArray *dataY;
     
 }
 /** 加载数据 */
-- (void) loadData {
+- (void)loadData {
     
-    dataX = [[NSMutableArray alloc] init];
-    dataY = [[NSMutableArray alloc] init];
+    _dataX = [[NSMutableArray alloc] init];
+    _dataY = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginX = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginY = [[NSMutableArray alloc] init];
     NSMutableArray *dataEndX = [[NSMutableArray alloc] init];
     NSMutableArray *dataEndY = [[NSMutableArray alloc] init];
     NSMutableArray *data = [[NSMutableArray alloc] init];
     NSMutableArray *data2 = [[NSMutableArray alloc] init];
-    //dataSrcType_tempStorage  dataSrcType_reliableStorage
+  
     NSArray * tempArray = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_reliableStorage];
     for (NSDictionary *dict in tempArray) {
         if ([dict[@"touchType"] isEqual:@1]) {
@@ -70,8 +73,8 @@ NSMutableArray *dataY;
     }
     NSMutableArray *timeArray  = [[DMTouchTimeModel defaultInstance] getTouchTime];
     [timeArray removeObjectsAtIndexes:set];
-    dataY = data;
-    dataX = timeArray;
+    _dataY = data;
+    _dataX = timeArray;
     
 }
 
@@ -79,8 +82,8 @@ NSMutableArray *dataY;
 - (long double) getProbability :(NSMutableArray *)data and:(NSMutableArray *)data2{
     
     [self loadData];
-    data2 = dataY;
-    data = dataX;
+    data2 = _dataY;
+    data = _dataX;
 
     return [[dataAnalysis defaultInstance] analysis:data :data2];
 }

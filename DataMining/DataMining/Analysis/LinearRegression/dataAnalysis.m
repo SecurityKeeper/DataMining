@@ -7,6 +7,12 @@
 //
 
 #import "dataAnalysis.h"
+@interface dataAnalysis()
+
+@property (nonatomic,assign) double a;
+@property (nonatomic,assign) double b;
+
+@end
 
 @implementation dataAnalysis
 
@@ -20,7 +26,6 @@
     
 }
 
-double a,b;
 - (double)analysis:(NSMutableArray *)data :(NSMutableArray *)data2{
     
     double x[data.count],  y[data.count];
@@ -56,16 +61,16 @@ double a,b;
     mxy = sumxy / n;
    // printf("mxx=%f myy=%f mxy=%f\n",mxx,myy,mxy);
     
-    a=(n*sumxy-sumx*sumy)/(n*sumxx-sumx*sumx);
-    b=(sumxx*sumy-sumx*sumxy)/(n*sumxx-sumx*sumx);
+    _a=(n*sumxy-sumx*sumy)/(n*sumxx-sumx*sumx);
+    _b=(sumxx*sumy-sumx*sumxy)/(n*sumxx-sumx*sumx);
    // b= my - a*mx;
-    printf("a=%f b=%f\n",a,b);
+    printf("a=%f b=%f\n",_a,_b);
     
     //标准偏差
     double *yy=(double*)malloc(sizeof(double)*n);
     double sumerrorsquare=0,error,z;
     for(i=0;i<n;i++) {
-        yy[i]=a*[[data objectAtIndex:i] floatValue]+b;
+        yy[i]=_a*[[data objectAtIndex:i] floatValue]+_b;
         //  printf("%f ",yy[i]);  /* 计算实际求出的值 */
         
         z = yy[i]-[[data2 objectAtIndex:i] floatValue];   /*计算值与实际值之差*/

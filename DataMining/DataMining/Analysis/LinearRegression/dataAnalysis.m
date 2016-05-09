@@ -60,7 +60,7 @@
     myy = sumyy / n;
     mxy = sumxy / n;
    // printf("mxx=%f myy=%f mxy=%f\n",mxx,myy,mxy);
-    
+   //计算系数
     _a=(n*sumxy-sumx*sumy)/(n*sumxx-sumx*sumx);
     _b=(sumxx*sumy-sumx*sumxy)/(n*sumxx-sumx*sumx);
    // b= my - a*mx;

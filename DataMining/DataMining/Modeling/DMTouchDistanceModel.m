@@ -28,7 +28,6 @@
         model = [[DMTouchDistanceModel alloc] init];
     });
     return model;
-    
 }
 /** 加载数据 */
 - (void)loadData {
@@ -79,7 +78,7 @@
 }
 
 
-- (long double) getProbability :(NSMutableArray *)data and:(NSMutableArray *)data2{
+- (long double)getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2{
     
     [self loadData];
     data2 = _dataY;

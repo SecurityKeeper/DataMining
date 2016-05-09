@@ -14,4 +14,5 @@
 
 - (long double)getProbability:(double) newValue;
 - (NSMutableArray *)getTouchTime;
+
 @end

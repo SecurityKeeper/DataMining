@@ -40,7 +40,8 @@
 		90EF43AE1C585AD8008A22D6 /* Touch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF439C1C585AD8008A22D6 /* Touch.m */; };
 		90EF43AF1C585AD8008A22D6 /* DataStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF439E1C585AD8008A22D6 /* DataStorageManager.m */; };
 		90EF43B01C585AD8008A22D6 /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 90EF43A11C585AD8008A22D6 /* FileManager.m */; };
-		D153715E1CC0E7C30071EFC4 /* dataAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = D153715D1CC0E7C30071EFC4 /* dataAnalysis.m */; };
+		D18646391CE03DF900EA4AB8 /* DMTouchDistanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D18646381CE03DF900EA4AB8 /* DMTouchDistanceModel.m */; };
+		D186463C1CE03F8D00EA4AB8 /* dataAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = D186463B1CE03F8D00EA4AB8 /* dataAnalysis.m */; };
 		EC39F0D91C4F1FD500AEDFF4 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */; };
 		EC39F0DB1C4F1FE100AEDFF4 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */; };
 		ECB2CDD21C4E35670035B1FD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */; };
@@ -125,8 +126,10 @@
 		90EF43A01C585AD8008A22D6 /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManager.h; sourceTree = "<group>"; };
 		90EF43A11C585AD8008A22D6 /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		90EF43B11C585AFE008A22D6 /* CollectorDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectorDef.h; sourceTree = "<group>"; };
-		D153715C1CC0E7C30071EFC4 /* dataAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataAnalysis.h; sourceTree = "<group>"; };
-		D153715D1CC0E7C30071EFC4 /* dataAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataAnalysis.m; sourceTree = "<group>"; };
+		D18646371CE03DF900EA4AB8 /* DMTouchDistanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTouchDistanceModel.h; sourceTree = "<group>"; };
+		D18646381CE03DF900EA4AB8 /* DMTouchDistanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTouchDistanceModel.m; sourceTree = "<group>"; };
+		D186463A1CE03F8D00EA4AB8 /* dataAnalysis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataAnalysis.h; sourceTree = "<group>"; };
+		D186463B1CE03F8D00EA4AB8 /* dataAnalysis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataAnalysis.m; sourceTree = "<group>"; };
 		EC39F0D81C4F1FD500AEDFF4 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapLocationKit.framework; sourceTree = "<group>"; };
 		EC39F0DA1C4F1FE100AEDFF4 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		ECB2CDD11C4E35660035B1FD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -177,8 +180,8 @@
 		0F885E281C857A1500A9AE83 /* LinearRegression */ = {
 			isa = PBXGroup;
 			children = (
-				D153715C1CC0E7C30071EFC4 /* dataAnalysis.h */,
-				D153715D1CC0E7C30071EFC4 /* dataAnalysis.m */,
+				D186463A1CE03F8D00EA4AB8 /* dataAnalysis.h */,
+				D186463B1CE03F8D00EA4AB8 /* dataAnalysis.m */,
 			);
 			name = LinearRegression;
 			path = DataMining/Analysis/LinearRegression;
@@ -213,6 +216,8 @@
 				90EEF16E1C76AE3000205B0E /* HealthModel.m */,
 				ECDBE0BC1C75653B0076D79E /* DMTouchTimeModel.h */,
 				ECDBE0BD1C75653B0076D79E /* DMTouchTimeModel.m */,
+				D18646371CE03DF900EA4AB8 /* DMTouchDistanceModel.h */,
+				D18646381CE03DF900EA4AB8 /* DMTouchDistanceModel.m */,
 				20AC96411CAB72D000FF6A67 /* DMLocationModel.h */,
 				20AC96421CAB72D000FF6A67 /* DMLocationModel.m */,
 				41AE0E791CAE738A009DCA24 /* DMAngleModel.h */,
@@ -525,11 +530,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				90EE2D7C1C4E05E500C5A64D /* AppDelegate.m in Sources */,
+				D18646391CE03DF900EA4AB8 /* DMTouchDistanceModel.m in Sources */,
 				41AE0E7B1CAE738A009DCA24 /* DMAngleModel.m in Sources */,
 				90EF43AA1C585AD8008A22D6 /* CoreDataManager.m in Sources */,
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
-				D153715E1CC0E7C30071EFC4 /* dataAnalysis.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
+				D186463C1CE03F8D00EA4AB8 /* dataAnalysis.m in Sources */,
 				90EF43A31C585AD8008A22D6 /* HealthWorker.m in Sources */,
 				90EF43AB1C585AD8008A22D6 /* DeviceMotion.m in Sources */,
 				90EF43A41C585AD8008A22D6 /* HKHealthStore+AAPLExtensions.m in Sources */,

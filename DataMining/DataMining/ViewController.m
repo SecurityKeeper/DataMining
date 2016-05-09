@@ -12,7 +12,6 @@
 #import "DAAverageCalculate.h" //test
 #import "DMLocationModel.h"
 #import "DMAngleModel.h"
-#import "dataAnalysis.h"
 
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>

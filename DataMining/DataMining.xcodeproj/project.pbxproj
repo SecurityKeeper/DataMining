@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F4B6F431CE1E25D005BFA20 /* DMAnalysisModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4B6F421CE1E25D005BFA20 /* DMAnalysisModel.m */; };
 		0F885E311C857A1500A9AE83 /* DAClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E271C857A1500A9AE83 /* DAClustering.m */; };
 		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
 		0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */; };
@@ -62,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F4B6F411CE1E25D005BFA20 /* DMAnalysisModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAnalysisModel.h; sourceTree = "<group>"; };
+		0F4B6F421CE1E25D005BFA20 /* DMAnalysisModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAnalysisModel.m; sourceTree = "<group>"; };
 		0F885E261C857A1500A9AE83 /* DAClustering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAClustering.h; sourceTree = "<group>"; };
 		0F885E271C857A1500A9AE83 /* DAClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAClustering.m; sourceTree = "<group>"; };
 		0F885E2F1C857A1500A9AE83 /* LogRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRegression.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				20AC96421CAB72D000FF6A67 /* DMLocationModel.m */,
 				41AE0E791CAE738A009DCA24 /* DMAngleModel.h */,
 				41AE0E7A1CAE738A009DCA24 /* DMAngleModel.m */,
+				0F4B6F411CE1E25D005BFA20 /* DMAnalysisModel.h */,
+				0F4B6F421CE1E25D005BFA20 /* DMAnalysisModel.m */,
 			);
 			path = Modeling;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				90EF43A91C585AD8008A22D6 /* Accelerometer.m in Sources */,
 				ECDBE0BE1C75653B0076D79E /* DMTouchTimeModel.m in Sources */,
 				90EF43A81C585AD8008A22D6 /* TouchWorker.m in Sources */,
+				0F4B6F431CE1E25D005BFA20 /* DMAnalysisModel.m in Sources */,
 				90EF43AF1C585AD8008A22D6 /* DataStorageManager.m in Sources */,
 				90EE2D7F1C4E05E500C5A64D /* DataMining.xcdatamodeld in Sources */,
 				90EF43AD1C585AD8008A22D6 /* Location.m in Sources */,

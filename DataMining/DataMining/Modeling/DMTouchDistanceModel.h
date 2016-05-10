@@ -11,8 +11,8 @@
 @interface DMTouchDistanceModel : NSObject
 
 + (DMTouchDistanceModel *)defaultInstance;
-- (long double) getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2;
 
+- (long double) getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2;
 
 @end
 

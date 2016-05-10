@@ -31,7 +31,6 @@
 }
 /** 加载数据 */
 - (void)loadData {
-    
     _dataX = [[NSMutableArray alloc] init];
     _dataY = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginX = [[NSMutableArray alloc] init];
@@ -78,13 +77,14 @@
 }
 
 
-- (long double)getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2{
-    
+- (long double) getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2{
+    double r;
     [self loadData];
-    data2 = _dataY;
-    data = _dataX;
-
-    return [[dataAnalysis defaultInstance] analysis:data :data2];
+    BOOL reslut = [[dataAnalysis defaultInstance] getIsTrue:_dataX :_dataY];
+    if (reslut) {
+       r = [[dataAnalysis defaultInstance] analysis:data :data2];
+    }
+    return r;
 }
 
 @end

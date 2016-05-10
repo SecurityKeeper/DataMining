@@ -12,5 +12,6 @@
 
 + (dataAnalysis *)defaultInstance;
 - (double)analysis:(NSMutableArray *)data :(NSMutableArray *)data2;
+- (BOOL)getIsTrue:(NSMutableArray *)data :(NSMutableArray *)data2;
 
 @end

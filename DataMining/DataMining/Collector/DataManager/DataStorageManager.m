@@ -235,6 +235,8 @@
                 [self.healthArray addObject:dict];
                 [self moveMoreDataToTempStorage:self.healthArray type:entitiesType_Health];
                 break;
+            default:
+                break;
         }
     }
 }
@@ -262,6 +264,8 @@
                 break;
             case entitiesType_Health:
                 self.healthArray = nil;
+                break;
+            default:
                 break;
         }
     }

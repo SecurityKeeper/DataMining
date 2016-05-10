@@ -28,10 +28,47 @@
     return model;
 }
 
-- (long double)getProbability:(double)newValue {
+- (long double)getProbability:(NSArray *)newValue {
     NSMutableArray * arrTemp = [self getTouchTime];
-    long double result  =[[DAAverageCalculate defaultInstance] probabilityCalculate:arrTemp newValue:newValue];
+    if (arrTemp.count == 0 || newValue.count == 0) {
+        return 0;
+    }
+    long double result  =[[DAAverageCalculate defaultInstance] probabilityCalculate:arrTemp newValue:[self calculateAverageTime:newValue]];
     return result;
+}
+
+- (long double)calculateAverageTime:(NSArray *)touchArray
+{
+    NSMutableArray * arrTemp = [NSMutableArray array];
+    NSNumber *startTime = @0;
+    NSNumber *stopTime = @0;
+    for (NSDictionary * dic in touchArray) {
+        NSInteger touckType = [[dic objectForKey:kTouchType] integerValue];
+        switch (touckType) {
+            case 1:
+            {
+                startTime = [dic objectForKey:kTimesTamp];
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+            default:
+            {
+                stopTime = [dic objectForKey:kTimesTamp];
+                double time = [stopTime doubleValue] - [startTime doubleValue];
+                [arrTemp addObject:[NSNumber numberWithDouble:time]];
+            }
+                break;
+        }
+    }
+    double averageTime = 0;
+    for (NSNumber *value in arrTemp) {
+        averageTime += [value doubleValue] / arrTemp.count;
+    }
+    return averageTime;
 }
 
 - (NSMutableArray *)getTouchTime {

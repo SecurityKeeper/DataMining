@@ -12,7 +12,7 @@
 
 + (DMTouchTimeModel *)defaultInstance;
 
-- (long double)getProbability:(double) newValue;
+- (long double)getProbability:(NSArray *) newValue;
 - (NSMutableArray *)getTouchTime;
 
 @end

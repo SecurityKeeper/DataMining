@@ -19,7 +19,7 @@
     return model;
 }
 
-- (float)getMontionAnalyzeData:(NSDictionary*)data {
+- (float)getMontionAnalyzeData:(NSArray*)data {
     
     NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_reliableStorage];
 
@@ -34,14 +34,20 @@
         [tmpDic setObject:@(yaw) forKey:kYaw];
         [dataSet addObject:tmpDic];
     }
-    if (dataSet.count == 0||data == nil) {
+    if (dataSet.count == 0||data.count == 0) {
         return 0;
     }
-    return [[DAClustering sharedInstance] checkData:data set:dataSet];
+    
+    double average = 0;
+    for (NSDictionary *valueDic in data) {
+        average += [[DAClustering sharedInstance]checkData:valueDic set:dataSet] / data.count;
+    }
+    
+    return average;
 }
 
 
-- (float)getAccelerometerAnalyzeData:(NSDictionary*)data {
+- (float)getAccelerometerAnalyzeData:(NSArray*)data {
     
     NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:0 dataFrom:dataSrcType_reliableStorage];
 
@@ -56,10 +62,16 @@
         [tmpDic setObject:@(z) forKey:kZ];
         [dataSet addObject:tmpDic];
     }
-    if (dataSet.count == 0||data == nil) {
+    if (dataSet.count == 0||data.count == 0) {
         return 0;
     }
-    return [[DAClustering sharedInstance] checkData:data set:dataSet];
+    
+    double average = 0;
+    for (NSDictionary *valueDic in data) {
+        average += [[DAClustering sharedInstance]checkData:valueDic set:dataSet] / data.count;
+    }
+    
+    return average;
 }
 
 

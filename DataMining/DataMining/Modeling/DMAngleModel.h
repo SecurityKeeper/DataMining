@@ -17,8 +17,8 @@
 + (DMAngleModel *)sharedInstance;
 
 //欧拉角
-- (float)getMontionAnalyzeData:(NSDictionary*)data;
+- (float)getMontionAnalyzeData:(NSArray*)data;
 
 //加速计
-- (float)getAccelerometerAnalyzeData:(NSDictionary*)data;
+- (float)getAccelerometerAnalyzeData:(NSArray*)data;
 @end

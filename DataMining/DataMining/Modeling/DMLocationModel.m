@@ -36,7 +36,10 @@
     
     double average = 0;
     for (NSDictionary *valueDic in data) {
-        average += [[DAClustering sharedInstance]checkData:valueDic set:dataSet] / data.count;
+        NSDictionary *checkDic = [NSDictionary dictionary];
+        [checkDic setValue:[valueDic objectForKey:kLatitude] forKey:kLatitude];
+        [checkDic setValue:[valueDic objectForKey:kLongitude] forKey:kLongitude];
+        average += [[DAClustering sharedInstance]checkData:checkDic set:dataSet] / data.count;
     }
     
     return average;

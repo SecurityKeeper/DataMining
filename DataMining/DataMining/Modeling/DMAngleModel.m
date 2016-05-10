@@ -40,7 +40,11 @@
     
     double average = 0;
     for (NSDictionary *valueDic in data) {
-        average += [[DAClustering sharedInstance]checkData:valueDic set:dataSet] / data.count;
+        NSDictionary *checkDic = [NSDictionary dictionary];
+        [checkDic setValue:[valueDic objectForKey:kPitch] forKey:kPitch];
+        [checkDic setValue:[valueDic objectForKey:kRoll] forKey:kRoll];
+        [checkDic setValue:[valueDic objectForKey:kYaw] forKey:kYaw];
+        average += [[DAClustering sharedInstance]checkData:checkDic set:dataSet] / data.count;
     }
     
     return average;
@@ -68,7 +72,11 @@
     
     double average = 0;
     for (NSDictionary *valueDic in data) {
-        average += [[DAClustering sharedInstance]checkData:valueDic set:dataSet] / data.count;
+        NSDictionary *checkDic = [NSDictionary dictionary];
+        [checkDic setValue:[valueDic objectForKey:kX] forKey:kX];
+        [checkDic setValue:[valueDic objectForKey:kY] forKey:kY];
+        [checkDic setValue:[valueDic objectForKey:kZ] forKey:kZ];
+        average += [[DAClustering sharedInstance]checkData:checkDic set:dataSet] / data.count;
     }
     
     return average;

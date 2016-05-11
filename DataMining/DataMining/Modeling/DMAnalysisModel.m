@@ -8,6 +8,12 @@
 
 #import "DMAnalysisModel.h"
 #import "DataStorageManager.h"
+#import "HealthModel.h"
+#import "DMTouchTimeModel.h"
+#import "DMTouchDistanceModel.h"
+#import "DMLocationModel.h"
+#import "DMAngleModel.h"
+#import "DAClustering.h"
 
 @implementation DMAnalysisModel
 
@@ -40,34 +46,6 @@ static DMAnalysisModel *analysisModel = nil;
         }
     }
     
-    
-    if (tryLogic) {
-        for (NSDictionary *value in tempAnalysisData) {
-            NSDictionary *checkDic = [NSDictionary dictionary];
-            [checkDic setValue:[value objectForKey:kAngle] forKey:kAngle];
-            [checkDic setValue:[value objectForKey:kEuler] forKey:kEuler];
-            [checkDic setValue:[value objectForKey:kPlace] forKey:kPlace];
-            [checkDic setValue:[value objectForKey:kStepLength] forKey:kStepLength];
-            [checkDic setValue:[value objectForKey:kTouchForce] forKey:kTouchForce];
-            [checkDic setValue:[value objectForKey:kTouchMove] forKey:kTouchMove];
-            [checkDic setValue:[value objectForKey:kAnalysisOut] forKey:kAnalysisOut];
-            [reliableArray addObject:checkDic];
-        }
-        
-        return retDic;
-    }
-    
-    for (NSDictionary *value in tempAnalysisData) {
-        NSDictionary *checkDic = [NSDictionary dictionary];
-        [checkDic setValue:[value objectForKey:kAngle] forKey:kAngle];
-        [checkDic setValue:[value objectForKey:kEuler] forKey:kEuler];
-        [checkDic setValue:[value objectForKey:kPlace] forKey:kPlace];
-        [checkDic setValue:[value objectForKey:kStepLength] forKey:kStepLength];
-        [checkDic setValue:[value objectForKey:kTouchForce] forKey:kTouchForce];
-        [checkDic setValue:[value objectForKey:kTouchMove] forKey:kTouchMove];
-        [reliableArray addObject:checkDic];
-    }
-    
     NSArray *tempHealth = [[DataStorageManager shareInstance] getDataType:entitiesType_Health WithCount:0 dataFrom:dataSrcType_memory];
     if (tempHealth.count == 0) {
         tempHealth = [[DataStorageManager shareInstance] getDataType:entitiesType_Health WithCount:0 dataFrom:dataSrcType_tempStorage];
@@ -91,6 +69,58 @@ static DMAnalysisModel *analysisModel = nil;
     NSArray *tempDeviceMontion = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_memory];
     if (tempDeviceMontion == 0) {
         tempDeviceMontion = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_tempStorage];
+    }
+    
+    float newStepLength = [[HealthModel shareInstance] getAnalyzeData:tempHealth];
+    float newTouchForce = [[DMTouchTimeModel defaultInstance] getProbability:tempTouch];
+    float newTouchMove;
+    float newPlace = [[DMLocationModel sharedInstance] getWeight:tempLocation];
+    float newAngle = [[DMAngleModel sharedInstance] getAccelerometerAnalyzeData:tempAccelerometer];
+    float newEuler = [[DMAngleModel sharedInstance] getMontionAnalyzeData:tempDeviceMontion];
+    
+    [retDic setValue:[NSNumber numberWithFloat:newStepLength] forKey:kStepLength];
+    [retDic setValue:[NSNumber numberWithFloat:newTouchForce] forKey:kTouchForce];
+    [retDic setValue:[NSNumber numberWithFloat:newTouchMove] forKey:kTouchMove];
+    [retDic setValue:[NSNumber numberWithFloat:newPlace] forKey:kPlace];
+    [retDic setValue:[NSNumber numberWithFloat:newAngle] forKey:kAngle];
+    [retDic setValue:[NSNumber numberWithFloat:newEuler] forKey:kEuler];
+    
+    if (tryLogic) { // logistic analysis
+        for (NSDictionary *value in tempAnalysisData) {
+            NSDictionary *checkDic = [NSDictionary dictionary];
+            [checkDic setValue:[value objectForKey:kAngle] forKey:kAngle];
+            [checkDic setValue:[value objectForKey:kEuler] forKey:kEuler];
+            [checkDic setValue:[value objectForKey:kPlace] forKey:kPlace];
+            [checkDic setValue:[value objectForKey:kStepLength] forKey:kStepLength];
+            [checkDic setValue:[value objectForKey:kTouchForce] forKey:kTouchForce];
+            [checkDic setValue:[value objectForKey:kTouchMove] forKey:kTouchMove];
+            [checkDic setValue:[value objectForKey:kAnalysisOut] forKey:kAnalysisOut];
+            [reliableArray addObject:checkDic];
+        }
+        
+        return retDic;
+    }
+    
+    
+    // clustering analysis
+    for (NSDictionary *value in tempAnalysisData) {
+        NSDictionary *checkDic = [NSDictionary dictionary];
+        [checkDic setValue:[value objectForKey:kAngle] forKey:kAngle];
+        [checkDic setValue:[value objectForKey:kEuler] forKey:kEuler];
+        [checkDic setValue:[value objectForKey:kPlace] forKey:kPlace];
+        [checkDic setValue:[value objectForKey:kStepLength] forKey:kStepLength];
+        [checkDic setValue:[value objectForKey:kTouchForce] forKey:kTouchForce];
+        [checkDic setValue:[value objectForKey:kTouchMove] forKey:kTouchMove];
+        [reliableArray addObject:checkDic];
+    }
+    
+    float newOut = [[DAClustering sharedInstance] checkData:retDic set:reliableArray];
+    if (newOut >= 0.95) {
+        [retDic setValue:[NSNumber numberWithBool:true] forKey:kAnalysisOut];
+    }
+    else
+    {
+        [retDic setValue:[NSNumber numberWithBool:false] forKey:kAnalysisOut];
     }
     
     return retDic;

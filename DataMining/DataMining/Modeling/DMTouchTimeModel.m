@@ -29,55 +29,36 @@
 }
 
 - (long double)getProbability:(NSArray *)newValue {
-    NSMutableArray * arrTemp = [self getTouchTime];
-    if (arrTemp.count == 0 || newValue.count == 0) {
+    NSArray * reliableTouchArray = [self getReliableTouchTime];
+    if (reliableTouchArray.count == 0) {
+        return 1;
+    }
+    NSArray * newTouchTimeArray = [self getTouchTimeArray:newValue];
+    if (newTouchTimeArray.count == 0) {
         return 0;
     }
-    long double result  =[[DAAverageCalculate defaultInstance] probabilityCalculate:arrTemp newValue:[self calculateAverageTime:newValue]];
-    return result;
+    
+    long double totalResult = 0;
+    for (NSNumber * touch in newTouchTimeArray) {
+        long double result  =[[DAAverageCalculate defaultInstance] probabilityCalculate:reliableTouchArray newValue:[touch doubleValue]];
+        totalResult += result;
+    }
+    
+    return totalResult/newTouchTimeArray.count;
 }
 
-- (long double)calculateAverageTime:(NSArray *)touchArray
-{
-    NSMutableArray * arrTemp = [NSMutableArray array];
-    NSNumber *startTime = @0;
-    NSNumber *stopTime = @0;
-    for (NSDictionary * dic in touchArray) {
-        NSInteger touckType = [[dic objectForKey:kTouchType] integerValue];
-        switch (touckType) {
-            case 1:
-            {
-                startTime = [dic objectForKey:kTimesTamp];
-            }
-                break;
-            case 2:
-            {
-                
-            }
-                break;
-            default:
-            {
-                stopTime = [dic objectForKey:kTimesTamp];
-                double time = [stopTime doubleValue] - [startTime doubleValue];
-                [arrTemp addObject:[NSNumber numberWithDouble:time]];
-            }
-                break;
-        }
-    }
-    double averageTime = 0;
-    for (NSNumber *value in arrTemp) {
-        averageTime += [value doubleValue] / arrTemp.count;
-    }
-    return averageTime;
-}
 
-- (NSMutableArray *)getTouchTime {
+- (NSArray *)getReliableTouchTime {
     NSArray * tempArray = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_reliableStorage];
+    return [self getTouchTimeArray:tempArray];
+}
+
+- (NSArray *)getTouchTimeArray:(NSArray *)touchArray {
     NSMutableArray * arrTemp = [NSMutableArray array];
     NSNumber *startTime = @0;
     NSNumber *stopTime = @0;
     BOOL isRightData = YES;
-    for (NSDictionary * dic in tempArray) {
+    for (NSDictionary * dic in touchArray) {
         NSInteger touckType = [[dic objectForKey:kTouchType] integerValue];
         switch (touckType) {
             case 1:
@@ -97,9 +78,9 @@
             {
                 if (isRightData) {
                     stopTime = [dic objectForKey:kTimesTamp];
-                    double time = [stopTime doubleValue] - [startTime doubleValue];
+                    double time = fabs([stopTime doubleValue] - [startTime doubleValue]);
                     [arrTemp addObject:[NSNumber numberWithDouble:time]];
-
+                    
                 }
                 
             }
@@ -107,8 +88,7 @@
         }
     }
     
-    return arrTemp;
+    return [arrTemp mutableCopy];
 }
-
 
 @end

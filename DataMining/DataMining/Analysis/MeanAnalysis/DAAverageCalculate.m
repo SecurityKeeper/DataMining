@@ -31,6 +31,7 @@ static long double const e = M_E;
 //概率
 - (long double)probabilityCalculate:(NSArray *)array
                            newValue:(long double)newValue {
+    
     long double paiValue = sqrtl(2*pai);
     long double aveValue = [self aveValue:array];
     long double variance = [self varianceAveValue:aveValue valueArr:array];

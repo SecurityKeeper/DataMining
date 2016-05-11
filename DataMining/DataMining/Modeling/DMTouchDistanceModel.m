@@ -27,7 +27,7 @@
     return model;
 }
 
-- (double)getProbability :(NSArray *) newValue{
+- (double)getProbability:(NSArray *)newValue{
     NSArray *dataArray = [self loadData];
     NSArray *newValueArray = [self getNewArray:newValue];
     double result =  [[dataAnalysis defaultInstance] analysis:dataArray newVlue:newValueArray];

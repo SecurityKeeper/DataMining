@@ -702,7 +702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = DataMining/DataMining.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Changhong Electric Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Changhong Electric Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -721,7 +721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = DataMining/DataMining.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Changhong Electric Co., Ltd.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Changhong Electric Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (

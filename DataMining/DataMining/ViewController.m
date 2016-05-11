@@ -31,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     dataArray = [NSMutableArray array];
-    
+
     table = [[UITableView alloc] initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 120)];
     table.delegate = self;
     table.dataSource = self;
@@ -58,7 +58,7 @@
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
 //    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);
     
-//   double r = [[DMTouchDistanceModel defaultInstance] getProbability:dataArray];
+//   double r = [[DMTouchDistanceModel defaultInstance] getProbability:dataArray1];
 //    NSLog(@"%lf",r);
 }
 

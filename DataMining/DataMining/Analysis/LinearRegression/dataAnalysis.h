@@ -11,6 +11,6 @@
 @interface dataAnalysis : NSObject
 
 + (dataAnalysis *)defaultInstance;
-- (double)analysis:(NSArray *)dataArray newVlue:(NSArray *)newArray;
+- (long double)analysis:(NSArray *)dataArray newVlue:(NSArray *)newArray;
 
 @end

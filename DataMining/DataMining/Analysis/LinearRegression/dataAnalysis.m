@@ -28,12 +28,12 @@
     
 }
 
-- (double)analysis:(NSArray *)dataArray newVlue:(NSArray *)newArray{
+- (long double)analysis:(NSArray *)dataArray newVlue:(NSArray *)newArray{
     int i, n = (int)dataArray.count;
-    double sumx,sumy,sumxx,sumyy,sumxy,mx,my,mxx,myy,mxy;
-    double a, b;
-    double d1, d2, d3;
-    double result;
+    long double sumx,sumy,sumxx,sumyy,sumxy,mx,my,mxx,myy,mxy;
+    long double a, b;
+    long double d1, d2, d3;
+    long double result;
     // 变量的初始化
     result = d1 = d2 = d3 = mx = my = sumx = sumy = sumxx = sumyy = sumxy = 0.0;
     NSMutableArray *dataX = [NSMutableArray array];
@@ -67,7 +67,7 @@
    //计算系数
     a=(n*sumxy-sumx*sumy)/(n*sumxx-sumx*sumx);
     b=(sumxx*sumy-sumx*sumxy)/(n*sumxx-sumx*sumx);
-    printf("a=%lf b=%lf\n",a,b);
+   // printf("a=%Lf b=%Lf\n",a,b);
 
     // 计算相关系数的数据组成部分,相关系数决定回归方程估测可靠程度的高低
     for (i = 0; i < n; i++) {

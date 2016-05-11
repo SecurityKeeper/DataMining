@@ -36,13 +36,12 @@
 
 /** 加载数据 */
 - (NSArray *)loadData {
-  
     NSArray * tempArray = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_reliableStorage];
     NSArray *dataArray = [self getNewArray:tempArray];
     return dataArray;
 }
 
-
+//数据转换
 - (NSArray *)getNewArray:(NSArray *)newValue{
     NSMutableArray *dataArry = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginX = [[NSMutableArray alloc] init];
@@ -62,7 +61,7 @@
         }
     }
     //求出起始点和终止点的距离
-    for (int i = 0; i< dataBeginX.count; i++) {
+    for (int i = 0; i<dataEndX.count; i++) {
         double X = [dataBeginX[i] floatValue] - [dataEndX[i] floatValue];
         double Y = [dataBeginY[i] floatValue] - [dataEndY[i] floatValue];
         double dis = sqrt(X * X + Y * Y);

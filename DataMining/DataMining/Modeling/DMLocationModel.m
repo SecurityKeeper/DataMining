@@ -18,7 +18,7 @@
     return model;
 }
 
-- (double)getWeight:(NSDictionary*)data {
+- (double)getWeight:(NSArray*)data {
     
     NSArray *dbData = [[DataStorageManager shareInstance]getDataType:entitiesType_Location WithCount:0 dataFrom:dataSrcType_reliableStorage];
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
@@ -34,14 +34,14 @@
         return 0;
     }
     
-    double average = 0;
+    double sum = 0.0;
     for (NSDictionary *valueDic in data) {
         NSDictionary *checkDic = [NSDictionary dictionary];
         [checkDic setValue:[valueDic objectForKey:kLatitude] forKey:kLatitude];
         [checkDic setValue:[valueDic objectForKey:kLongitude] forKey:kLongitude];
-        average += [[DAClustering sharedInstance]checkData:checkDic set:dataSet] / data.count;
+        sum += [[DAClustering sharedInstance]checkData:checkDic set:dataSet];
     }
     
-    return average;
+    return sum/data.count;
 }
 @end

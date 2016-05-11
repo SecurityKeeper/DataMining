@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LogRegression.h"
 
+NSArray *weights;
 /*
-    从文件加载数据至数组，testSet为训练数据集,返回特征数
+ 从文件加载数据至数组，testSet为训练数据集,返回特征数
  */
 int loadData(NSMutableArray *data,NSMutableArray *labels) {
     NSString *path = [[NSBundle mainBundle]pathForResource:@"testSet" ofType:@"txt"];
@@ -28,27 +29,41 @@ int loadData(NSMutableArray *data,NSMutableArray *labels) {
         }
         [labels addObject:@([[compArr lastObject]floatValue])];
     }
-    
-//    FILE *file = fopen([path cStringUsingEncoding:NSASCIIStringEncoding], "r");
-//    while (!feof(file)) {
-//        fscanf(file, "%f %f %f ", &x1, &x2, &label);
-//        [data addObject:@(1.0)];
-//        [data addObject:@(x1)];
-//        [data addObject:@(x2)];
-//        [labels addObject:@(label)];
-//    }
     return cols;
 }
+
+NSArray *loadDataFromFile()
+{
+    NSMutableArray *data = [[NSMutableArray alloc]init];
+    
+    NSString *path = [[NSBundle mainBundle]pathForResource:@"testSet" ofType:@"txt"];
+    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSMutableArray *lineArr = [NSMutableArray arrayWithArray:[content componentsSeparatedByString:@"\r\n"]];
+    [lineArr removeLastObject];
+    for (NSString *line in lineArr) {
+        NSArray *compArr = [line componentsSeparatedByString:@"\t"];
+        NSMutableArray *tmp = [[NSMutableArray alloc]init];
+        //        [tmp addObject:@(1.0)];
+        
+        for (int i=0; i<compArr.count; i++) {
+            [tmp addObject:@([compArr[i] floatValue])];
+        }
+        [data addObject:tmp];
+    }
+    return data;
+}
+
+//int setupData(NSArray *dataSet)
 
 float sigmoid(float x) {
     return 1.0/(1.0 + exp(-x));
 }
 
 /*
-     随机梯度上升算法：arrIn为特征矩阵，rows行cols列。
-     classLabels为分类结果，用0，1表示
-     numIter为迭代次数
-     返回最佳参数
+ 随机梯度上升算法：arrIn为特征矩阵，rows行cols列。
+ classLabels为分类结果，用0，1表示
+ numIter为迭代次数
+ 返回最佳参数
  */
 NSArray* storGradAscent(NSArray* arrIn,int rows,int cols,NSArray* labels,int numIter) {
     NSMutableArray *weights = [[NSMutableArray alloc]init];
@@ -80,6 +95,24 @@ NSArray* storGradAscent(NSArray* arrIn,int rows,int cols,NSArray* labels,int num
     return weights;
 }
 
+NSArray* gradientAscent(NSArray *arrIn,int numIter)
+{
+    int rows = arrIn.count;
+    NSArray *row = [arrIn objectAtIndex:0];
+    int cols = row.count;
+    
+    NSMutableArray *dataArr = [[NSMutableArray alloc]init];
+    NSMutableArray *labels = [[NSMutableArray alloc]init];
+    for (NSArray *arr in arrIn) {
+        [dataArr addObject:@(1.0)];
+        for (int i=0; i<arr.count-1; i++) {
+            [dataArr addObject:@([[arr objectAtIndex:i]floatValue])];
+        }
+        [labels addObject:@([[arr lastObject]floatValue])];
+    }
+    return storGradAscent(dataArr, rows, cols, labels, numIter);
+}
+
 //likeliHood ratio test
 float pi(float x,int k) {
     long fac = 1;
@@ -89,7 +122,7 @@ float pi(float x,int k) {
     return pow(x, k)*exp(-x)/fac;
 }
 
-float likeliHoodRatioTest(NSArray *data,NSArray *label,NSArray *weights,int k) {
+bool likeliHoodRatioTest(NSArray *data,NSArray *label,NSArray *weights,int k) {
     int n = (int)label.count;
     int n0 = 0,n1 = 0;
     for (int i = 0; i<n; i++) {
@@ -112,5 +145,42 @@ float likeliHoodRatioTest(NSArray *data,NSArray *label,NSArray *weights,int k) {
     G = G - (n1*log(n1) + n0*log(n0) - n*log(n));
     G *= 2;
     NSLog(@"n0 = %d,n1 = %d,n = %d,G = %f",n0,n1,n,G);
-    return G;
+    
+    if (G > 5.991) {//X0.05(2) = 5.991
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool likelyHoodRatioCheck(NSArray *arrIn)
+{
+    NSArray *row = [arrIn objectAtIndex:0];
+    int cols = row.count;
+    NSMutableArray *dataArr = [[NSMutableArray alloc]init];
+    NSMutableArray *labels = [[NSMutableArray alloc]init];
+    for (NSArray *arr in arrIn) {
+        [dataArr addObject:@(1.0)];
+        for (int i=0; i<arr.count-1; i++) {
+            [dataArr addObject:@([[arr objectAtIndex:i]floatValue])];
+        }
+        [labels addObject:@([[arr lastObject]floatValue])];
+    }
+    
+    weights = gradientAscent(arrIn, 500);
+    return likeliHoodRatioTest(dataArr, labels, weights, cols);
+}
+
+float checkData(NSArray* data) {
+    if (data.count==0||(data.count != weights.count - 1)) {
+        NSLog(@"参数个数错误");
+        return 0;
+    }
+    float x = [[weights objectAtIndex:0]floatValue];
+    for (int i=0; i<data.count; i++) {
+        float w = [[weights objectAtIndex:i+1]floatValue];
+        float d = [[data objectAtIndex:i]floatValue];
+        x += w*d;
+    }
+    return sigmoid(x);
 }

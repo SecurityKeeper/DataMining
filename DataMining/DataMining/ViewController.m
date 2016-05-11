@@ -52,7 +52,7 @@
         [self.view addSubview:btn];
     }
 
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.541844),@"latitude",@(104.063019),@"longitude", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.5419),@"latitude",@(104.063),@"longitude", nil];
     NSLog(@"weight = %f",[[DMLocationModel sharedInstance]getWeight:dic]);
     
     

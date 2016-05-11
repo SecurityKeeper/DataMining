@@ -26,18 +26,32 @@
     });
     return model;
 }
+
+- (double)getProbability :(NSArray *) newValue{
+    NSArray *dataArray = [self loadData];
+    NSArray *newValueArray = [self getNewArray:newValue];
+    double result =  [[dataAnalysis defaultInstance] analysis:dataArray newVlue:newValueArray];
+    return result;
+}
+
 /** 加载数据 */
 - (NSArray *)loadData {
-    NSMutableArray *dataArry = [[NSMutableArray alloc] initWithCapacity:0];
+  
+    NSArray * tempArray = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_reliableStorage];
+    NSArray *dataArray = [self getNewArray:tempArray];
+    return dataArray;
+}
+
+
+- (NSArray *)getNewArray:(NSArray *)newValue{
+    NSMutableArray *dataArry = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginX = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginY = [[NSMutableArray alloc] init];
     NSMutableArray *dataEndX = [[NSMutableArray alloc] init];
     NSMutableArray *dataEndY = [[NSMutableArray alloc] init];
     NSMutableArray *data = [[NSMutableArray alloc] init];
     NSMutableArray *data2 = [[NSMutableArray alloc] init];
-  
-    NSArray * tempArray = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_reliableStorage];
-    for (NSDictionary *dict in tempArray) {
+    for (NSDictionary *dict in newValue) {
         if ([dict[@"touchType"] isEqual:@1]) {
             [dataBeginX addObject:dict[@"x"]];
             [dataBeginY addObject:dict[@"y"]];
@@ -47,7 +61,6 @@
             [dataEndY addObject:dict[@"y"]];
         }
     }
-    
     //求出起始点和终止点的距离
     for (int i = 0; i< dataBeginX.count; i++) {
         double X = [dataBeginX[i] floatValue] - [dataEndX[i] floatValue];
@@ -65,22 +78,47 @@
     {
         [set addIndex:[temp intValue]];
     }
-    NSMutableArray *timeArray  = [[DMTouchTimeModel defaultInstance] getTouchTime];
+    NSMutableArray *timeArray  = [self getTouchTime:newValue];
     [timeArray removeObjectsAtIndexes:set];
-    
-   // NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (int i = 0; i< data.count; i++) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         [dict setObject:timeArray[i] forKey:@"x"];
         [dict setObject:data[i] forKey:@"y"];
         [dataArry addObject:dict];
     }
+    
     return dataArry;
 }
 
-- (double)getProbability :(NSArray *) newValue{
-    NSArray *dataArray = [self loadData];
-    double result =  [[dataAnalysis defaultInstance] analysis:dataArray newVlue:newValue];
-    return result;
+- (NSMutableArray *)getTouchTime:(NSArray *)valueArray {
+    NSMutableArray * arrTemp = [NSMutableArray array];
+    NSNumber *startTime = @0;
+    NSNumber *stopTime = @0;
+    for (NSDictionary * dic in valueArray) {
+        NSInteger touckType = [[dic objectForKey:kTouchType] integerValue];
+        switch (touckType) {
+            case 1:
+            {
+                startTime = [dic objectForKey:kTimesTamp];
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+            default:
+            {
+                stopTime = [dic objectForKey:kTimesTamp];
+                double time = [stopTime doubleValue] - [startTime doubleValue];
+                [arrTemp addObject:[NSNumber numberWithDouble:time]];
+            }
+                break;
+        }
+    }
+    
+    return arrTemp;
 }
+
+
 @end

@@ -52,14 +52,8 @@
         [self.view addSubview:btn];
     }
 
-<<<<<<< HEAD
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.5419),@"latitude",@(104.063),@"longitude", nil];
-    NSArray *arrIn = [NSArray arrayWithObject:dic];
-    NSLog(@"weight = %f",[[DMLocationModel sharedInstance]getWeight:arrIn]);
-=======
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.5419),@"latitude",@(104.063),@"longitude", nil];
 //    NSLog(@"weight = %f",[[DMLocationModel sharedInstance]getWeight:dic]);
->>>>>>> origin/master
     
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
 //    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);

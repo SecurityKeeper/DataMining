@@ -13,6 +13,7 @@
 		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
 		0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */; };
 		0FF7B9181CAB6CB800ECE12D /* DAAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */; };
+		2029DC5D1CE32896005954C4 /* 2010上海50KM毅行.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 2029DC5C1CE32896005954C4 /* 2010上海50KM毅行.gpx */; };
 		20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AC96421CAB72D000FF6A67 /* DMLocationModel.m */; };
 		41AE0E7B1CAE738A009DCA24 /* DMAngleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AE0E7A1CAE738A009DCA24 /* DMAngleModel.m */; };
 		90EA2F491C50D2D3006B8D87 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90EA2F481C50D2D3006B8D87 /* libz.dylib */; };
@@ -77,6 +78,7 @@
 		0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisData.m; sourceTree = "<group>"; };
 		0FF7B9161CAB6CB800ECE12D /* DAAverageCalculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAAverageCalculate.h; sourceTree = "<group>"; };
 		0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAAverageCalculate.m; sourceTree = "<group>"; };
+		2029DC5C1CE32896005954C4 /* 2010上海50KM毅行.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "2010上海50KM毅行.gpx"; sourceTree = "<group>"; };
 		20AC96411CAB72D000FF6A67 /* DMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLocationModel.h; sourceTree = "<group>"; };
 		20AC96421CAB72D000FF6A67 /* DMLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMLocationModel.m; sourceTree = "<group>"; };
 		41AE0E791CAE738A009DCA24 /* DMAngleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAngleModel.h; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		90EE2D6A1C4E05E500C5A64D = {
 			isa = PBXGroup;
 			children = (
+				2029DC5C1CE32896005954C4 /* 2010上海50KM毅行.gpx */,
 				90EE2D751C4E05E500C5A64D /* DataMining */,
 				90EE2D921C4E05E600C5A64D /* DataMiningTests */,
 				90EE2D741C4E05E500C5A64D /* Products */,
@@ -522,6 +525,7 @@
 				90EE2D851C4E05E500C5A64D /* Main.storyboard in Resources */,
 				90EE2D8A1C4E05E500C5A64D /* LaunchScreen.xib in Resources */,
 				90EE2D871C4E05E500C5A64D /* Images.xcassets in Resources */,
+				2029DC5D1CE32896005954C4 /* 2010上海50KM毅行.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

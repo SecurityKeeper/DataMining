@@ -18,7 +18,7 @@
     return model;
 }
 
-- (double)getWeight:(NSArray*)data {
+- (double)getWeight:(NSDictionary*)data {
     
     NSArray *dbData = [[DataStorageManager shareInstance]getDataType:entitiesType_Location WithCount:0 dataFrom:dataSrcType_reliableStorage];
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];

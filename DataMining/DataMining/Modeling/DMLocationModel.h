@@ -14,6 +14,6 @@
 @interface DMLocationModel : NSObject
 
 + (DMLocationModel *)sharedInstance;
-- (double)getWeight:(NSArray*)data;
+- (double)getWeight:(NSDictionary*)data;
 
 @end

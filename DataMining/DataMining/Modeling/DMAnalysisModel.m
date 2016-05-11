@@ -122,11 +122,11 @@ static DMAnalysisModel *analysisModel = nil;
             return retDic;
         }
     }
-    
+    [reliableArray removeAllObjects];
     
     // clustering analysis
     for (NSDictionary *value in tempAnalysisData) {
-        NSDictionary *checkDic = [NSDictionary dictionary];
+        NSMutableDictionary *checkDic = [NSMutableDictionary dictionary];
         [checkDic setValue:[value objectForKey:kAngle] forKey:kAngle];
         [checkDic setValue:[value objectForKey:kEuler] forKey:kEuler];
         [checkDic setValue:[value objectForKey:kPlace] forKey:kPlace];

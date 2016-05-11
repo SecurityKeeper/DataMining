@@ -45,10 +45,14 @@ NSString *password = @"123";
     {
         [[CollectDataManager shareInstance] startWork];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[CollectDataManager shareInstance] stopWork];
+            sleep(1);
             analysisOut = [[DMAnalysisModel sharedInstance] startAnalysis];
             if ([[analysisOut objectForKey:kAnalysisOut] boolValue]) {
                 isValid = true;
                 [[DataStorageManager shareInstance] saveType:entitiesType_AnalysisData WithData:analysisOut storage:dataSrcType_reliableStorage];
+                sleep(1);
+                [[CollectDataManager shareInstance] startWork];
             }
             else
             {
@@ -79,6 +83,8 @@ NSString *password = @"123";
                 [analysisOut setObject:[NSNumber numberWithBool:true] forKey:kAnalysisOut];
                 [[DataStorageManager shareInstance] saveType:entitiesType_AnalysisData WithData:analysisOut storage:dataSrcType_reliableStorage];
             }
+            sleep(1);
+            [[CollectDataManager shareInstance] startWork];
         }
         else
         {

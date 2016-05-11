@@ -76,24 +76,32 @@
     NSMutableArray * arrTemp = [NSMutableArray array];
     NSNumber *startTime = @0;
     NSNumber *stopTime = @0;
+    BOOL isRightData = YES;
     for (NSDictionary * dic in tempArray) {
         NSInteger touckType = [[dic objectForKey:kTouchType] integerValue];
         switch (touckType) {
             case 1:
             {
                 startTime = [dic objectForKey:kTimesTamp];
+                isRightData = YES;
+                
             }
                 break;
             case 2:
             {
-                
+                isRightData = false;
+                startTime = @0;
             }
                 break;
             default:
             {
-                stopTime = [dic objectForKey:kTimesTamp];
-                double time = [stopTime doubleValue] - [startTime doubleValue];
-                [arrTemp addObject:[NSNumber numberWithDouble:time]];
+                if (isRightData) {
+                    stopTime = [dic objectForKey:kTimesTamp];
+                    double time = [stopTime doubleValue] - [startTime doubleValue];
+                    [arrTemp addObject:[NSNumber numberWithDouble:time]];
+
+                }
+                
             }
                 break;
         }

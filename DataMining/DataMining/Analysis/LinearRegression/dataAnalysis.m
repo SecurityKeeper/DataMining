@@ -116,6 +116,7 @@
         }
        result = [[DAAverageCalculate defaultInstance] probabilityCalculate:averArray newValue:average];
         
+        
     }
     return result;
 }

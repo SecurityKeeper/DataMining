@@ -32,8 +32,8 @@ static long double const e = M_E;
 - (long double)probabilityCalculate:(NSArray *)array
                            newValue:(long double)newValue {
     long double paiValue = sqrtl(2*pai);
-    long double aveValue = [self aveValue:array newValue:newValue];
-    long double variance = [self varianceAveValue:aveValue valueArr:array newValue:newValue];
+    long double aveValue = [self aveValue:array];
+    long double variance = [self varianceAveValue:aveValue valueArr:array];
     long double standardDeviation = sqrtl(variance);
     long double head = 1/paiValue*standardDeviation;
     
@@ -53,32 +53,30 @@ static long double const e = M_E;
 }
 
 //均值
-- (long double)aveValue:(NSArray *)numberArr newValue:(double) newValue{
+- (long double)aveValue:(NSArray *)numberArr{
+    if (numberArr.count == 0) {
+        return 0;
+    }
     long double total = 0;
     for (NSNumber * number in numberArr) {
         total += [number doubleValue];
     }
-    if (newValue) {
-        total += newValue;
-    }
-    return newValue?total/(numberArr.count+1):total/(numberArr.count);
+    return total/numberArr.count;
 }
 
 
 //方差
 - (long double)varianceAveValue:(long double)aveValue
-                       valueArr:(NSArray *)numberArr
-                       newValue:(double)newValue{
+                       valueArr:(NSArray *)numberArr {
+    if (numberArr.count == 0) {
+        return 0;
+    }
+    
     long double total = 0;
     for (NSNumber * number in numberArr) {
         long double temp = [number doubleValue];
         total += pow((temp - aveValue), 2);
     }
-    if (newValue) {
-        total += pow((newValue - aveValue), 2);
-    }
-    
-    
-    return newValue?total/(numberArr.count +1):total/numberArr.count;
+    return total/numberArr.count;
 }
 @end

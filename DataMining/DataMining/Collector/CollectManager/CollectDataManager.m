@@ -72,8 +72,8 @@ void messageBox(NSString* str) {
     [[TouchWorker shareInstance] stopWork];
     [[LocationWorker defaultLocation] stopUpdateLocation];
     //将内存数据->临时数据库->可信数据库中
-    [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
-    [[DataStorageManager shareInstance]moveTempToReliableStorage];
+//    [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
+//    [[DataStorageManager shareInstance]moveTempToReliableStorage];
 }
 
 - (void)timerWorking {

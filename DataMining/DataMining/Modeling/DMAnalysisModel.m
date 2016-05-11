@@ -54,7 +54,7 @@ static DMAnalysisModel *analysisModel = nil;
     
     NSArray *tempTouch = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_memory];
     if (tempTouch == 0) {
-        tempHealth = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_tempStorage];
+        tempTouch = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_tempStorage];
     }
     
     NSArray *tempLocation = [[DataStorageManager shareInstance] getDataType:entitiesType_Location WithCount:0 dataFrom:dataSrcType_memory];
@@ -78,6 +78,10 @@ static DMAnalysisModel *analysisModel = nil;
     float newPlace = [[DMLocationModel sharedInstance] getWeight:tempLocation];
     float newAngle = [[DMAngleModel sharedInstance] getAccelerometerAnalyzeData:tempAccelerometer];
     float newEuler = [[DMAngleModel sharedInstance] getMontionAnalyzeData:tempDeviceMontion];
+    
+    if (newStepLength == 0 && newTouchForce == 0 && newTouchMove == 0 && newPlace == 0 && newAngle == 0 && newEuler == 0) {
+        return nil;
+    }
     
     [retDic setValue:[NSNumber numberWithFloat:newStepLength] forKey:kStepLength];
     [retDic setValue:[NSNumber numberWithFloat:newTouchForce] forKey:kTouchForce];
@@ -132,7 +136,7 @@ static DMAnalysisModel *analysisModel = nil;
     }
     
     float newOut = [[DAClustering sharedInstance] checkData:retDic set:reliableArray];
-    if (newOut >= 0.95) {
+    if (newOut >= 0.5) {
         [retDic setValue:[NSNumber numberWithBool:true] forKey:kAnalysisOut];
     }
     else

@@ -55,7 +55,6 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(30.5419),@"latitude",@(104.063),@"longitude", nil];
     NSLog(@"weight = %f",[[DMLocationModel sharedInstance]getWeight:dic]);
     
-    
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
 //    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);
     

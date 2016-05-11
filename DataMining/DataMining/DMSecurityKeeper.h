@@ -7,13 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface DMSecurityKeeper : NSObject
+@interface DMSecurityKeeper : NSObject<UIAlertViewDelegate>
+{
+    @private
+    NSMutableDictionary *analysisOut;
+    UIAlertView *loginAlert;
+}
+
+@property (nonatomic,assign,readonly) BOOL isValid;
 
 /**
  Instance Methods
  */
 + (id)sharedInstance;
 + (void)destroyInstance;
+
+- (void)startKeeper;
 
 @end

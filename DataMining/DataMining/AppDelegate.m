@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "DMSecurityKeeper.h"
+#import "DataStorageManager.h"
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
 
@@ -35,6 +36,7 @@ static NSString * APIKey = @"90690cd8fd800d60f45bad636fa0c535";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self configureAPIKey];
+    [[DMSecurityKeeper sharedInstance] startKeeper];
     return YES;
 }
 
@@ -46,6 +48,10 @@ static NSString * APIKey = @"90690cd8fd800d60f45bad636fa0c535";
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    if ([[DMSecurityKeeper sharedInstance] isValid]) {
+        [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
+        [[DataStorageManager shareInstance]moveTempToReliableStorage];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -59,6 +65,10 @@ static NSString * APIKey = @"90690cd8fd800d60f45bad636fa0c535";
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    if ([[DMSecurityKeeper sharedInstance] isValid]) {
+        [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
+        [[DataStorageManager shareInstance]moveTempToReliableStorage];
+    }
     [self saveContext];
 }
 

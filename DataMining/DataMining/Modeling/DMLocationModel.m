@@ -36,7 +36,7 @@
     
     double sum = 0.0;
     for (NSDictionary *valueDic in data) {
-        NSDictionary *checkDic = [NSDictionary dictionary];
+        NSMutableDictionary *checkDic = [NSMutableDictionary dictionary];
         [checkDic setValue:[valueDic objectForKey:kLatitude] forKey:kLatitude];
         [checkDic setValue:[valueDic objectForKey:kLongitude] forKey:kLongitude];
         sum += [[DAClustering sharedInstance]checkData:checkDic set:dataSet];

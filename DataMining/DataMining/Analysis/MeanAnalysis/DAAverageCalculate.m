@@ -38,6 +38,10 @@ static long double const e = M_E;
     long double standardDeviation = sqrtl(variance);
     long double head = 1/paiValue*standardDeviation;
     
+    if (variance == 0) {
+        return 0;
+    }
+    
     long double pingfang = 0 - powl(newValue - aveValue, 2);
     long double mi = pingfang / 2* standardDeviation * standardDeviation;
     

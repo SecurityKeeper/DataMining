@@ -40,7 +40,7 @@
     
     double average = 0;
     for (NSDictionary *valueDic in data) {
-        NSDictionary *checkDic = [NSDictionary dictionary];
+        NSMutableDictionary *checkDic = [NSMutableDictionary dictionary];
         [checkDic setValue:[valueDic objectForKey:kPitch] forKey:kPitch];
         [checkDic setValue:[valueDic objectForKey:kRoll] forKey:kRoll];
         [checkDic setValue:[valueDic objectForKey:kYaw] forKey:kYaw];
@@ -72,7 +72,7 @@
     
     double average = 0;
     for (NSDictionary *valueDic in data) {
-        NSDictionary *checkDic = [NSDictionary dictionary];
+        NSMutableDictionary *checkDic = [NSMutableDictionary dictionary];
         [checkDic setValue:[valueDic objectForKey:kX] forKey:kX];
         [checkDic setValue:[valueDic objectForKey:kY] forKey:kY];
         [checkDic setValue:[valueDic objectForKey:kZ] forKey:kZ];

@@ -31,7 +31,7 @@
 - (long double)getProbability:(NSArray *)newValue {
     NSArray * reliableTouchArray = [self getReliableTouchTime];
     if (reliableTouchArray.count == 0) {
-        return 1;
+        return 0;
     }
     NSArray * newTouchTimeArray = [self getTouchTimeArray:newValue];
     if (newTouchTimeArray.count == 0) {

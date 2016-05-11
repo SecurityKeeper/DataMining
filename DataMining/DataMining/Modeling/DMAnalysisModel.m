@@ -14,6 +14,7 @@
 #import "DMLocationModel.h"
 #import "DMAngleModel.h"
 #import "DAClustering.h"
+#import "LogRegression.h"
 
 @implementation DMAnalysisModel
 
@@ -73,7 +74,7 @@ static DMAnalysisModel *analysisModel = nil;
     
     float newStepLength = [[HealthModel shareInstance] getAnalyzeData:tempHealth];
     float newTouchForce = [[DMTouchTimeModel defaultInstance] getProbability:tempTouch];
-    float newTouchMove;
+    float newTouchMove = [[DMTouchDistanceModel defaultInstance] getProbability:tempTouch];
     float newPlace = [[DMLocationModel sharedInstance] getWeight:tempLocation];
     float newAngle = [[DMAngleModel sharedInstance] getAccelerometerAnalyzeData:tempAccelerometer];
     float newEuler = [[DMAngleModel sharedInstance] getMontionAnalyzeData:tempDeviceMontion];
@@ -87,18 +88,34 @@ static DMAnalysisModel *analysisModel = nil;
     
     if (tryLogic) { // logistic analysis
         for (NSDictionary *value in tempAnalysisData) {
-            NSDictionary *checkDic = [NSDictionary dictionary];
-            [checkDic setValue:[value objectForKey:kAngle] forKey:kAngle];
-            [checkDic setValue:[value objectForKey:kEuler] forKey:kEuler];
-            [checkDic setValue:[value objectForKey:kPlace] forKey:kPlace];
-            [checkDic setValue:[value objectForKey:kStepLength] forKey:kStepLength];
-            [checkDic setValue:[value objectForKey:kTouchForce] forKey:kTouchForce];
-            [checkDic setValue:[value objectForKey:kTouchMove] forKey:kTouchMove];
-            [checkDic setValue:[value objectForKey:kAnalysisOut] forKey:kAnalysisOut];
-            [reliableArray addObject:checkDic];
+            NSMutableArray *checkArray = [NSMutableArray array];
+            [checkArray addObject:[value objectForKey:kAngle]];
+            [checkArray addObject:[value objectForKey:kEuler]];
+            [checkArray addObject:[value objectForKey:kPlace]];
+            [checkArray addObject:[value objectForKey:kStepLength]];
+            [checkArray addObject:[value objectForKey:kTouchForce]];
+            [checkArray addObject:[value objectForKey:kTouchMove]];
+            [checkArray addObject:[value objectForKey:kAnalysisOut]];
+            [reliableArray addObject:checkArray];
         }
-        
-        return retDic;
+        if (likelyHoodRatioCheck(reliableArray)) {
+            NSMutableArray *newArray = [NSMutableArray array];
+            [newArray addObject:@(newAngle)];
+            [newArray addObject:@(newEuler)];
+            [newArray addObject:@(newPlace)];
+            [newArray addObject:@(newStepLength)];
+            [newArray addObject:@(newTouchForce)];
+            [newArray addObject:@(newTouchMove)];
+            float newOut = checkData(newArray);
+            if (newOut >= 0.5) {
+                [retDic setValue:[NSNumber numberWithBool:true] forKey:kAnalysisOut];
+            }
+            else
+            {
+                [retDic setValue:[NSNumber numberWithBool:false] forKey:kAnalysisOut];
+            }
+            return retDic;
+        }
     }
     
     

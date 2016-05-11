@@ -12,7 +12,6 @@
 #import "DAAverageCalculate.h" //test
 #import "DMLocationModel.h"
 #import "DMAngleModel.h"
-#import "DMTouchDistanceModel.h"
 
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -58,8 +57,6 @@
 //    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@(.112),@"pitch",@(.21),@"roll",@(.1),@"yaw", nil];
 //    NSLog(@"weight = %f",[[DMAngleModel sharedInstance] getMontionAnalyzeData:dic]);
     
-//   double r = [[DMTouchDistanceModel defaultInstance] getProbability:dataArray1];
-//    NSLog(@"%lf",r);
 }
 
 

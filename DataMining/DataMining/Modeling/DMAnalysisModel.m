@@ -118,6 +118,7 @@ static DMAnalysisModel *analysisModel = nil;
             {
                 [retDic setValue:[NSNumber numberWithBool:false] forKey:kAnalysisOut];
             }
+            [retDic setValue:[self getTimeTamp] forKey:kTimesTamp];
             return retDic;
         }
     }
@@ -143,8 +144,15 @@ static DMAnalysisModel *analysisModel = nil;
     {
         [retDic setValue:[NSNumber numberWithBool:false] forKey:kAnalysisOut];
     }
+    [retDic setValue:[self getTimeTamp] forKey:kTimesTamp];
     
     return retDic;
+}
+
+- (NSNumber *)getTimeTamp {
+    double timesTamp = [[NSDate date] timeIntervalSince1970];
+    NSNumber* numTamp = [NSNumber numberWithDouble:timesTamp];
+    return numTamp;
 }
 
 @end

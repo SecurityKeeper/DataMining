@@ -14,9 +14,6 @@
 
 @interface DMTouchDistanceModel()
 
-@property (nonatomic,strong) NSMutableArray *dataX;
-@property (nonatomic,strong) NSMutableArray *dataY;
-
 @end
 
 @implementation DMTouchDistanceModel
@@ -30,9 +27,8 @@
     return model;
 }
 /** 加载数据 */
-- (void)loadData {
-    _dataX = [[NSMutableArray alloc] init];
-    _dataY = [[NSMutableArray alloc] init];
+- (NSArray *)loadData {
+    NSMutableArray *dataArry = [[NSMutableArray alloc] initWithCapacity:0];
     NSMutableArray *dataBeginX = [[NSMutableArray alloc] init];
     NSMutableArray *dataBeginY = [[NSMutableArray alloc] init];
     NSMutableArray *dataEndX = [[NSMutableArray alloc] init];
@@ -71,20 +67,20 @@
     }
     NSMutableArray *timeArray  = [[DMTouchTimeModel defaultInstance] getTouchTime];
     [timeArray removeObjectsAtIndexes:set];
-    _dataY = data;
-    _dataX = timeArray;
     
-}
-
-
-- (long double) getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2{
-    double r;
-    [self loadData];
-    BOOL reslut = [[dataAnalysis defaultInstance] getIsTrue:_dataX :_dataY];
-    if (reslut) {
-       r = [[dataAnalysis defaultInstance] analysis:data :data2];
+   // NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (int i = 0; i< data.count; i++) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:timeArray[i] forKey:@"x"];
+        [dict setObject:data[i] forKey:@"y"];
+        [dataArry addObject:dict];
     }
-    return r;
+    return dataArry;
 }
 
+- (double)getProbability :(NSArray *) newValue{
+    NSArray *dataArray = [self loadData];
+    double result =  [[dataAnalysis defaultInstance] analysis:dataArray newVlue:newValue];
+    return result;
+}
 @end

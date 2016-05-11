@@ -12,7 +12,7 @@
 
 + (DMTouchDistanceModel *)defaultInstance;
 
-- (long double) getProbability :(NSMutableArray *)data andData2:(NSMutableArray *)data2;
+- (double)getProbability :(NSArray *) newValue;
 
 @end
 

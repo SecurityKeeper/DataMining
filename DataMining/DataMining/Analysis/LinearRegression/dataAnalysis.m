@@ -7,6 +7,11 @@
 //
 
 #import "dataAnalysis.h"
+#import "DAAverageCalculate.h"
+#import "DataStorageManager.h"
+#import "CollectorDef.h"
+#import "DMTouchTimeModel.h"
+
 @interface dataAnalysis()
 
 @end
@@ -23,23 +28,26 @@
     
 }
 
-- (double)analysis:(NSMutableArray *)data :(NSMutableArray *)data2{
-    
-    double x[data.count],  y[data.count];
-    int i, n = (int)data.count;
+- (double)analysis:(NSArray *)dataArray newVlue:(NSArray *)newArray{
+    int i, n = (int)dataArray.count;
     double sumx,sumy,sumxx,sumyy,sumxy,mx,my,mxx,myy,mxy;
     double a, b;
+    double d1, d2, d3;
+    double result;
     // 变量的初始化
-    sumx=sumy=sumxx=sumyy=sumxy=0.0;
+    result = d1 = d2 = d3 = mx = my = sumx = sumy = sumxx = sumyy = sumxy = 0.0;
+    NSMutableArray *dataX = [NSMutableArray array];
+    NSMutableArray *dataY = [NSMutableArray array];
     
+    for (NSDictionary *dict in dataArray){
+        [dataX addObject:dict[@"x"]];
+        [dataY addObject:dict[@"y"]];
+    }
      // 计算data、data2的平均值
-    for (i = 0; i<data.count; i++) {
+    for (i = 0; i<n; i++) {
         
-        sumx += [[data objectAtIndex:i] floatValue];
-        sumy += [[data2 objectAtIndex:i] floatValue];
-        
-        x[i]= [[data objectAtIndex:i] floatValue];
-        y[i] = [[data2 objectAtIndex:i] floatValue];
+        sumx += [[dataX objectAtIndex:i] floatValue];
+        sumy += [[dataY objectAtIndex:i] floatValue];
     }
     mx = sumx / n; //x平均值
     my = sumy / n; //y平均值
@@ -48,10 +56,9 @@
     // 计算x、y平和x*y的平均值
     for(i = 0;i<n;i++){
         
-        sumxx += [[data objectAtIndex:i] floatValue] * [[data objectAtIndex:i] floatValue];  //x平方和
-        sumyy += [[data2 objectAtIndex:i] floatValue] * [[data2 objectAtIndex:i] floatValue];//y平方和
-        sumxy += [[data objectAtIndex:i] floatValue] * [[data2 objectAtIndex:i] floatValue]; //x*y求和
-    
+        sumxx += [[dataX objectAtIndex:i] floatValue] * [[dataX objectAtIndex:i] floatValue];  //x平方和
+        sumyy += [[dataY objectAtIndex:i] floatValue] * [[dataY objectAtIndex:i] floatValue];//y平方和
+        sumxy += [[dataX objectAtIndex:i] floatValue] * [[dataY objectAtIndex:i] floatValue]; //x*y求和
     }
     mxx = sumxx / n;
     myy = sumyy / n;
@@ -60,55 +67,58 @@
    //计算系数
     a=(n*sumxy-sumx*sumy)/(n*sumxx-sumx*sumx);
     b=(sumxx*sumy-sumx*sumxy)/(n*sumxx-sumx*sumx);
-   // b= my - _a*mx;
-    printf("a=%f b=%f\n",a,b);
-    //标准偏差
-    double *yy=(double*)malloc(sizeof(double)*n);
-    double sumerrorsquare=0,error,z;
-    for(i=0;i<n;i++) {
-        yy[i]=a*[[data objectAtIndex:i] floatValue] + b;
-        //  printf("%f ",yy[i]);  /* 根据模型计算出的值 */
-        
-        z = yy[i]-[[data2 objectAtIndex:i] floatValue];   /*计算值与实际值之差*/
-        
-        sumerrorsquare+= z*z;//
-        
-        //  printf("z[%d] = %lf\n",i,z);
-    }
-    error=sqrt(sumerrorsquare/(n-1));//总体偏差
-    // printf("总体偏差s(y)=%f\n",error);
-    return error;
-    
-}
+    printf("a=%lf b=%lf\n",a,b);
 
-- (BOOL)getIsTrue:(NSMutableArray *)data :(NSMutableArray *)data2{
-    int i, n = (int)data.count;
-    double d1, d2, d3;
-    double sumx,sumy,mx,my;
-    // 变量的初始化
-    d1 = d2 = d3 =sumx=sumy=0.0;
-    
-    // 计算data、data2的平均值
-    for (i = 0; i<data.count; i++) {
-        
-        sumx += [[data objectAtIndex:i] floatValue];
-        sumy += [[data2 objectAtIndex:i] floatValue];
-    }
-    mx = sumx / n; //x平均值
-    my = sumy / n; //y平均值
     // 计算相关系数的数据组成部分,相关系数决定回归方程估测可靠程度的高低
     for (i = 0; i < n; i++) {
-        d1 += ([[data objectAtIndex:i] floatValue] - mx) * ([[data2 objectAtIndex:i] floatValue] - my);
-        d2 += ([[data objectAtIndex:i] floatValue] - mx) * ([[data objectAtIndex:i] floatValue] - mx);
-        d3 += ([[data2 objectAtIndex:i] floatValue] - my) * ([[data2 objectAtIndex:i] floatValue] - my);
+        d1 += ([dataX[i] floatValue] - mx) * ([dataY[i] floatValue] - my);
+        d2 += ([dataX[i] floatValue] - mx) * ([dataX[i] floatValue] - mx);
+        d3 += ([dataY[i] floatValue] - my) * ([dataY[i] floatValue] - my);
     }
     double r = d1*d1 / (d2 * d3);
     if (r >= 0.7) {
-        return YES;
+        NSMutableArray *newValueX = [NSMutableArray array];
+        NSMutableArray *newValueY = [NSMutableArray array];
+        if (newArray.count == 0) {
+            return 0;
+        }
+        for (NSDictionary *dict in newArray){
+            [newValueX addObject:dict[@"x"]];
+            [newValueY addObject:dict[@"y"]];
+        }
+        //标准偏差
+        double *yy=(double*)malloc(sizeof(double)*n);
+        double sumerrorsquare=0,z;
+        for(i=0;i<newArray.count;i++) {
+            /* 根据模型计算出的值 */
+            yy[i]=a * [newValueX[i] floatValue] + b;
+            //  printf("%f ",yy[i]);
+            /*计算值与实际值之差*/
+            z = yy[i]-[newValueY[i] floatValue];
+            sumerrorsquare+= z*z;
+        }
+        result=sqrt(sumerrorsquare/(n-1)); //总体偏差
+    } else{
+        NSMutableArray *averArray = [[NSMutableArray alloc] init];
+        NSMutableArray *averNewArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i<n; i++) {
+           double v =  [dataY[i] doubleValue] / [dataX[i] doubleValue];
+            [averArray addObject:@(v)];
+        }
+        for (NSDictionary *dict in newArray) {
+            double v = [dict[@"y"] doubleValue] /[dict[@"x"] doubleValue];
+            [averNewArray addObject:@(v)];
+        }
         
-    }else{
-        return NO;
+        double average = 0;
+        for (NSNumber *value in averNewArray) {
+            average += [value doubleValue] / averNewArray.count;
+        }
+       result = [[DAAverageCalculate defaultInstance] probabilityCalculate:averArray newValue:average];
+        
     }
+    return result;
 }
+
 
 @end

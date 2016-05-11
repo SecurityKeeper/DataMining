@@ -11,7 +11,6 @@
 @interface dataAnalysis : NSObject
 
 + (dataAnalysis *)defaultInstance;
-- (double)analysis:(NSMutableArray *)data :(NSMutableArray *)data2;
-- (BOOL)getIsTrue:(NSMutableArray *)data :(NSMutableArray *)data2;
+- (double)analysis:(NSArray *)dataArray newVlue:(NSArray *)newArray;
 
 @end

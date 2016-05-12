@@ -1,9 +1,9 @@
 //
 //  AnalysisData.m
-//  
+//  DataMining
 //
-//  Created by Jiao Liu on 4/8/16.
-//
+//  Created by Jiao Liu on 5/12/16.
+//  Copyright © 2016 SecurityKeeper. All rights reserved.
 //
 
 #import "AnalysisData.h"
@@ -11,14 +11,7 @@
 
 @implementation AnalysisData
 
-@dynamic analysisOut;
-@dynamic angle;
-@dynamic euler;
-@dynamic place;
-@dynamic stepLength;
-@dynamic timesTamp;
-@dynamic touchForce;
-@dynamic touchMove;
+// Insert code here to add functionality to your managed object subclass
 
 - (void)setDataWithDict:(NSDictionary*)dict {
     self.analysisOut     = [dict objectForKey:kAnalysisOut];

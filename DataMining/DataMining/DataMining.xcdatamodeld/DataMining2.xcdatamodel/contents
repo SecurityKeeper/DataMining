@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="15E65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="Accelerometer" representedClassName="Accelerometer" syncable="YES">
         <attribute name="timesTamp" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="x" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -12,7 +12,7 @@
         <attribute name="y" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="z" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="AnalysisData" syncable="YES">
+    <entity name="AnalysisData" representedClassName="AnalysisData" syncable="YES">
         <attribute name="analysisOut" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="angle" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="euler" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>

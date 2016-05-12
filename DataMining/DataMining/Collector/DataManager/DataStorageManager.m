@@ -158,7 +158,7 @@
                 array = self.healthArray;
             break;
         default:
-            return nil;
+            break;
     }
     if (src == dataSrcType_tempStorage)
         array = [[CoreDataManager shareInstance]getEntitiesData_Temp:type];

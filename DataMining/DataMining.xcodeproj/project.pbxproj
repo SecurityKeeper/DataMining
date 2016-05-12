@@ -11,7 +11,8 @@
 		0F4B6F431CE1E25D005BFA20 /* DMAnalysisModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4B6F421CE1E25D005BFA20 /* DMAnalysisModel.m */; };
 		0F885E311C857A1500A9AE83 /* DAClustering.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E271C857A1500A9AE83 /* DAClustering.m */; };
 		0F885E351C857A1500A9AE83 /* LogRegression.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F885E301C857A1500A9AE83 /* LogRegression.m */; };
-		0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */; };
+		0FA63EC11CE484C2007BF408 /* AnalysisData+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA63EBE1CE484C2007BF408 /* AnalysisData+CoreDataProperties.m */; };
+		0FA63EC21CE484C2007BF408 /* AnalysisData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA63EC01CE484C2007BF408 /* AnalysisData.m */; };
 		0FF7B9181CAB6CB800ECE12D /* DAAverageCalculate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */; };
 		20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AC96421CAB72D000FF6A67 /* DMLocationModel.m */; };
 		41AE0E7B1CAE738A009DCA24 /* DMAngleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41AE0E7A1CAE738A009DCA24 /* DMAngleModel.m */; };
@@ -72,9 +73,11 @@
 		0F885E271C857A1500A9AE83 /* DAClustering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAClustering.m; sourceTree = "<group>"; };
 		0F885E2F1C857A1500A9AE83 /* LogRegression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRegression.h; sourceTree = "<group>"; };
 		0F885E301C857A1500A9AE83 /* LogRegression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRegression.m; sourceTree = "<group>"; };
+		0FA63EBD1CE484C2007BF408 /* AnalysisData+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AnalysisData+CoreDataProperties.h"; sourceTree = "<group>"; };
+		0FA63EBE1CE484C2007BF408 /* AnalysisData+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AnalysisData+CoreDataProperties.m"; sourceTree = "<group>"; };
+		0FA63EBF1CE484C2007BF408 /* AnalysisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisData.h; sourceTree = "<group>"; };
+		0FA63EC01CE484C2007BF408 /* AnalysisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisData.m; sourceTree = "<group>"; };
 		0FC84CFA1CB7802500453CE8 /* DataMining2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataMining2.xcdatamodel; sourceTree = "<group>"; };
-		0FC84CFB1CB7807B00453CE8 /* AnalysisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalysisData.h; sourceTree = "<group>"; };
-		0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalysisData.m; sourceTree = "<group>"; };
 		0FF7B9161CAB6CB800ECE12D /* DAAverageCalculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAAverageCalculate.h; sourceTree = "<group>"; };
 		0FF7B9171CAB6CB800ECE12D /* DAAverageCalculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAAverageCalculate.m; sourceTree = "<group>"; };
 		20AC96411CAB72D000FF6A67 /* DMLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLocationModel.h; sourceTree = "<group>"; };
@@ -404,8 +407,10 @@
 		90EF43901C585AD8008A22D6 /* CoreDataWorker */ = {
 			isa = PBXGroup;
 			children = (
-				0FC84CFB1CB7807B00453CE8 /* AnalysisData.h */,
-				0FC84CFC1CB7807B00453CE8 /* AnalysisData.m */,
+				0FA63EBD1CE484C2007BF408 /* AnalysisData+CoreDataProperties.h */,
+				0FA63EBE1CE484C2007BF408 /* AnalysisData+CoreDataProperties.m */,
+				0FA63EBF1CE484C2007BF408 /* AnalysisData.h */,
+				0FA63EC01CE484C2007BF408 /* AnalysisData.m */,
 				90EF43911C585AD8008A22D6 /* Accelerometer.h */,
 				90EF43921C585AD8008A22D6 /* Accelerometer.m */,
 				90EF43931C585AD8008A22D6 /* CoreDataManager.h */,
@@ -546,11 +551,13 @@
 				90EE2D791C4E05E500C5A64D /* main.m in Sources */,
 				90EE2D821C4E05E500C5A64D /* ViewController.m in Sources */,
 				D186463C1CE03F8D00EA4AB8 /* dataAnalysis.m in Sources */,
+				0FA63EC21CE484C2007BF408 /* AnalysisData.m in Sources */,
 				0F3729331CE2D37400351724 /* DMSecurityKeeper.m in Sources */,
 				90EF43A31C585AD8008A22D6 /* HealthWorker.m in Sources */,
 				90EF43AB1C585AD8008A22D6 /* DeviceMotion.m in Sources */,
 				90EF43A41C585AD8008A22D6 /* HKHealthStore+AAPLExtensions.m in Sources */,
 				0FF7B9181CAB6CB800ECE12D /* DAAverageCalculate.m in Sources */,
+				0FA63EC11CE484C2007BF408 /* AnalysisData+CoreDataProperties.m in Sources */,
 				90EF43A21C585AD8008A22D6 /* CollectDataManager.m in Sources */,
 				90EF43B01C585AD8008A22D6 /* FileManager.m in Sources */,
 				90EF43A61C585AD8008A22D6 /* MotionWorker.m in Sources */,
@@ -569,7 +576,6 @@
 				90EF43AC1C585AD8008A22D6 /* Health.m in Sources */,
 				90EEF16F1C76AE3000205B0E /* HealthModel.m in Sources */,
 				20AC96431CAB72D000FF6A67 /* DMLocationModel.m in Sources */,
-				0FC84CFD1CB7807B00453CE8 /* AnalysisData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -57,10 +57,12 @@ NSString *password = @"123";
                 }
                 else
                 {
-                    loginAlert = [[UIAlertView alloc] initWithTitle:@"请登录" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                    loginAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-                    [loginAlert textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeWhileEditing;
-                    [loginAlert show];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        loginAlert = [[UIAlertView alloc] initWithTitle:@"请登录" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                        loginAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                        [loginAlert textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeWhileEditing;
+                        [loginAlert show];
+                    });
                 }
             });
         });

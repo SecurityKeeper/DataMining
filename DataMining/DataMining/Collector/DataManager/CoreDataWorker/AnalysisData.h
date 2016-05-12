@@ -1,27 +1,24 @@
 //
 //  AnalysisData.h
-//  
+//  DataMining
 //
-//  Created by Jiao Liu on 4/8/16.
-//
+//  Created by Jiao Liu on 5/12/16.
+//  Copyright © 2016 SecurityKeeper. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface AnalysisData : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * analysisOut;
-@property (nonatomic, retain) NSNumber * angle;
-@property (nonatomic, retain) NSNumber * euler;
-@property (nonatomic, retain) NSNumber * place;
-@property (nonatomic, retain) NSNumber * stepLength;
-@property (nonatomic, retain) NSNumber * timesTamp;
-@property (nonatomic, retain) NSNumber * touchForce;
-@property (nonatomic, retain) NSNumber * touchMove;
-
+// Insert code here to declare functionality of your managed object subclass
 - (void)setDataWithDict:(NSDictionary*)dict;
 - (NSDictionary*)getDictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "AnalysisData+CoreDataProperties.h"

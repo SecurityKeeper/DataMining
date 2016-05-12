@@ -21,7 +21,7 @@
 
 - (float)getMontionAnalyzeData:(NSArray*)data {
     
-    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_reliableStorage];
+    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:500 dataFrom:dataSrcType_reliableStorage];
 
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
@@ -53,7 +53,7 @@
 
 - (float)getAccelerometerAnalyzeData:(NSArray*)data {
     
-    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:0 dataFrom:dataSrcType_reliableStorage];
+    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:500 dataFrom:dataSrcType_reliableStorage];
 
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {

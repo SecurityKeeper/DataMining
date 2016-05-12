@@ -56,7 +56,7 @@
         long double timesTamp = ((NSNumber*)[dict objectForKey:kTimesTamp]).doubleValue;
         
         //进行原始计算
-        if (stepCount - preDistance != 0) {
+        if (stepCount - preStepCount != 0) {
             long double perStepDistance = (distance - preDistance) / (stepCount - preStepCount);
             
             if (perStepDistance != 0) {

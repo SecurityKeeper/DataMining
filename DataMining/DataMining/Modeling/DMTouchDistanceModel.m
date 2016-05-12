@@ -61,7 +61,7 @@
         }
     }
     //求出起始点和终止点的距离
-    for (int i = 0; i<dataEndX.count; i++) {
+    for (int i = 0; i<MIN(dataEndX.count,dataBeginX.count); i++) {
         double X = [dataBeginX[i] floatValue] - [dataEndX[i] floatValue];
         double Y = [dataBeginY[i] floatValue] - [dataEndY[i] floatValue];
         double dis = sqrt(X * X + Y * Y);

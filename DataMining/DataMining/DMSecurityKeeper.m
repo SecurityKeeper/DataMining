@@ -34,30 +34,35 @@ NSString *password = @"123";
 
 - (void)startKeeper
 {
-    loginAlert = [[UIAlertView alloc] initWithTitle:@"请登录" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    loginAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-    [loginAlert textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeWhileEditing;
     NSArray *tempTouch = [[DataStorageManager shareInstance] getDataType:entitiesType_Touch WithCount:0 dataFrom:dataSrcType_reliableStorage];
     if (tempTouch == 0) {
+        loginAlert = [[UIAlertView alloc] initWithTitle:@"请登录" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        loginAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+        [loginAlert textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeWhileEditing;
         [loginAlert show];
     }
     else
     {
         [[CollectDataManager shareInstance] startWork];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[CollectDataManager shareInstance] stopWork];
-            sleep(1);
-            analysisOut = [[DMAnalysisModel sharedInstance] startAnalysis];
-            if ([[analysisOut objectForKey:kAnalysisOut] boolValue]) {
-                isValid = true;
-                [[DataStorageManager shareInstance] saveType:entitiesType_AnalysisData WithData:analysisOut storage:dataSrcType_reliableStorage];
-                sleep(1);
-                [[CollectDataManager shareInstance] startWork];
-            }
-            else
-            {
-                [loginAlert show];
-            }
+//            [[CollectDataManager shareInstance] stopWork];
+//            sleep(1);
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                analysisOut = [[DMAnalysisModel sharedInstance] startAnalysis];
+                if ([[analysisOut objectForKey:kAnalysisOut] boolValue]) {
+                    isValid = true;
+                    [[DataStorageManager shareInstance] saveType:entitiesType_AnalysisData WithData:analysisOut storage:dataSrcType_reliableStorage];
+                    //                sleep(1);
+                    //                [[CollectDataManager shareInstance] startWork];
+                }
+                else
+                {
+                    loginAlert = [[UIAlertView alloc] initWithTitle:@"请登录" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                    loginAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                    [loginAlert textFieldAtIndex:0].clearButtonMode = UITextFieldViewModeWhileEditing;
+                    [loginAlert show];
+                }
+            });
         });
     }
 }
@@ -83,8 +88,8 @@ NSString *password = @"123";
                 [analysisOut setObject:[NSNumber numberWithBool:true] forKey:kAnalysisOut];
                 [[DataStorageManager shareInstance] saveType:entitiesType_AnalysisData WithData:analysisOut storage:dataSrcType_reliableStorage];
             }
-            sleep(1);
-            [[CollectDataManager shareInstance] startWork];
+//            sleep(1);
+//            [[CollectDataManager shareInstance] startWork];
         }
         else
         {

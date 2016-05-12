@@ -139,6 +139,9 @@ static DAClustering *clusterInstance = nil;
 {
     NSMutableArray *retArray = [NSMutableArray array];
     for (NSMutableArray *item in data) {
+        if (item.count == 0) {
+            continue;
+        }
         NSArray *keysArray = [[item objectAtIndex:0] allKeys];
         NSMutableDictionary *retItem = [NSMutableDictionary dictionary];
         for (NSString *key in keysArray) {

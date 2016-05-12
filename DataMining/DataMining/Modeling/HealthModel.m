@@ -56,13 +56,15 @@
         long double timesTamp = ((NSNumber*)[dict objectForKey:kTimesTamp]).doubleValue;
         
         //进行原始计算
-        long double perStepDistance = (distance - preDistance) / (stepCount - preStepCount);
-        
-        if (perStepDistance != 0) {
-            NSNumber* perStepDistanceNum = [NSNumber numberWithFloat:perStepDistance];
-            [tempArray addObject:perStepDistanceNum];
+        if (stepCount - preDistance != 0) {
+            long double perStepDistance = (distance - preDistance) / (stepCount - preStepCount);
+            
+            if (perStepDistance != 0) {
+                NSNumber* perStepDistanceNum = [NSNumber numberWithFloat:perStepDistance];
+                [tempArray addObject:perStepDistanceNum];
+            }
         }
-        
+
         preDistance  = distance;
         preStepCount = stepCount;
         preTimesTamp = timesTamp;
@@ -106,13 +108,16 @@
         long double timesTamp = ((NSNumber*)[dict objectForKey:kTimesTamp]).doubleValue;
         
         //进行原始计算
-        long double perStepDistance = (distance - preDistance) / (stepCount - preStepCount);
+        if (stepCount - preStepCount != 0) {
+            long double perStepDistance = (distance - preDistance) / (stepCount - preStepCount);
+            NSNumber* perStepDistanceNum = [NSNumber numberWithFloat:perStepDistance];
+            [tempArray addObject:perStepDistanceNum];
+        }
+        
 //        if (i == datas.count-1) {
 //            newValue = perStepDistance;
 //        }
         
-        NSNumber* perStepDistanceNum = [NSNumber numberWithFloat:perStepDistance];
-        [tempArray addObject:perStepDistanceNum];
         
         preDistance  = distance;
         preStepCount = stepCount;

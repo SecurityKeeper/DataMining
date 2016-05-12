@@ -54,6 +54,9 @@ static NSString * APIKey = @"90690cd8fd800d60f45bad636fa0c535";
         [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
         [[DataStorageManager shareInstance]moveTempToReliableStorage];
     }
+    else {
+        [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -72,6 +75,9 @@ static NSString * APIKey = @"90690cd8fd800d60f45bad636fa0c535";
     if ([[DMSecurityKeeper sharedInstance] isValid]) {
         [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
         [[DataStorageManager shareInstance]moveTempToReliableStorage];
+    }
+    else {
+        [[DataStorageManager shareInstance]moveMemoryDataToTempStorage];
     }
     [self saveContext];
 }

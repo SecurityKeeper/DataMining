@@ -62,14 +62,14 @@ static DMAnalysisModel *analysisModel = nil;
         tempLocation = [[DataStorageManager shareInstance] getDataType:entitiesType_Location WithCount:0 dataFrom:dataSrcType_tempStorage];
     }
     
-    NSArray *tempAccelerometer = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:10 dataFrom:dataSrcType_memory];
+    NSArray *tempAccelerometer = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:0 dataFrom:dataSrcType_memory];
     if (tempAccelerometer == 0) {
-        tempAccelerometer = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:10 dataFrom:dataSrcType_tempStorage];
+        tempAccelerometer = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:0 dataFrom:dataSrcType_tempStorage];
     }
     
-    NSArray *tempDeviceMontion = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:10 dataFrom:dataSrcType_memory];
+    NSArray *tempDeviceMontion = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_memory];
     if (tempDeviceMontion == 0) {
-        tempDeviceMontion = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:10 dataFrom:dataSrcType_tempStorage];
+        tempDeviceMontion = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_tempStorage];
     }
     
     float newStepLength = [[HealthModel shareInstance] getAnalyzeData:tempHealth];

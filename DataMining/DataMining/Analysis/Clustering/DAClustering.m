@@ -169,65 +169,67 @@ static DAClustering *clusterInstance = nil;
 
 - (NSArray *)clusteringData:(NSArray *)data type:(kClusteringType)type
 {
-    NSMutableArray *tempArray = [NSMutableArray array];
-    NSMutableArray *sortDataArray;
-    long kValue = [self getTargetKValue:data];
-    NSMutableArray *centerArray = [self findSeeds:data seedsNum:kValue];
-    long Time = 0;
-    while (![tempArray isEqual:centerArray]) {
-        tempArray = [NSMutableArray arrayWithArray:centerArray];
-        sortDataArray = [NSMutableArray arrayWithCapacity:centerArray.count];
-        for (int i = 0; i < centerArray.count; i++) {
-            [sortDataArray addObject:[NSMutableArray array]];
-        }
-        for (NSDictionary *item in data) {
-            float minDis = MAXFLOAT;
-            long index = 0;
-            for (long i = 0; i < tempArray.count; i++) {
-                float distance = [self calculateDistance:item Two:[tempArray objectAtIndex:i]];
-                if (distance <= minDis) {
-                    minDis = distance;
-                    index = i;
+    @autoreleasepool {
+        NSMutableArray *tempArray = [NSMutableArray array];
+        NSMutableArray *sortDataArray;
+        long kValue = [self getTargetKValue:data];
+        NSMutableArray *centerArray = [self findSeeds:data seedsNum:kValue];
+        long Time = 0;
+        while (![tempArray isEqual:centerArray]) {
+            tempArray = [NSMutableArray arrayWithArray:centerArray];
+            sortDataArray = [NSMutableArray arrayWithCapacity:centerArray.count];
+            for (int i = 0; i < centerArray.count; i++) {
+                [sortDataArray addObject:[NSMutableArray array]];
+            }
+            for (NSDictionary *item in data) {
+                float minDis = MAXFLOAT;
+                long index = 0;
+                for (long i = 0; i < tempArray.count; i++) {
+                    float distance = [self calculateDistance:item Two:[tempArray objectAtIndex:i]];
+                    if (distance <= minDis) {
+                        minDis = distance;
+                        index = i;
+                    }
                 }
-            }
-            NSMutableArray *updateArray = [sortDataArray objectAtIndex:index];
-            if (updateArray == nil) {
-                updateArray = [NSMutableArray array];
-            }
-            [updateArray addObject:item];
-        }
-        centerArray = [self reCenterArray:sortDataArray];
-        Time++;
-        if (Time >= maxSeedTime) {
-            break;
-        }
-    }
-    
-    switch (type) {
-        case kClusteringType_Grouped:
-        {
-            return sortDataArray;
-        }
-            break;
-        case kClusteringType_Plain:
-        {
-            NSMutableArray *retArray = [NSMutableArray array];
-            long clusterNum = 1;
-            for (NSMutableArray *clusterArray in sortDataArray) {
-                for (NSDictionary *item in clusterArray) {
-                    NSMutableDictionary *tempItem = [NSMutableDictionary dictionaryWithDictionary:item];
-                    [tempItem setObject:[NSNumber numberWithLong:clusterNum] forKey:@"cluster"];
-                    [retArray addObject:tempItem];
+                NSMutableArray *updateArray = [sortDataArray objectAtIndex:index];
+                if (updateArray == nil) {
+                    updateArray = [NSMutableArray array];
                 }
-                clusterNum++;
+                [updateArray addObject:item];
             }
-            
-            return retArray;
+            centerArray = [self reCenterArray:sortDataArray];
+            Time++;
+            if (Time >= maxSeedTime) {
+                break;
+            }
         }
-            break;
-            
-        default:
-            break;
+        
+        switch (type) {
+            case kClusteringType_Grouped:
+            {
+                return sortDataArray;
+            }
+                break;
+            case kClusteringType_Plain:
+            {
+                NSMutableArray *retArray = [NSMutableArray array];
+                long clusterNum = 1;
+                for (NSMutableArray *clusterArray in sortDataArray) {
+                    for (NSDictionary *item in clusterArray) {
+                        NSMutableDictionary *tempItem = [NSMutableDictionary dictionaryWithDictionary:item];
+                        [tempItem setObject:[NSNumber numberWithLong:clusterNum] forKey:@"cluster"];
+                        [retArray addObject:tempItem];
+                    }
+                    clusterNum++;
+                }
+                
+                return retArray;
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 }
 
@@ -238,13 +240,13 @@ static DAClustering *clusterInstance = nil;
     float weight = 0.0;
     NSMutableArray *combinedData = [NSMutableArray arrayWithArray:dataSet];
     [combinedData addObject:data];
-    long preKValue = [self getTargetKValue:dataSet];
-    long postKValue = [self getTargetKValue:combinedData];
-    if (preKValue != postKValue) {
-        weight = 1.0 / combinedData.count;
-    }
-    else
-    {
+//    long preKValue = [self getTargetKValue:dataSet];
+//    long postKValue = [self getTargetKValue:combinedData];
+//    if (preKValue != postKValue) {
+//        weight = 1.0 / combinedData.count;
+//    }
+//    else
+//    {
         NSArray *clusteredArray = [self clusteringData:combinedData type:kClusteringType_Grouped];
         for (NSArray *group in clusteredArray) {
             if ([group containsObject:data]) {
@@ -252,7 +254,7 @@ static DAClustering *clusterInstance = nil;
                 break;
             }
         }
-    }
+//    }
     return weight;
 }
 

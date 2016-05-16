@@ -21,7 +21,7 @@
 
 - (float)getMontionAnalyzeData:(NSArray*)data {
     
-    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:500 dataFrom:dataSrcType_reliableStorage];
+    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_DeviceMontion WithCount:0 dataFrom:dataSrcType_reliableStorage];
 
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
@@ -44,7 +44,7 @@
         [checkDic setValue:[valueDic objectForKey:kPitch] forKey:kPitch];
         [checkDic setValue:[valueDic objectForKey:kRoll] forKey:kRoll];
         [checkDic setValue:[valueDic objectForKey:kYaw] forKey:kYaw];
-        average += [[DAClustering sharedInstance]checkData:checkDic set:dataSet] / data.count;
+        average += [[DAClustering sharedInstance] checkData:checkDic set:dataSet] / data.count;
     }
     
     return average;
@@ -53,7 +53,7 @@
 
 - (float)getAccelerometerAnalyzeData:(NSArray*)data {
     
-    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:500 dataFrom:dataSrcType_reliableStorage];
+    NSArray *dbData = [[DataStorageManager shareInstance] getDataType:entitiesType_Accelerometer WithCount:0 dataFrom:dataSrcType_reliableStorage];
 
     NSMutableArray *dataSet = [[NSMutableArray alloc]init];
     for (NSDictionary *dic in dbData) {
@@ -76,7 +76,7 @@
         [checkDic setValue:[valueDic objectForKey:kX] forKey:kX];
         [checkDic setValue:[valueDic objectForKey:kY] forKey:kY];
         [checkDic setValue:[valueDic objectForKey:kZ] forKey:kZ];
-        average += [[DAClustering sharedInstance]checkData:checkDic set:dataSet] / data.count;
+        average += [[DAClustering sharedInstance] checkData:checkDic set:dataSet] / data.count;
     }
     
     return average;

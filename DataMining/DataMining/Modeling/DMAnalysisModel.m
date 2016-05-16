@@ -37,7 +37,8 @@ static DMAnalysisModel *analysisModel = nil;
 - (NSMutableDictionary *)startAnalysis
 {
     NSMutableDictionary *retDic = [NSMutableDictionary dictionary];
-    NSArray *tempAnalysisData = [[DataStorageManager shareInstance] getDataType:entitiesType_AnalysisData WithCount:0 dataFrom:dataSrcType_reliableStorage];
+    // clustering can only handle 1000 fast
+    NSArray *tempAnalysisData = [[DataStorageManager shareInstance] getDataType:entitiesType_AnalysisData WithCount:1000 dataFrom:dataSrcType_reliableStorage];
     BOOL tryLogic = false;
     NSMutableArray *reliableArray = [NSMutableArray array];
     for (NSDictionary *value in tempAnalysisData) {

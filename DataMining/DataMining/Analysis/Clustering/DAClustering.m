@@ -72,18 +72,20 @@ static DAClustering *clusterInstance = nil;
 
 - (NSArray *)canopyData:(NSArray *)data
 {
-    NSMutableArray *tempArray = [NSMutableArray array];
-    NSMutableArray *retArray = [NSMutableArray arrayWithArray:data];
-    NSDictionary *checkObject = [data objectAtIndex:0];
-    [tempArray addObject:checkObject];
-    for (int i = 1; i < data.count; i++) {
-        NSDictionary *currentObject = [data objectAtIndex:i];
-        if ([self calculateDistance:checkObject Two:currentObject] <= averageDistance) {
-            [tempArray addObject:currentObject];
+    @autoreleasepool {
+        NSMutableArray *tempArray = [NSMutableArray array];
+        NSMutableArray *retArray = [NSMutableArray arrayWithArray:data];
+        NSDictionary *checkObject = [data objectAtIndex:0];
+        [tempArray addObject:checkObject];
+        for (int i = 1; i < data.count; i++) {
+            NSDictionary *currentObject = [data objectAtIndex:i];
+            if ([self calculateDistance:checkObject Two:currentObject] <= averageDistance) {
+                [tempArray addObject:currentObject];
+            }
         }
+        [retArray removeObjectsInArray:tempArray];
+        return retArray;
     }
-    [retArray removeObjectsInArray:tempArray];
-    return retArray;
 }
 
 - (long)getTargetKValue:(NSArray *)data
@@ -105,66 +107,70 @@ static DAClustering *clusterInstance = nil;
 
 - (NSMutableArray *)findSeeds:(NSArray *)data seedsNum:(long)num
 {
-    NSMutableArray *retArray = [NSMutableArray arrayWithCapacity:num];
-    NSDictionary *seed = [data objectAtIndex:random() % num];
-    [retArray addObject:seed];
-    num--;
-    while (num != 0) {
-        long index = 0;
-        float totalDis = 0;
-        NSMutableArray *DisArray = [NSMutableArray array];
-        for (long i = 0; i < data.count; i++) {
-            float distance = [self calculateDistance:seed Two:[data objectAtIndex:i]];
-            totalDis += distance;
-            [DisArray addObject:[NSNumber numberWithFloat:distance]];
-        }
-        
-        float randomf = random() * totalDis / RAND_MAX;
-        for (long i = 0; i < DisArray.count; i++) {
-            randomf -= [[DisArray objectAtIndex:i] floatValue];
-            if (randomf <= 0) {
-                index = i;
-                break;
-            }
-        }
-        
-        seed = [data objectAtIndex:index];
+    @autoreleasepool {
+        NSMutableArray *retArray = [NSMutableArray arrayWithCapacity:num];
+        NSDictionary *seed = [data objectAtIndex:random() % num];
         [retArray addObject:seed];
         num--;
+        while (num != 0) {
+            long index = 0;
+            float totalDis = 0;
+            NSMutableArray *DisArray = [NSMutableArray array];
+            for (long i = 0; i < data.count; i++) {
+                float distance = [self calculateDistance:seed Two:[data objectAtIndex:i]];
+                totalDis += distance;
+                [DisArray addObject:[NSNumber numberWithFloat:distance]];
+            }
+            
+            float randomf = random() * totalDis / RAND_MAX;
+            for (long i = 0; i < DisArray.count; i++) {
+                randomf -= [[DisArray objectAtIndex:i] floatValue];
+                if (randomf <= 0) {
+                    index = i;
+                    break;
+                }
+            }
+            
+            seed = [data objectAtIndex:index];
+            [retArray addObject:seed];
+            num--;
+        }
+        return retArray;
     }
-    return retArray;
 }
 
 - (NSMutableArray *)reCenterArray:(NSMutableArray *)data
 {
-    NSMutableArray *retArray = [NSMutableArray array];
-    for (NSMutableArray *item in data) {
-        if (item.count == 0) {
-            continue;
-        }
-        NSArray *keysArray = [[item objectAtIndex:0] allKeys];
-        NSMutableDictionary *retItem = [NSMutableDictionary dictionary];
-        for (NSString *key in keysArray) {
-            float keyValue = 0;
-            for (NSDictionary *dic in item) {
-                keyValue += [[dic objectForKey:key] floatValue] / item.count;
+    @autoreleasepool {
+        NSMutableArray *retArray = [NSMutableArray array];
+        for (NSMutableArray *item in data) {
+            if (item.count == 0) {
+                continue;
             }
-            [retItem setObject:[NSNumber numberWithFloat:keyValue] forKey:key];
-        }
-        
-        float minDis = MAXFLOAT;
-        long index = 0;
-        for (long i = 0; i < item.count; i++) {
-            float distance = [self calculateDistance:retItem Two:[item objectAtIndex:i]];
-            if (distance <= minDis) {
-                minDis = distance;
-                index = i;
+            NSArray *keysArray = [[item objectAtIndex:0] allKeys];
+            NSMutableDictionary *retItem = [NSMutableDictionary dictionary];
+            for (NSString *key in keysArray) {
+                float keyValue = 0;
+                for (NSDictionary *dic in item) {
+                    keyValue += [[dic objectForKey:key] floatValue] / item.count;
+                }
+                [retItem setObject:[NSNumber numberWithFloat:keyValue] forKey:key];
             }
+            
+            float minDis = MAXFLOAT;
+            long index = 0;
+            for (long i = 0; i < item.count; i++) {
+                float distance = [self calculateDistance:retItem Two:[item objectAtIndex:i]];
+                if (distance <= minDis) {
+                    minDis = distance;
+                    index = i;
+                }
+            }
+            
+            [retArray addObject:[item objectAtIndex:index]];
         }
-        
-        [retArray addObject:[item objectAtIndex:index]];
+        return retArray;
     }
-    return retArray;
 }
 
 - (NSArray *)clusteringData:(NSArray *)data type:(kClusteringType)type

@@ -8,9 +8,6 @@
 
 #import "dataAnalysis.h"
 #import "DAAverageCalculate.h"
-#import "DataStorageManager.h"
-#import "CollectorDef.h"
-#import "DMTouchTimeModel.h"
 
 @interface dataAnalysis()
 
@@ -43,7 +40,7 @@
         [dataX addObject:dict[@"x"]];
         [dataY addObject:dict[@"y"]];
     }
-     // 计算data、data2的平均值
+     // 计算dataX、dataY的平均值
     for (i = 0; i<n; i++) {
         
         sumx += [[dataX objectAtIndex:i] floatValue];
